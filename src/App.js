@@ -1,9 +1,12 @@
-import './App.css';
-
+import "./App.css";
+// import { Routes, Route, Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-<h1>Kom ihåg att inte koda på master, kör en npm i ibland, och viktigast av allt. HA KUL :)</h1>
+      <h1>
+        Kom ihåg att inte koda på master, kör en npm i ibland, och viktigast av
+        allt. HA KUL :)
+      </h1>
     </div>
   );
 }
