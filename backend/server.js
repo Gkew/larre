@@ -1,6 +1,7 @@
 const bestSqlite3 = require('best-sqlite3');
 const express = require('express');
 const API = require('./api')
+const cors = require('cors')
 
 const port = 4000;
 const dbPath = '../databas/database-14-maj.sqlite3'
