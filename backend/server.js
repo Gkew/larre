@@ -3,7 +3,7 @@ const express = require('express');
 const API = require('./api')
 
 const port = 4000;
-const dbPath = '../database/database.sqlite3';
+const dbPath = '../databas/database-14-maj.sqlite3'
 
 async function start() {
   const dataBase = await bestSqlite3.connect(dbPath)
