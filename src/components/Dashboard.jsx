@@ -5,7 +5,7 @@ import '../css/Dashboard.css'
 const Dashboard = () => {
   return (
     <>
-      <Container fluid className='py-4 mx-5'>
+      <Container fluid className=''>
         <Row>
           <Col sm={7} >
             <Image src='https://picsum.photos/id/288/1200/500' fluid rounded className='' /></Col>
