@@ -1,13 +1,40 @@
+@import "~bootstrap/scss/bootstrap";
+
 .backoffice-container {
   background-color: bisque;
   height: 100vh;
   padding: 1%;
 
+  .bo-header {
+    margin: 2em;
+  }
   h2 {
     text-align: center;
+    font-size: 2em;
+  }
+  p{
+    font-size: 1.2em;
+  }
+  a {
+    text-decoration: none;
+    font-size: 2em;
+    color: white;
   }
 
-
+  .bo-add-product {
+    display: grid;
+    gap: 1em;
+    width: 60%;
+  }
+  input {
+    border-radius: 5px;
+    padding: 1%;
+  }
+ .bo-nav {
+   display: grid;
+   gap: 1em;
+   
+ }
   .BO-one-product {
     display: flex;
     border: 1px solid black;
@@ -15,4 +42,6 @@
     margin: 1.3em;
     padding: 1%;
   }
+
+  
 }

@@ -38,15 +38,21 @@ const BOProductCreate = () => {
       <p>
         Alla fält behöver fyllas i förutom bild - den kan du ladda upp senare
       </p>
-      <form>
-        <input type="text" name="" placeholder="produktnamn"></input>
-        <input type="text" name="" placeholder="beskrivning"></input>
-        <select type="select" name="" placeholder="produktnamn">
+      <form className="bo-add-product">
+        <input
+          type="text"
+          name="name"
+          placeholder="Produktnamn"
+          autofocus
+        ></input>
+        <input type="text" name="description" placeholder="Beskrivning"></input>
+        <select type="select" name="category">
+          <option>Kategorier:</option>
           <option>Kategori 1</option>
           <option>Kategori 2</option>
           <option>Kategori 3</option>
         </select>
-        <input type="text" name="" placeholder="varumärke"></input>
+        <input type="text" name="brand" placeholder="Varumärke"></input>
       </form>
     </main>
   );
