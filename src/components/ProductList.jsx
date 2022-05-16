@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Card } from "react-bootstrap";
+import { Container, Col, Card, Row } from "react-bootstrap";
 import Axios from "axios";
 
 export default function ProductList() {
@@ -17,25 +17,17 @@ export default function ProductList() {
     })
   }, []);
 
-  // const getSoda = () => {
-  //   Axios.get("http://localhost:4000/api/sodas").then((response) => {
-  //     setSodasList(response.data);
-  //   });
-  // };
-
   return (
     <div className="ProductList">
-      <h1>ProductList</h1>
+    <Row><Col><h1>Products</h1></Col></Row>
       {sodasList.map((val, key) => {
         return (
           <Container>
-            <Card style={{border: '2px solid'}}>
-              <Col xxl="12">
-                <h3>{val.name}</h3>
-                <h3>{val.description}</h3>
-                <h3>{val.price}</h3>
-                <h3>{val.brand}</h3>
-              </Col>
+            <Card style={{borderBottom: '0.5px solid black'}}>
+              <Col> <h1>{val.name}</h1> </Col>
+              <Col> <h4>{val.description}</h4> </Col>
+              <Col> <b>{val.price}:-</b> </Col>
+              <Col> <h3>{val.brand}</h3> </Col>
             </Card>
           </Container>
         );
