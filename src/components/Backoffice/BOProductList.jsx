@@ -1,28 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-const BOProductList = () => {
+import axios from "axios";
+import BOProductDetails from "./BOProductDetails";
+
+export function BOProductList() {
+  axios.defaults.baseURL = "http://localhost:4000/api";
+
+  const [products, setProducts] = useState([]);
+  const [update, setUpdate] = useState(false);
+
   //Get all data in the table namned sodas
   useEffect(() => {
-    const baseUrl = "https://localhost:4000/api/sodas";
+    axios
+      .get("/sodas")
+      .then((res) => {
+        console.log(res.data);
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [update]);
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(baseUrl);
-        const json = await response.json();
-        console.log(json);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
+  const deleteProduct = (e) => {
+    axios.delete(`/sodas/deleteProduct/${e.target.name}`);
 
-    fetchData();
-  }, []);
+    setProducts((data) => {
+      return data.filter((product) => product.id !== e.target.name);
+    });
+  };
 
   return (
     <main className="backoffice-container">
-      <h2> Våra befintliga varor ska listas här på något fräsigt sätt</h2>
+      <h2>Alla varor</h2>
+      {products.map((product) => (
+        <div
+          className="BO-one-product"
+          key={product.id}
+          aria-label="product-div"
+        >
+          <BOProductDetails product={product} deleteProduct={deleteProduct} />
+        </div>
+      ))}
     </main>
   );
-};
-
+}
 export default BOProductList;
