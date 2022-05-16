@@ -33,6 +33,12 @@ export function BOProductList() {
   return (
     <main className="backoffice-container">
       <h2>Alla varor</h2>
+      <div className="bo-search-filter">
+        Här ska det finnas sorterings- och filtreringsfunktioner!
+        <br />
+        Även admin bör kunna göra detta för att snabbt hitta den produkt vi
+        behöver uppdatera eller ta bort.
+      </div>
       {products.map((product) => (
         <div
           className="BO-one-product"

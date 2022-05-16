@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 const BOProductCreate = () => {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -22,8 +23,8 @@ const BOProductCreate = () => {
           name: "",
           description: "",
           brand: "",
-          price: "",
           category: "",
+          price: "",
         });
         console.log(res.data);
       })
@@ -53,6 +54,15 @@ const BOProductCreate = () => {
           <option>Kategori 3</option>
         </select>
         <input type="text" name="brand" placeholder="Varumärke"></input>
+        <input placeholder="konsumentpris i SEK"></input>
+        <Button
+          className="addproduct-btn"
+          variant="success"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Spara produkt
+        </Button>
       </form>
     </main>
   );
