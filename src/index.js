@@ -10,6 +10,9 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/productlist" element={<ProductList />} />
+        <Route path="/backoffice" element={<Backoffice />} />
+        <Route path="/backoffice/products" element={<BOProductList />} />
+        <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
       </Routes>
     </Router>
   </React.StrictMode>
