@@ -10,7 +10,8 @@ async function start() {
   const dataBase = await bestSqlite3.connect(dbPath)
   const app = express();
 
-  app.use(express.json(), cors({ origin: "http://localhost:3000/" }));
+  app.use(express.json());
+  app.use(cors());
   app.use(express.static('dist'));
   API(app, dataBase);
   app.listen(port, () => console.log('Server is listening on http://localhost:' + port))
