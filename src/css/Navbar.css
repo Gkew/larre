@@ -1,0 +1,9 @@
+.link1:hover,
+.link2:hover,
+.link3:hover,
+.link4:hover {
+  font-size: 22px;
+}
+.link0:hover {
+  font-size: 36px;
+}

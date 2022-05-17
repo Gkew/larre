@@ -8,11 +8,13 @@ import Backoffice from "./components/Backoffice/Backoffice";
 import BOProductList from "./components/Backoffice/BOProductList";
 import BOProductCreate from "./components/Backoffice/BOProductCreate";
 import BOOrders from "./components/Backoffice/BOOrders";
+import Navbar from './components/Navbar'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
+    <Navbar />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/productlist" element={<ProductList />} />
