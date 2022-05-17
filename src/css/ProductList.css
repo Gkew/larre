@@ -1,0 +1,11 @@
+.ProductList {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 2% 2%;
+    font-family: 'Raleway';
+    color: black ;
+}
