@@ -44,6 +44,7 @@ module.exports = function RESTapi(app, databaseConnection) {
       )
     })
 
+
     let putAndPatch = (req, res) => {
       runQ(name, req, res, { ...req.body, ...req.params },
         `UPDATE ${name}
@@ -77,4 +78,5 @@ module.exports = function RESTapi(app, databaseConnection) {
       next();
     }
   })
+  
 }

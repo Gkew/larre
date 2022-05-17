@@ -4,7 +4,9 @@ import Axios from "axios";
 
 
 const sekFormatting = new Intl.NumberFormat(
-  'sv-SE', { style: 'currency', currency: 'SEK' }
+  'sv-SE', { style: 'currency',
+  currency: 'SEK', 
+  maximumSignificantDigits: 3}
 );
 
 export function sweFormat(number) {
@@ -33,10 +35,19 @@ export default function ProductList() {
         return (
           <Container>
             <Card style={{borderBottom: '0.5px solid black'}}>
+            <Row>
               <Col> <h1>{val.name}</h1> </Col>
-              <Col> <h4>{val.description}</h4> </Col>
-              <Col> <b>{sweFormat(val.price)}</b> </Col>
-              <Col> <h3>{val.brand}</h3> </Col>
+              <Col> <h4>{val.description}</h4> 
+              </Col> 
+              </Row>
+              <Row>
+              <Col>
+              <img style={{ width: '100px', height: '400px', objectFit: 'cover' }} 
+              src={`/images/products/${val.id}.png`} alt="soda" />
+              <b>{sweFormat(val.price)}</b> </Col>
+              <Col> <h3 className="float-end ms-3">{val.brand}</h3></Col>
+              </Row>
+               
             </Card>
           </Container>
         );
