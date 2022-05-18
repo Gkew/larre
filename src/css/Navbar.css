@@ -2,8 +2,11 @@
 .link2:hover,
 .link3:hover,
 .link4:hover {
-  font-size: 22px;
+  font-size: 30px;
 }
 .link0:hover {
-  font-size: 36px;
+  font-size: 50px;
+}
+[class*=link] {
+  font-family: 'Raleway';
 }
