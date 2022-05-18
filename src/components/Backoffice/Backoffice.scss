@@ -1,16 +1,24 @@
-@import "~bootstrap/scss/bootstrap";
+
 * {
   box-sizing: border-box;
 }
-
+// #CCF3EE  <- ljusturkos
+// #F9CEEE  <- rosa
+// #F9F3EE  <- gul?
+// #97C4B8  <- grön
 
 .backoffice-container {
-  background-color: bisque;
-  height: 100%;
+  background-color: #97C4B8;
   padding: 1%;
 
   .bo-header {
     margin: 2em;
+    display: flex;
+   
+    h2{
+      margin: 0 auto;
+    }
+    
   }
   h2 {
     text-align: center;
@@ -86,4 +94,24 @@
     }
   
   
+}
+
+.update-container {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 2%;
+  background-color: #CCF3EE;
+  border: 2px solid black;
+  box-shadow: 2px 8px 15px 8px rgba(0, 0, 0, 0.71);
+
+  input, select, textarea {
+    margin: 1em;
+  }
+  .btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding:3%;
+  }
 }

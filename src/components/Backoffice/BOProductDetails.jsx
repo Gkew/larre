@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import BOProductEdit from "./BOProductEdit";
+import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 
-const BOProductDetails = ({ product, deleteProduct, updateProduct }) => {
+const BOProductDetails = ({ product, deleteProduct }) => {
   const { id, name, brand, description, price, category } = product;
+  const [prodId, setProdId] = useState("");
+  const [updateCollapse, setUpdateCollapse] = useState(false);
+
+  const updateProduct = (e) => {
+    setProdId(e.target.name);
+    setUpdateCollapse(true);
+  };
+  const closeCollapse = () => {
+    setProdId("");
+    setUpdateCollapse(false);
+  };
 
   return (
     <>
@@ -35,6 +48,7 @@ const BOProductDetails = ({ product, deleteProduct, updateProduct }) => {
           <label>Kategori: </label>
         </div>
         <div className="grid2">{category}</div>
+
         <Button
           className="detail-btn grid1"
           variant="outline-warning"
@@ -42,6 +56,7 @@ const BOProductDetails = ({ product, deleteProduct, updateProduct }) => {
           onClick={updateProduct}
         >
           Uppdatera
+          <AiOutlineEdit />
         </Button>
         <Button
           className="detail-btn grid3"
@@ -49,9 +64,17 @@ const BOProductDetails = ({ product, deleteProduct, updateProduct }) => {
           name={id}
           onClick={deleteProduct}
         >
+          <AiFillDelete />
           Ta bort
         </Button>
       </div>
+      <>
+        {updateCollapse ? (
+          <BOProductEdit id={prodId} closeCollapse={closeCollapse} />
+        ) : (
+          <></>
+        )}
+      </>
     </>
   );
 };
