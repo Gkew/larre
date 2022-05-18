@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 import BOProductDetails from "./BOProductDetails";
@@ -23,7 +24,7 @@ export function BOProductList() {
   }, [update]);
 
   const deleteProduct = (e) => {
-    axios.delete(`/sodas/deleteProduct/${e.target.name}`);
+    axios.delete(`/sodas/${e.target.name}`);
 
     setProducts((data) => {
       return data.filter((product) => product.id !== e.target.name);
@@ -32,7 +33,10 @@ export function BOProductList() {
 
   return (
     <main className="backoffice-container">
-      <h2>Alla varor</h2>
+      <div className="bo-header">
+        <Link to={`/backoffice`}>Tillbaka till BO</Link>
+        <h2>Alla varor</h2>
+      </div>
       <div className="bo-search-filter">
         Här ska det finnas sorterings- och filtreringsfunktioner!
         <br />
