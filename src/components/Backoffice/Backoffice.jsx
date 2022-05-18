@@ -22,6 +22,11 @@ const Backoffice = () => {
               Klicka här för att lägga till en produkt
             </Link>
           </Button>
+          <Button className="bo-links" variant="primary">
+            <Link to={`/backoffice/categoryhandling`}>
+              Klicka här för att lägga till en kategori
+            </Link>
+          </Button>
           <Button className="bo-links" variant="info">
             <Link to={`/backoffice/orders`}>
               Klicka här för att se kundordrar
