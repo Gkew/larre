@@ -14,13 +14,15 @@ export function sweFormat(number) {
   return sekFormatting.format(number);
 }
 
-let navigate = {useNavigate};
-
-function showDetail(id) {
-  navigate(`/product-detail/${id}`);
-}
 
 export default function ProductList() {
+let navigate = useNavigate();
+
+function showDetail(id) {
+  navigate(`/productdetails/${id}`);
+}
+
+
   Axios.defaults.baseURL = "http://localhost:4000/api";
   const [sodasList, setSodasList] = useState([]);
 
