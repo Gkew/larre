@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { BiImageAdd } from "react-icons/bi";
 
 const BOProductCreate = () => {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -58,34 +57,42 @@ const BOProductCreate = () => {
         console.log(err.message);
       });
   }
-
+  let navigate = useNavigate();
   const addMoreProducts = () => {
-    newProduct();
     setCreated(false);
+    navigate("/backoffice/addproduct", { replace: true });
   };
 
   return (
     <main className="backoffice-container">
-      <div className="bo-header">
-        <Link to={`/backoffice`}>Tillbaka till BO</Link>
-        <h2>Lägg till en ny produkt</h2>
-      </div>
-
       <>
         {created ? (
-          <div>
+          <div className="bo-successheader">
             <h2>Produkten har blivit tillagd.</h2>
-            <Button variant="primary" onClick={addMoreProducts}>
-              Lägg till en till
-            </Button>
+
+            <p className="btn-p">
+              <Button className="header-btn" onClick={addMoreProducts}>
+                Lägg till en till produkt
+              </Button>{" "}
+              <Button className="header-btn">
+                <Link to={`/backoffice`}>Tillbaka till BO</Link>
+              </Button>
+            </p>
           </div>
         ) : (
           <>
-            <p>
-              Alla fält behöver fyllas i förutom bild - den kan du ladda upp
-              senare
-            </p>
+            <div className="bo-header">
+              <button className="goback">
+                <Link to={`/backoffice`}>Tillbaka till BO</Link>
+              </button>
+
+              <h2>Lägg till en ny produkt</h2>
+            </div>
             <form onSubmit={addProd} className="bo-add-product">
+              <p>
+                Alla fält behöver fyllas i förutom bild - den kan du ladda upp
+                senare
+              </p>
               <input
                 type="text"
                 name="name"
@@ -125,27 +132,14 @@ const BOProductCreate = () => {
                 required
               ></input>
               <input
-                type="text"
+                type="number"
                 name="price"
                 placeholder="Konsumentpris i SEK"
                 onChange={handleInput}
                 value={newProduct.price}
               ></input>
 
-              <Button
-                variant="outline-dark"
-                htmlFor="files"
-                className="img-btn"
-              >
-                <BiImageAdd /> Lägg till produktbild
-              </Button>
-              <input
-                id="files"
-                name="img"
-                style={{ visibility: "hidden" }}
-                type="file"
-                accept="image/*"
-              />
+              <input id="img" name="img" type="file" accept="image/*" />
 
               <Button
                 className="addproduct-btn"

@@ -8,6 +8,7 @@ import Backoffice from "./components/Backoffice/Backoffice";
 import BOProductList from "./components/Backoffice/BOProductList";
 import BOProductCreate from "./components/Backoffice/BOProductCreate";
 import BOOrders from "./components/Backoffice/BOOrders";
+import BOCategoryHandling from "./components/Backoffice/BOCategoryHandling";
 import Navbar from "./components/Navbar";
 import Productdetails from "./components/Productdetails";
 
@@ -23,6 +24,10 @@ root.render(
         <Route path="/backoffice/orders" element={<BOOrders />} />
         <Route path="/backoffice/products" element={<BOProductList />} />
         <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
+        <Route
+          path="/backoffice/categoryhandling"
+          element={<BOCategoryHandling />}
+        />
         <Route path="/productdetails/:id " element={<Productdetails />} />
       </Routes>
     </Router>
