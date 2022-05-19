@@ -34,7 +34,7 @@ module.exports = function setupRESTapi(app, databaseConnection) {
       runQuery(name, req, res, req.params, `
         SELECT *
         FROM ${name}
-        WHERE id = $id
+        WHERE sodasID = $id
       `, true);
     });
 //Missing the CONTINUE in the api
@@ -54,7 +54,7 @@ module.exports = function setupRESTapi(app, databaseConnection) {
       runQuery(name, req, res, { ...req.body, ...req.params }, `
         UPDATE ${name}
         SET ${Object.keys(req.body).map(x => x + ' = $' + x)}
-        WHERE id = $id
+        WHERE sodasID = $id
       `);
     };
 
@@ -64,7 +64,7 @@ module.exports = function setupRESTapi(app, databaseConnection) {
     app.delete('/api/' + name + '/:id', (req, res) => {
       runQuery(name, req, res, req.params, `
         DELETE FROM ${name}
-        WHERE id = $id
+        WHERE sodasID = $id
       `);
     });
 
