@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 import BOProductDetails from "./BOProductDetails";
 
@@ -23,11 +22,12 @@ export function BOProductList() {
       });
   }, [update]);
 
+  //function to delete a product
   const deleteProduct = (e) => {
     axios.delete(`/sodas/${e.target.name}`);
 
     setProducts((data) => {
-      return data.filter((product) => product.id !== e.target.name);
+      return data.filter((product) => product.sodasID !== e.target.name);
     });
   };
 
@@ -46,7 +46,7 @@ export function BOProductList() {
       {products.map((product) => (
         <div
           className="BO-one-product"
-          key={product.id}
+          key={product.sodasID}
           aria-label="product-div"
         >
           <BOProductDetails product={product} deleteProduct={deleteProduct} />

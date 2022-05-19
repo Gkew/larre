@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -9,6 +9,19 @@ const BOProductCreate = () => {
 
   //set to false to not show successmessage until product is successfully created.
   const [created, setCreated] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/categories")
+      .then((res) => {
+        console.log(res.data);
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const [newProduct, setNewProduct] = useState({
     brand: "",
@@ -79,24 +92,33 @@ const BOProductCreate = () => {
                 placeholder="Produktnamn"
                 autoFocus
                 onChange={handleInput}
+                required
               ></input>
               <input
                 type="text"
                 name="description"
                 placeholder="Beskrivning"
                 onChange={handleInput}
+                required
               ></input>
-              <select type="select" name="category" onChange={handleInput}>
-                <option>Kategorier:</option>
-                <option>Kategori 1</option>
-                <option>Kategori 2</option>
-                <option>Kategori 3</option>
+              <select
+                type="select"
+                name="category"
+                onChange={handleInput}
+                required
+              >
+                <option hidden>Kategorier:</option>
+                <option disabled>Kategorier:</option>
+                {categories.map((category) => {
+                  return <option key={category.id}> {category.name}</option>;
+                })}
               </select>
               <input
                 type="text"
                 name="brand"
                 placeholder="Varumärke"
                 onChange={handleInput}
+                required
               ></input>
               <input
                 placeholder="Konsumentpris i SEK"
