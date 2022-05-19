@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import BOProductEdit from "./BOProductEdit";
+import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 
 const BOProductDetails = ({ product, deleteProduct }) => {
-  const { id, name, brand, description, price, category } = product;
+  const { sodasID, name, brand, description, price, categoriesID } = product;
   const [prodId, setProdId] = useState("");
   const [updateCollapse, setUpdateCollapse] = useState(false);
 
@@ -19,11 +20,17 @@ const BOProductDetails = ({ product, deleteProduct }) => {
 
   return (
     <>
-      <div className="grid-container" key={id}>
+      <div className="grid-container" key={product.sodasID}>
         <div className="img-grid">
           <img
-            style={{ width: "100px", height: "350px", objectFit: "cover" }}
-            src={`/images/products/${product.id}.png`}
+            variant="top"
+            style={{
+              width: "75px",
+              height: "225px",
+              objectFit: "scale-down",
+              margin: "auto",
+            }}
+            src={`/images/products/${product.sodasID}.png`}
             alt="soda"
           />
         </div>
@@ -42,26 +49,26 @@ const BOProductDetails = ({ product, deleteProduct }) => {
         <div className="grid1">
           <label>Konsumentpris: </label>{" "}
         </div>
-        <div className="grid2">{price} SEK</div>
+        <div className="grid2">{sweFormat(price)}</div>
 
         <div className="grid1">
           <label>Kategori: </label>
         </div>
-        <div className="grid2">{category}</div>
+        <div className="grid2">{categoriesID}</div>
 
         <Button
-          className="detail-btn grid1"
+          className="detail-btn grid-btn"
           variant="outline-warning"
-          name={id}
+          name={sodasID}
           onClick={updateProduct}
         >
           Uppdatera
           <AiOutlineEdit />
         </Button>
         <Button
-          className="detail-btn grid3"
+          className="detail-btn grid1"
           variant="outline-danger"
-          name={id}
+          name={sodasID}
           onClick={deleteProduct}
         >
           <AiFillDelete />
