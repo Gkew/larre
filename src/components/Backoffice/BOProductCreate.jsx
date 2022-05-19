@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { BiImageAdd } from "react-icons/bi";
 
 const BOProductCreate = () => {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -107,8 +107,8 @@ const BOProductCreate = () => {
                 onChange={handleInput}
                 required
               >
-                <option hidden>Kategorier:</option>
-                <option disabled>Kategorier:</option>
+                <option hidden>Kategori:</option>
+                <option disabled>Kategori:</option>
                 {categories.map((category) => {
                   return <option key={category.id}> {category.name}</option>;
                 })}
@@ -124,6 +124,15 @@ const BOProductCreate = () => {
                 placeholder="Konsumentpris i SEK"
                 onChange={handleInput}
               ></input>
+
+              <Button
+                variant="outline-dark"
+                htmlFor="files"
+                className="img-btn"
+              >
+                <BiImageAdd /> Lägg till produktbild
+              </Button>
+              <input id="files" style={{ visibility: "hidden" }} type="file" />
 
               <Button
                 className="addproduct-btn"

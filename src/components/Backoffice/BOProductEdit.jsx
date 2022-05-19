@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { AiOutlineSave, AiOutlineClose } from "react-icons/ai";
+import { BiImageAdd } from "react-icons/bi";
 
 function BOProductEdit({ id, closeCollapse }) {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -99,12 +100,17 @@ function BOProductEdit({ id, closeCollapse }) {
             value={productInfo.categoriesID}
             onChange={onInputChange}
           >
-            <option hidden>Kategorier:</option>
-            <option disabled>Kategorier:</option>
+            <option hidden>Kategori:</option>
+            <option disabled>Kategori:</option>
             {categories.map((category) => {
               return <option key={category.id}> {category.name}</option>;
             })}
           </select>
+          <Button variant="outline-dark" htmlFor="files" className="img-btn">
+            <BiImageAdd /> Lägg till ny produktbild
+          </Button>
+          <input id="files" style={{ visibility: "hidden" }} type="file" />
+
           <div className="btn-div">
             <Button
               className="pdate-btn"

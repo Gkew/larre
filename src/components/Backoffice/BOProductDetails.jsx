@@ -57,7 +57,7 @@ const BOProductDetails = ({ product, deleteProduct }) => {
         <div className="grid2">{categoriesID}</div>
 
         <Button
-          className="detail-btn grid1"
+          className="detail-btn grid-btn"
           variant="outline-warning"
           name={sodasID}
           onClick={updateProduct}
@@ -66,7 +66,7 @@ const BOProductDetails = ({ product, deleteProduct }) => {
           <AiOutlineEdit />
         </Button>
         <Button
-          className="detail-btn grid3"
+          className="detail-btn grid1"
           variant="outline-danger"
           name={sodasID}
           onClick={deleteProduct}
