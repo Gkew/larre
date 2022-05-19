@@ -11,8 +11,8 @@ export default function ProductList() {
 
 let navigate = useNavigate();
 
-function details(id) {
-  navigate(`/productdetails/${id}`);
+function details(sodasID) {
+  navigate(`/productdetails/${sodasID}`);
   }
 
 
@@ -49,7 +49,7 @@ function details(id) {
             </Card.Body>
             <Card.Footer style={{backgroundColor: '#CCF3EE'}}>
               <small className="text-muted"><b>{sweFormat(val.price)} </b></small>
-              <Button key={val.id} onClick={() => details(val.sodasID)} className="float-end ms-3">Detaljer</Button>
+              <Button key={val.sodasID} onClick={() => details(val.sodasID)} className="float-end ms-3">Detaljer</Button>
             </Card.Footer>
           </Card>
 
