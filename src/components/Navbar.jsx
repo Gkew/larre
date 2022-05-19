@@ -5,7 +5,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 const NavbarComponent = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="black" variant="dark">
-      <Navbar.Brand href="#" className='ps-5'><h2>NAMN</h2></Navbar.Brand>
+      <Navbar.Brand href="#" className='ps-5'><h2>LARRE</h2></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className='ms-auto pe-5'>
