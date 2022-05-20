@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 const BOProductCreate = () => {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -64,7 +64,7 @@ const BOProductCreate = () => {
   };
 
   return (
-    <main className="backoffice-container">
+    <Container className="backoffice-container" fluid>
       <>
         {created ? (
           <div className="bo-successheader">
@@ -82,7 +82,7 @@ const BOProductCreate = () => {
         ) : (
           <>
             <div className="bo-header">
-              <button className="goback">
+              <button>
                 <Link to={`/backoffice`}>Tillbaka till BO</Link>
               </button>
 
@@ -143,7 +143,7 @@ const BOProductCreate = () => {
 
               <Button
                 className="addproduct-btn"
-                variant="success"
+                variant="outline-dark"
                 type="submit"
                 onClick={addProd}
               >
@@ -153,7 +153,7 @@ const BOProductCreate = () => {
           </>
         )}
       </>
-    </main>
+    </Container>
   );
 };
 

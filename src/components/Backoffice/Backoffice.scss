@@ -1,29 +1,41 @@
+body {
+  background-color: black;
+}
 * {
   box-sizing: border-box;
 }
 
 // #CCF3EE  <- ljusturkos
 // #F9CEEE  <- rosa
-// #F9F3EE  <- gul?
+// #F9F3EE  <- gul/grå?
 // #97C4B8  <- grön
 
 .backoffice-container {
-  background-color: #F9F3EE;
+  background-color: #ccf3eedc;
   padding: 1%;
-
-
-
-  .bo-successheader,
-  .bo-header {
-    padding: 2%;
-    height: fit-content;
-    justify-content: center;
-    background-color: #97C4B8;
-    color: black;
+  min-height: 50vh; 
+ 
+    .bo-successheader,
+     .bo-header {
+      padding:2%;
+      height: fit-content;
+      justify-content: center;
+      background-color: #F9CEEE;
+      color: black;
 
 
     .header-btn {
       font-size: 2em;
+    }
+    button{
+      border-radius: 10px;
+      border: none;
+      background-color:#ccf3ee9a;
+      padding: .7%;
+      
+      a{ 
+      font-weight: bold;
+    }
     }
 
     .btn-p {
@@ -45,6 +57,10 @@
   a {
     text-decoration: none;
     color: black;
+
+    &:hover {
+      font-weight: bold;
+    }
   }
 
 
@@ -53,13 +69,9 @@
     border-radius: 10px;
     padding: .7%;
 
-    a {
-      color: black;
-
-      &:hover {
+    a:hover {
         color: white;
         font-weight: bold;
-      }
     }
   }
 
@@ -68,9 +80,9 @@
   .create-category {
     display: grid;
     gap: 1em;
-    padding: 2%;
+    padding: 3%;
     height: fit-content;
-    background-color: #97C4B8;
+    background-color: #ccf3eead;
 
     .addproduct-btn,
     .addcategory-btn {
@@ -94,7 +106,7 @@
     display: grid;
     gap: 1em;
     grid-template-columns: auto auto;
-    margin: 1em auto;
+    margin: 3em auto;
 
     .bo-links {
       background-color: #97C4B8;
@@ -102,6 +114,9 @@
       border: none;
       border-radius: 10px;
       padding: 1%;
+    }
+    a{
+      text-decoration: none;
     }
 
   }
@@ -119,15 +134,15 @@
       margin-right: .5em;
     }
 
-
+@media screen and (min-width: 768px) {
     .grid-container {
-      display: inline-grid;
+      display: grid;
       grid-template-columns: auto auto auto auto auto;
       column-gap: 1em;
       flex-wrap: wrap;
       flex-shrink: 1;
       flex-grow: 1;
-    }
+    
 
     .grid1 {
       grid-column: 3/4;
@@ -155,8 +170,8 @@
   .detail-btn {
     margin-top: 2em;
   }
-
-
+    }
+  }
 }
 
 .update-container {
@@ -184,4 +199,11 @@
   .price-cat {
     width: fit-content;
   }
+
+
 }
+
+
+ 
+
+
