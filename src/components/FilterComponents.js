@@ -11,6 +11,7 @@ import { Button, Row, Col, Form } from 'react-bootstrap';
 
 // ### STEP 2 ANVÄND SKITEN
 // <SortByDescending />
+// eller const Sort = SortByDescending()
 
 const SortByName = () => {
   const [compareNames, setCompareNames] = useState([])
