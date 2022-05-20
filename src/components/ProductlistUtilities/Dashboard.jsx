@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row, Button } from 'react-bootstrap'
-import '../css/Dashboard.css'
+import '../../css/Dashboard.css'
 const Dashboard = () => {
   const [soda, setSoda] = useState([])
 

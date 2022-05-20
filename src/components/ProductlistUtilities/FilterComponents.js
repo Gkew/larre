@@ -40,6 +40,7 @@ const SortByName = () => {
     </div>
   )
 }
+
 const SortByAscending = () => {
   const [ascendingPrice, setAscendingPrice] = useState([])
   const ascendingPrices = [...ascendingPrice].map(x => <div key={x.id}>{x.price}</div>)
