@@ -54,9 +54,7 @@ const BOCategoryHandling = () => {
   return (
     <main className="backoffice-container">
       <div className="bo-header">
-        <button className="goback">
-          <Link to={`/backoffice`}>Tillbaka till BO</Link>
-        </button>
+        <Link to={`/backoffice`}>Tillbaka till BO</Link>
 
         <h2>Kategorier</h2>
       </div>

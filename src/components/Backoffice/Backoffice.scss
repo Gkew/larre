@@ -1,23 +1,24 @@
-
+body {
+  background-color: #F9F3EE;
+}
 * {
   box-sizing: border-box;
 }
 // #CCF3EE  <- ljusturkos
 // #F9CEEE  <- rosa
-// #F9F3EE  <- gul?
+// #F9F3EE  <- gul/grå?
 // #97C4B8  <- grön
 
 .backoffice-container {
-  background-color: #F9F3EE;
+  background-color: #ccf3ee9a;
   padding: 1%;
+  width: 100%;
  
-  
-
     .bo-successheader, .bo-header {
       padding:2%;
       height: fit-content;
       justify-content: center;
-      background-color: #97C4B8;
+      background-color: #F9CEEE;
       color: black;
 
      
@@ -64,7 +65,7 @@
     gap: 1em;
     padding: 2%;
     height: fit-content;
-    background-color: #97C4B8;
+    background-color: #CCF3EE;
 
     .addproduct-btn,
     .addcategory-btn{

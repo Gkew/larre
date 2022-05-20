@@ -1,12 +1,12 @@
 import React from "react";
 import "../Backoffice/Backoffice.scss";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 const Backoffice = () => {
   return (
     <>
-      <main className="backoffice-container">
+      <Container className="backoffice-container">
         <div className="bo-header">
           <h2>Välkommen till Back office!</h2>
         </div>
@@ -22,8 +22,7 @@ const Backoffice = () => {
               Klicka här för att lägga till en produkt
             </Link>
           </button>
-        </section>
-        <section className="bo-nav" aria-label="backoffice-linksection">
+
           <button className="bo-links" variant="primary">
             <Link to={`/backoffice/categoryhandling`}>
               Klicka här för att hantera kategorier
@@ -35,7 +34,7 @@ const Backoffice = () => {
             </Link>
           </button>
         </section>
-      </main>
+      </Container>
     </>
   );
 };
