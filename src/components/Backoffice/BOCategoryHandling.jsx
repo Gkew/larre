@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Button, Container } from "react-bootstrap";
 
 const BOCategoryHandling = () => {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -52,9 +52,11 @@ const BOCategoryHandling = () => {
   }
 
   return (
-    <main className="backoffice-container">
+    <Container className="backoffice-container" fluid>
       <div className="bo-header">
-        <Link to={`/backoffice`}>Tillbaka till BO</Link>
+        <button>
+          <Link to={`/backoffice`}>Tillbaka till BO</Link>
+        </button>
 
         <h2>Kategorier</h2>
       </div>
@@ -96,7 +98,7 @@ const BOCategoryHandling = () => {
           Skapa kategori
         </Button>
       </form>
-    </main>
+    </Container>
   );
 };
 

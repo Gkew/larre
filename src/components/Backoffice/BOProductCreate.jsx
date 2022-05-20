@@ -64,7 +64,7 @@ const BOProductCreate = () => {
   };
 
   return (
-    <Container className="backoffice-container">
+    <Container className="backoffice-container" fluid>
       <>
         {created ? (
           <div className="bo-successheader">
@@ -82,7 +82,9 @@ const BOProductCreate = () => {
         ) : (
           <>
             <div className="bo-header">
-              <Link to={`/backoffice`}>Tillbaka till BO</Link>
+              <button>
+                <Link to={`/backoffice`}>Tillbaka till BO</Link>
+              </button>
 
               <h2>Lägg till en ny produkt</h2>
             </div>
@@ -141,7 +143,7 @@ const BOProductCreate = () => {
 
               <Button
                 className="addproduct-btn"
-                variant="success"
+                variant="outline-dark"
                 type="submit"
                 onClick={addProd}
               >

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 import BOProductDetails from "./BOProductDetails";
 
 export function BOProductList() {
@@ -23,8 +24,13 @@ export function BOProductList() {
   }, [update]);
 
   //function to delete a product
-  const deleteProduct = (e) => {
-    axios.delete(`/sodas/${e.target.name}`);
+  const deleteProduct = async (e) => {
+    e.preventDefault();
+    const choice = window.confirm(
+      "Är du säker på att du vill ta bort produkten?"
+    );
+    if (!choice) return;
+    await axios.delete(`/sodas/${e.target.name}`);
 
     setProducts((data) => {
       return data.filter((product) => product.sodasID !== e.target.name);
@@ -32,9 +38,11 @@ export function BOProductList() {
   };
 
   return (
-    <main className="backoffice-container">
+    <Container className="backoffice-container" fluid>
       <div className="bo-header">
-        <Link to={`/backoffice`}>Tillbaka till BO</Link>
+        <button>
+          <Link to={`/backoffice`}>Tillbaka till BO</Link>
+        </button>
         <h2>Alla varor</h2>
       </div>
       <div className="bo-search-filter">
@@ -52,7 +60,7 @@ export function BOProductList() {
           <BOProductDetails product={product} deleteProduct={deleteProduct} />
         </div>
       ))}
-    </main>
+    </Container>
   );
 }
 export default BOProductList;

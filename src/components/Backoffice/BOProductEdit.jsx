@@ -106,10 +106,8 @@ function BOProductEdit({ id, closeCollapse }) {
               return <option key={category.id}> {category.name}</option>;
             })}
           </select>
-          <Button variant="outline-dark" htmlFor="files" className="img-btn">
-            <BiImageAdd /> Lägg till ny produktbild
-          </Button>
-          <input id="files" style={{ visibility: "hidden" }} type="file" />
+
+          <input id="img" name="img" type="file" accept="image/*" />
 
           <div className="btn-div">
             <Button
