@@ -21,17 +21,45 @@ export function BOProductList() {
       .catch((err) => {
         console.log(err);
       });
-  }, [update]);
+  }, []);
 
-  //function to delete a product
+  /*TILLFÄLLIG SORTERING TILLS VI LÖSER JONTES*/
+  const sortAZ = () => {
+    const sortedNames = products.sort((a, b) => (a.name > b.name ? 1 : -1));
+    setProducts([...sortedNames]);
+  };
+  const sortPrice = () => {
+    const sortedByPrice = products.sort((a, b) => (a.price > b.price ? 1 : -1));
+    setProducts([...sortedByPrice]);
+  };
+
+  /* MÅSTE GÖRA NÅGOT SÅNT HÄR??
+  const [sortType, setSortType] = useState("");
+  useEffect(() => {
+    const sortArray = (type) => {
+      let types = {
+        price: "price",
+        name: "name",
+        categoriesID: "categoriesID"
+      };
+      const sortProperty = types[type];
+      const sorted = [...products].sort(
+        (a, b) => b[sortProperty] - a[sortProperty]
+      );
+      setProducts(sorted);
+    };
+    sortArray(sortType);
+  }, [sortType]);
+*/
+  //function to delete a product.
+  //triggers a confirm-popup
   const deleteProduct = async (e) => {
     e.preventDefault();
-    const choice = window.confirm(
+    const confirm = window.confirm(
       "Är du säker på att du vill ta bort produkten?"
     );
-    if (!choice) return;
+    if (!confirm) return;
     await axios.delete(`/sodas/${e.target.name}`);
-
     setProducts((data) => {
       return data.filter((product) => product.sodasID !== e.target.name);
     });
@@ -45,11 +73,14 @@ export function BOProductList() {
         </button>
         <h2>Alla varor</h2>
       </div>
-      <div className="bo-search-filter">
-        Här ska det finnas sorterings- och filtreringsfunktioner!
-        <br />
-        Även admin bör kunna göra detta för att snabbt hitta den produkt vi
-        behöver uppdatera eller ta bort.
+      <div className="bo-search-div">
+        <input
+          className="search-box"
+          type="text"
+          placeholder="det här ska bli en sökruta"
+        />
+        <button onClick={sortAZ}>sortera på namn</button>
+        <button onClick={sortPrice}>sortera på pris</button>
       </div>
       {products.map((product) => (
         <div

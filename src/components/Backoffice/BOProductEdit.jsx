@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { AiOutlineSave, AiOutlineClose } from "react-icons/ai";
-import { BiImageAdd } from "react-icons/bi";
 
 function BOProductEdit({ id, closeCollapse }) {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -13,7 +12,7 @@ function BOProductEdit({ id, closeCollapse }) {
     name: "",
     price: 0,
     description: "",
-    category: "",
+    categoriesID: "",
   });
 
   // get all categories from db.
@@ -39,7 +38,7 @@ function BOProductEdit({ id, closeCollapse }) {
           name: "",
           price: 0,
           description: "",
-          category: "",
+          categoriesID: "",
         });
         console.log(res.data);
       })
@@ -74,29 +73,14 @@ function BOProductEdit({ id, closeCollapse }) {
           ></input>
           <input
             type="text"
-            name="brand"
-            value={productInfo.brand}
-            onChange={onInputChange}
-            placeholder="Märke"
-          ></input>
-          <input
-            type="text"
             name="description"
             value={productInfo.description}
             onChange={onInputChange}
             placeholder="Beskrivning"
           ></input>
-          <input
-            type="number"
-            name="price"
-            value={productInfo.price}
-            onChange={onInputChange}
-            placeholder="Pris i SEK"
-            min="5"
-          ></input>
           <select
             type=""
-            name="category"
+            name="categoriesID"
             value={productInfo.categoriesID}
             onChange={onInputChange}
           >
@@ -106,6 +90,21 @@ function BOProductEdit({ id, closeCollapse }) {
               return <option key={category.id}> {category.name}</option>;
             })}
           </select>
+          <input
+            type="text"
+            name="brand"
+            value={productInfo.brand}
+            onChange={onInputChange}
+            placeholder="Märke"
+          ></input>
+          <input
+            type="number"
+            name="price"
+            value={productInfo.price}
+            onChange={onInputChange}
+            placeholder="Pris i SEK"
+            min="5"
+          ></input>
 
           <input id="img" name="img" type="file" accept="image/*" />
 

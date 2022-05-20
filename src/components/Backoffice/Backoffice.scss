@@ -1,6 +1,4 @@
-body {
-  background-color: black;
-}
+
 * {
   box-sizing: border-box;
 }
@@ -120,7 +118,27 @@ body {
     }
 
   }
+.bo-search-div {
+  width: 70vw;
+  display: grid;
+  justify-items: center;
+  margin: 2em auto;
 
+  button{
+    width: fit-content;
+    background-color: #F9CEEE;
+    border:none;
+    border-radius: 10px;
+    margin: .6em 0;
+    &:hover{
+      color: white;
+    }
+  }
+  .search-box{
+    width: 70%;
+    margin: 1em 0;
+  }
+}
   .BO-one-product {
     margin: 1em auto;
     border: 1px solid black;

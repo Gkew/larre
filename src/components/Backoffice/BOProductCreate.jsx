@@ -14,7 +14,6 @@ const BOProductCreate = () => {
     axios
       .get("/categories")
       .then((res) => {
-        console.log(res.data);
         setCategories(res.data);
       })
       .catch((err) => {
