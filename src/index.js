@@ -11,6 +11,7 @@ import BOOrders from "./components/Backoffice/BOOrders";
 import BOCategoryHandling from "./components/Backoffice/BOCategoryHandling";
 import Navbar from "./components/Navbar";
 import Productdetails from "./components/Productdetails";
+import BOProductEdit from "./components/Backoffice/BOProductEdit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,10 @@ root.render(
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/backoffice/orders" element={<BOOrders />} />
         <Route path="/backoffice/products" element={<BOProductList />} />
+        <Route
+          path="/backoffice/products/:sodasID"
+          element={<BOProductEdit />}
+        />
         <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
         <Route
           path="/backoffice/categoryhandling"
