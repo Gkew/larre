@@ -11,6 +11,7 @@ import BOOrders from "./components/Backoffice/BOOrders";
 import BOCategoryHandling from "./components/Backoffice/BOCategoryHandling";
 import Navbar from "./components/Navbar";
 import Productdetails from "./components/Productdetails";
+import Checkout from "./components/Checkout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,6 +30,7 @@ root.render(
           element={<BOCategoryHandling />}
         />
         <Route path="/productdetails/:id " element={<Productdetails />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   </React.StrictMode>
