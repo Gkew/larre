@@ -4,6 +4,7 @@ import { Col, Card, Button } from "react-bootstrap";
 import Axios from "axios";
 import { sweFormat } from './ProductlistUtilities/sekFormatting'
 import '../css/ProductList.css'
+import SearchPage from "./SearchComponents/SearchPage";
 
 
 
@@ -30,10 +31,11 @@ function details(sodasID) {
   }, []);
 
   return (
+    <div>
+      <SearchPage />
     <div className="ProductList">
       {sodasList.map((val, key) => {
         return (
-
           <Col sm={3} className="py-2">
           <Card className="h-100" style={{backgroundColor: '#F9CEEE', border: 'none'}}>
             <img variant="top" style={{ width: '150px', height: '450px', objectFit: 'scale-down', margin: 'auto' }} src={`/images/products/${val.sodasID}.png`} alt="soda" />
@@ -57,6 +59,7 @@ function details(sodasID) {
 
         );
       })}
+      </div>
     </div>
   );
 }
