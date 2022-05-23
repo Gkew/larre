@@ -13,19 +13,14 @@ const BOProductList = () => {
   const [products, setProducts] = useState([]);
   const [thisProduct, setThisProduct] = useState(null);
   const [thisIndex, setThisIndex] = useState(-1);
-  const [searchProduct, setSearchProduct] = useState("");
+  //const [searchProduct, setSearchProduct] = useState("");
   const [filter, setFilter] = useState(-1);
-  const [update, setUpdate] = useState(false);
+  //const [update, setUpdate] = useState(false);
   const [category, setCategory] = useState("all");
 
   useEffect(() => {
     getAllSodas();
   }, []);
-
-  const onChangeSearch = (e) => {
-    const searchProduct = e.target.value;
-    setSearchProduct(searchProduct);
-  };
 
   const getAllSodas = () => {
     SodaService.getAll()
@@ -47,17 +42,6 @@ const BOProductList = () => {
   const setChoosenProduct = (product, index) => {
     setThisProduct(product);
     setThisIndex(index);
-  };
-
-  const findByName = () => {
-    SodaService.findByName(searchProduct)
-      .then((res) => {
-        setProducts(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   /*
@@ -90,6 +74,21 @@ export function BOProductList() {
         console.log(err);
       });
   }, [update]);
+const onChangeSearch = (e) => {
+    const searchProduct = e.target.value;
+    setSearchProduct(searchProduct);
+  };
+
+  const findByName = () => {
+    SodaService.findByName(searchProduct)
+      .then((res) => {
+        setProducts(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   //function to delete a product
   const deleteProduct = async (e) => {
@@ -126,7 +125,7 @@ export function BOProductList() {
           <Row>
             <Col xs={6}>
               <label>
-                <h4>Ifall du vill ha label typ</h4>
+                <h4>Filtrera ut kategorier</h4>
               </label>
               <Form.Select
                 className="w-100"
@@ -143,32 +142,24 @@ export function BOProductList() {
             </Col>
             <Col xs={6}>
               <label>
-                <h4>Ifall du vill ha label typ</h4>
+                <h4>Sortera på...</h4>
               </label>
               <Form.Select
                 className="w-100"
                 onChange={(e) => setFilter(e.target.value)}
               >
                 <option value={-1}>None</option>
-                <option value={SORTOPTION.AToZ}>A-Z</option>
-                <option value={SORTOPTION.Ascending}>Ascending</option>
-                <option value={SORTOPTION.Descending}>Descending</option>
+                <option value={SORTOPTION.AToZ}>Namn: A-Ö</option>
+                <option value={SORTOPTION.Descending}>
+                  Pris lågt till högt
+                </option>
+                <option value={SORTOPTION.Ascending}>
+                  Pris högt till lågt
+                </option>
               </Form.Select>
             </Col>
           </Row>
-          <br />
-          Även admin bör kunna göra detta för att snabbt hitta den produkt vi
-          behöver uppdatera eller ta bort.
         </div>
-        {getData().map((product) => (
-          <div
-            className="BO-one-product"
-            key={product.sodasID}
-            aria-label="product-div"
-          >
-            <BOProductDetails product={product} />
-          </div>
-        ))}
       </div>
       <div className="all-prod-func">
         <div className="col-md-5 all-products">
@@ -176,7 +167,7 @@ export function BOProductList() {
 
           <ul className="list-group">
             {products &&
-              products.map((product, index) => (
+              getData().map((product, index) => (
                 <li
                   className={
                     "list-group-item" + (index === thisIndex ? "active" : "")
