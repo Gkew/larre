@@ -1,18 +1,17 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 
-const SodasList = ({ sodaList = [] }) => {
+const SodasList = ({ brand, name, price }) => {
   return (
     <>
-      {sodaList.map((data, index) => {
-        if (data) {
-          return (
-            <div key={data.name}>
-              <h1>{data.brand}</h1>
-            </div>
-          );
-        }
-        return null;
-      })}
+      <Row>
+        {/* <Col>
+          <h1>{brand}</h1>
+        </Col> */}
+        <Col sm={8}>
+          <h1>{name}</h1>
+        </Col>
+      </Row>
     </>
   );
 };

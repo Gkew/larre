@@ -1,12 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Searchbar from "./SearchBar";
 import SodasList from "./SodasList";
 
 const SearchPage = () => {
   const [input, setInput] = useState("");
-  const [sodaListDefualt, setSodaListDefualt] = useState();
-  const [sodaList, setSodaList] = useState();
+  const [sodaList, setSodaList] = useState([]);
 
   useEffect(() => {
     axios
@@ -20,19 +18,25 @@ const SearchPage = () => {
       });
   }, []);
 
-  const updateInput = async (input) => {
-    const filtered = sodaListDefualt.filter((sodas) => {
-      return sodas.name.toLowerCase().includes(input.toLowerCase());
-    });
-    setInput(input);
-    setSodaList(filtered);
-  };
-
   return (
     <>
       <h1>Soda List</h1>
-      <Searchbar input={input} onChange={updateInput} />
-      <SodasList sodaList={sodaList} />
+      <input
+        type="search"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      {sodaList
+        .filter((x) => {
+          if (input === "") {
+            return sodaList;
+          } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
+            return sodaList;
+          }
+        })
+        .map((x) => {
+          return <SodasList key={x.id} {...x} />;
+        })}
     </>
   );
 };
