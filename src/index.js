@@ -25,12 +25,13 @@ root.render(
         <Route path="/backoffice/orders" element={<BOOrders />} />
         <Route path="/backoffice/products" element={<BOProductList />} />
         <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
-        <Route path="/productdetails" element={<Productdetails />} />
+
+        <Route path="/productdetails/:sodasID" element={<Productdetails />} />
         <Route
           path="/backoffice/categoryhandling"
           element={<BOCategoryHandling />}
         />
-        <Route path="/productdetails/:id " element={<Productdetails />} />
+
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
