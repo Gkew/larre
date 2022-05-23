@@ -6,6 +6,7 @@ import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
   SORTOPTION,
 } from "../ProductlistUtilities/FilterComponents";
+import {BiSearch} from 'react-icons/bi'
 
 const BOProductList = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +14,7 @@ const BOProductList = () => {
   const [thisIndex, setThisIndex] = useState(-1);
   const [filter, setFilter] = useState(-1);
   const [category, setCategory] = useState("all");
+  const [input, setInput] = useState('')
 
   useEffect(() => {
     getAllSodas();
@@ -34,12 +36,21 @@ const BOProductList = () => {
     setThisIndex(index);
   };
 
+
   const getData = () => {
     return FilterUtil.getSortFilter(
       FilterUtil.getCategoryFilter(products, category),
       filter
     );
   };
+
+  const searchSodas = (x) => {
+    if (input === "") {
+      return products
+    } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
+      return products
+    }
+  }
 
   return (
     <Container className="backoffice-container list row" fluid>
@@ -56,27 +67,20 @@ const BOProductList = () => {
               <label>
                 <h4>Filtrera ut kategorier</h4>
               </label>
-              <Form.Select
-                className="w-100"
-                onChange={(e) => setCategory(e.target.value)}
-              >
+              <Form.Select className="w-100"
+                onChange={(e) => setCategory(e.target.value)}>
                 <option value="all">All</option>
-                {products
-                  .map((x) => x.categoriesID)
-                  .filter((a, b, arr) => arr.indexOf(a) === b)
-                  .map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
+                {[...new Set(products.map(x => x.categoriesID))].map((x) => (
+                  <option value={x}>{x}</option>
+                ))}
               </Form.Select>
             </Col>
             <Col xs={6}>
               <label>
                 <h4>Sortera på...</h4>
               </label>
-              <Form.Select
-                className="w-100"
-                onChange={(e) => setFilter(e.target.value)}
-              >
+              <Form.Select className="w-100"
+                onChange={(e) => setFilter(e.target.value)}>
                 <option value={-1}>None</option>
                 <option value={SORTOPTION.AToZ}>Namn: A-Ö</option>
                 <option value={SORTOPTION.Descending}>
@@ -88,6 +92,24 @@ const BOProductList = () => {
               </Form.Select>
             </Col>
           </Row>
+          <Row>
+          </Row>
+          {/* <Row>
+            <Col>
+              <input
+                type="search"
+                className="mt-3"
+                value={input}
+                placeholder="Sök"
+                onChange={(e) => setInput(e.target.value)}
+              />
+              <BiSearch />
+              {products.filter((x) => {
+                console.log({searchSodas})
+                searchSodas(x)
+              })}
+            </Col>
+          </Row> */}
         </div>
       </div>
       <div className="all-prod-func">
@@ -95,6 +117,9 @@ const BOProductList = () => {
           <h4>Alla produkter</h4>
 
           <ul className="list-group">
+            {products.filter((x) => {
+              searchSodas(x)
+              })}
             {products &&
               getData().map((product, index) => (
                 <li

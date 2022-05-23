@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Col, Card, Button } from "react-bootstrap";
-import Axios from "axios";
-import { sweFormat } from "./ProductlistUtilities/sekFormatting";
-import "../css/ProductList.css";
-import { add } from "../utils/shoppingCartLogic";
+import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import axios from "axios";
+import { sweFormat } from './ProductlistUtilities/sekFormatting'
+import '../css/ProductList.css'
+import { add } from '../utils/shoppingCartLogic'
+import FilterUtil, { SORTOPTION } from '../components/ProductlistUtilities/FilterComponents'
 import SearchPage from "./SearchComponents/SearchPage";
 
 export default function ProductList() {
+
   let navigate = useNavigate();
 
   function details(sodasID) {
     navigate(`/productdetails/${sodasID}`);
   }
 
-  Axios.defaults.baseURL = "http://localhost:4000/api";
+  axios.defaults.baseURL = "http://localhost:4000/api";
   const [sodasList, setSodasList] = useState([]);
+  const [category, setCategory] = useState("all")
+  const [filter, setFilter] = useState(-1);
 
   //LOCALSTORAGE
   useEffect(() => {
@@ -23,7 +27,7 @@ export default function ProductList() {
   }, [sodasList]);
 
   useEffect(() => {
-    Axios.get("/sodas")
+    axios.get("/sodas")
       .then((response) => {
         console.log(response.data);
         setSodasList(response.data);
@@ -38,12 +42,32 @@ export default function ProductList() {
     navigate("/checkout");
     add(sodasList.id);
   }
+  const getData = () => {
+    return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(sodasList, category), filter)
+  }
+
+
 
   return (
-    <div>
-      <SearchPage />
+    <>
+      <Row>
+        <Col xs={6}>
+          <Form.Select className="w-100" onChange={(e) => setCategory(e.target.value)}>
+            <option value="all">All</option>
+            {[...new Set(sodasList.map(x => x.categoriesID))].map(x => <option value={x}>{x}</option>)}
+          </Form.Select>
+        </Col>
+        <Col xs={6}>
+          <Form.Select className="w-100" onChange={(e) => setFilter(e.target.value)}>
+            <option value={-1}>None</option>
+            <option value={SORTOPTION.AToZ}>A-Z</option>
+            <option value={SORTOPTION.Ascending}>Ascending</option>
+            <option value={SORTOPTION.Descending}>Descending</option>
+          </Form.Select>
+        </Col>
+      </Row>
       <div className="ProductList">
-        {sodasList.map((val, key) => {
+        {getData().map((val, key) => {
           return (
             <Col sm={3} className="py-2">
               <Card
@@ -77,7 +101,7 @@ export default function ProductList() {
                   <Button
                     key={val.sodasID}
                     onClick={() => details(val.sodasID)}
-                    className="float-end ms-3"
+                    className="mt-2 btn btn-primary float-end ms-3"
                   >
                     Detaljer
                   </Button>
@@ -94,6 +118,6 @@ export default function ProductList() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }

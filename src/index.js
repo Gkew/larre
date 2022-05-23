@@ -17,16 +17,34 @@ import Checkout from "./components/Checkout";
 import { AuthProvider } from "./components/Backoffice/Admin/Authenticate";
 import AuthRoutes from "./components/Backoffice/Admin/AuthRoutes";
 import Login from "./components/Backoffice/Admin/BOLogIn";
+import AboutUs from "./AboutUs";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <Navbar />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/productlist" element={<ProductList />} />
+        <Route path="/backoffice" element={<Backoffice />} />
+        <Route path="/backoffice/orders" element={<BOOrders />} />
+        <Route path="/backoffice/products" element={<BOProductList />} />
+        <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
+
+        <Route path="/productdetails/:sodasID" element={<Productdetails />} />
+        <Route
+          path="/backoffice/categoryhandling"
+          element={<BOCategoryHandling />}
+        />
+
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+      {/* <AuthProvider>
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/productlist" element={<ProductList />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
 
           <Route
@@ -81,7 +99,7 @@ root.render(
           <Route path="/productdetails/:id " element={<Productdetails />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
-      </AuthProvider>
+      </AuthProvider> */}
     </Router>
   </React.StrictMode>
 );
