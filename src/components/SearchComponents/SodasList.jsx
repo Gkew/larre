@@ -1,20 +1,20 @@
-import React from 'react'
+import React from "react";
 
-const SodasList = ({sodaList = []}) => {
+const SodasList = ({ sodaList = [] }) => {
   return (
     <>
       {sodaList.map((data, index) => {
         if (data) {
           return (
             <div key={data.name}>
-              <h1>{data.name}</h1>
+              <h1>{data.brand}</h1>
             </div>
-          )
+          );
         }
-        return null
+        return null;
       })}
     </>
-  )
-}
+  );
+};
 
-export default SodasList
+export default SodasList;
