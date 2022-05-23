@@ -4,10 +4,11 @@ import { Col, Card, Button } from "react-bootstrap";
 import Axios from "axios";
 import { sweFormat } from './ProductlistUtilities/sekFormatting'
 import '../css/ProductList.css'
-
-
+import {add} from '../utils/shoppingCartLogic'
 
 export default function ProductList() {
+
+
 
 let navigate = useNavigate();
 
@@ -15,10 +16,15 @@ function details(sodasID) {
   navigate(`/productdetails/${sodasID}`);
   }
 
-
   Axios.defaults.baseURL = "http://localhost:4000/api";
   const [sodasList, setSodasList] = useState([]);
 
+//LOCALSTORAGE
+  useEffect(() => {
+    localStorage.setItem("sodasList", JSON.stringify(sodasList));
+  }, [sodasList]);
+
+  
   useEffect(() => {
     Axios.get("/sodas").then((response) => {
       console.log(response.data)
@@ -26,12 +32,19 @@ function details(sodasID) {
     })
     .catch((err) => {
       console.log(err.response.data)
-    })
+    }) 
   }, []);
+
+//ADDS TO LOCALSTORAGE + NAVIGATE
+  function buy() {
+    navigate('/checkout');
+    add(sodasList.id)
+
+  }
 
   return (
     <div className="ProductList">
-      {sodasList.map((val, key) => {
+      {sodasList.map((val,key) => {
         return (
 
           <Col sm={3} className="py-2">
@@ -50,6 +63,7 @@ function details(sodasID) {
             <Card.Footer style={{backgroundColor: '#CCF3EE'}}>
               <small className="text-muted"><b>{sweFormat(val.price)} </b></small>
               <Button key={val.sodasID} onClick={() => details(val.sodasID)} className="float-end ms-3">Detaljer</Button>
+              <button type="button" onClick={buy} className="mt-2 btn btn-primary float-end">Buy</button>
             </Card.Footer>
           </Card>
 
