@@ -40,7 +40,7 @@ root.render(
 
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
-      <AuthProvider>
+      {/* <AuthProvider>
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/productlist" element={<ProductList />} />
@@ -99,7 +99,7 @@ root.render(
           <Route path="/productdetails/:id " element={<Productdetails />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
-      </AuthProvider>
+      </AuthProvider> */}
     </Router>
   </React.StrictMode>
 );
