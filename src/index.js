@@ -24,6 +24,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Navbar />
+      {/*
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/productlist" element={<ProductList />} />
@@ -31,16 +32,20 @@ root.render(
         <Route path="/backoffice/orders" element={<BOOrders />} />
         <Route path="/backoffice/products" element={<BOProductList />} />
         <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
-
+        <Route
+          path="/backoffice/products/:sodasID"
+          element={<BOProductEdit />}
+        />
+      
         <Route path="/productdetails/:sodasID" element={<Productdetails />} />
         <Route
           path="/backoffice/categoryhandling"
           element={<BOCategoryHandling />}
         />
-
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
-      {/* <AuthProvider>
+      */}
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/productlist" element={<ProductList />} />
@@ -99,7 +104,7 @@ root.render(
           <Route path="/productdetails/:id " element={<Productdetails />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
-      </AuthProvider> */}
+      </AuthProvider>
     </Router>
   </React.StrictMode>
 );
