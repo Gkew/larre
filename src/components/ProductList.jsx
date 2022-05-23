@@ -41,7 +41,6 @@ export default function ProductList() {
 
   return (
     <div>
-      <SearchPage />
       <div className="ProductList">
         {sodasList.map((val, key) => {
           return (

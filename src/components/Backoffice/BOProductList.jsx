@@ -161,9 +161,6 @@ const onChangeSearch = (e) => {
             </Col>
           </Row>
           <Row>
-            <Col>
-              <SearchPage />
-            </Col>
           </Row>
         </div>
       </div>
