@@ -123,27 +123,20 @@ const onChangeSearch = (e) => {
               <label>
                 <h4>Filtrera ut kategorier</h4>
               </label>
-              <Form.Select
-                className="w-100"
-                onChange={(e) => setCategory(e.target.value)}
-              >
+              <Form.Select className="w-100"
+                onChange={(e) => setCategory(e.target.value)}>
                 <option value="all">All</option>
-                {products
-                  .map((x) => x.categoriesID)
-                  .filter((a, b, arr) => arr.indexOf(a) === b)
-                  .map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
+                {[...new Set(products.map(x => x.categoriesID))].map((x) => (
+                  <option value={x}>{x}</option>
+                ))}
               </Form.Select>
             </Col>
             <Col xs={6}>
               <label>
                 <h4>Sortera på...</h4>
               </label>
-              <Form.Select
-                className="w-100"
-                onChange={(e) => setFilter(e.target.value)}
-              >
+              <Form.Select className="w-100"
+                onChange={(e) => setFilter(e.target.value)}>
                 <option value={-1}>None</option>
                 <option value={SORTOPTION.AToZ}>Namn: A-Ö</option>
                 <option value={SORTOPTION.Descending}>
