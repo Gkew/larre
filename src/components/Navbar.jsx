@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import "../css/Navbar.css"
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { HiEye } from "react-icons/hi"
 import logo from "../logo/SODA_POP.png"
 const NavbarComponent = () => {
   return (
@@ -26,6 +27,7 @@ const NavbarComponent = () => {
           <Nav.Link className="link3" href="/" style={{ color: '#F9F3EE' }}>OM OSS</Nav.Link>
           <Nav.Link className="link4" href="#" style={{ color: '#97C4B8' }}>KONTAKTA OSS</Nav.Link>
           <Nav.Link className="link5" href="/cart" style={{ color: '#F9CEEE' }}> <AiOutlineShoppingCart /> </Nav.Link>
+          <Nav.Link className="link4" href="/checkout" style={{ color: '#97C4B8' }}><HiEye /></Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
