@@ -102,7 +102,7 @@ export default function ProductList() {
                   <Button
                     key={val.sodasID}
                     onClick={() => details(val.sodasID)}
-                    className="float-end ms-3"
+                    className="mt-2 btn btn-primary float-end ms-3"
                   >
                     Detaljer
                   </Button>
