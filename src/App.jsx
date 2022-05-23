@@ -1,5 +1,5 @@
 import "./App.css";
-import Dashboard from "./components/ProductlistUtilities/Dashboard"
+import Dashboard from "./Dashboard"
 import './css/Navbar.css'
 function App() {
   return (
