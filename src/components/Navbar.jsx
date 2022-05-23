@@ -15,7 +15,7 @@ const NavbarComponent = () => {
         <Nav className='ms-auto pe-5'>
           <Nav.Link className="link1" href="/productlist" style={{ color: '#F9CEEE' }}>PRODUKTER</Nav.Link>
           <Nav.Link className="link2" href="#" style={{ color: '#CCF3EE' }}>NYHETER</Nav.Link>
-          <Nav.Link className="link3" href="/AboutUs" style={{ color: '#F9F3EE' }}>OM OSS</Nav.Link>
+          <Nav.Link className="link3" href="/about-us" style={{ color: '#F9F3EE' }}>OM OSS</Nav.Link>
           <Nav.Link className="link4" href="#" style={{ color: '#97C4B8' }}>KONTAKTA OSS</Nav.Link>
           <Nav.Link className="link5" href="/checkout" style={{ color: '#F9CEEE' }}> <AiOutlineShoppingCart /> </Nav.Link>
           <Nav.Link className="link4" href="/backoffice" style={{ color: '#97C4B8' }}><HiEye /></Nav.Link>
