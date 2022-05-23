@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row, Button } from 'react-bootstrap'
-import '../../css/Dashboard.css'
+import { useNavigate } from 'react-router-dom'
+import './css/Dashboard.css'
 const Dashboard = () => {
   const [soda, setSoda] = useState([])
-
+  let navigate = useNavigate();
   axios.defaults.baseURL = "http://localhost:4000/api";
 
   useEffect(() => {
@@ -16,6 +17,14 @@ const Dashboard = () => {
     getSodas()
   }, [])
 
+
+  const navigateToProducts = () => {
+    navigate(`/productlist`);
+  }
+
+  const navigateToAboutUs = () => {
+    navigate(`/about-us`)
+  }
   return (
     <>
       <Container fluid className='py-5'>
@@ -24,13 +33,13 @@ const Dashboard = () => {
             <Image src='https://picsum.photos/id/288/1200/500' fluid rounded className='' /></Col>
           <Col sm={5} ><h1>LARRE</h1>
             <p>Centrerad i Stockholm</p>
-            <Button variant='outline-primary'>Läs Mer</Button>
+            <Button variant='outline-primary' onClick={navigateToAboutUs}>Om Oss</Button>
           </Col>
         </Row>
         <Row>
           <Row className='py-5'>
             <Col><h1>PRODUKTER</h1>
-              <div>Hos oss hittar ni flera produkter som {soda.map(x => <div sm={1} key={x.id}>{x.name}</div >)}</div><Button variant='outline-primary'>Produkter</Button></Col>
+              <div>Hos oss hittar ni flera produkter som {soda.map(x => <div sm={1} key={x.id}>{x.name}</div >)}</div><Button variant='outline-primary' onClick={navigateToProducts}>Produkter</Button></Col>
             <Col><Image src='https://picsum.photos/id/6/1000/400' fluid rounded /></Col>
           </Row>
         </Row>
