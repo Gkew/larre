@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-//import axios from "axios";
 import { Col, Container, Button, Form, Row } from "react-bootstrap";
-import BOProductDetails from "./BOProductDetails";
 import SodaService from "../services/SodaService";
 import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
@@ -14,9 +12,7 @@ const BOProductList = () => {
   const [products, setProducts] = useState([]);
   const [thisProduct, setThisProduct] = useState(null);
   const [thisIndex, setThisIndex] = useState(-1);
-  //const [searchProduct, setSearchProduct] = useState("");
   const [filter, setFilter] = useState(-1);
-  //const [update, setUpdate] = useState(false);
   const [category, setCategory] = useState("all");
   const [input, setInput] = useState('')
 
@@ -35,15 +31,17 @@ const BOProductList = () => {
       });
   };
 
-  const refreshProdList = () => {
-    getAllSodas();
-    setThisProduct(null);
-    setThisIndex(-1);
-  };
-
   const setChoosenProduct = (product, index) => {
     setThisProduct(product);
     setThisIndex(index);
+  };
+
+
+  const getData = () => {
+    return FilterUtil.getSortFilter(
+      FilterUtil.getCategoryFilter(products, category),
+      filter
+    );
   };
 
   const searchSodas = (x) => {
@@ -52,70 +50,6 @@ const BOProductList = () => {
     } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
       return products
     }
-  }
-
-  /*
-  const [update, setUpdate] = useState(false);
-  axios.defaults.baseURL = "http://localhost:4000/api";
-=======
-import axios from "axios";
-import { Col, Container, Form, Row } from "react-bootstrap";
-import BOProductDetails from "./BOProductDetails";
-import FilterUtil, { SORTOPTION } from '../ProductlistUtilities/FilterComponents'
-
-export function BOProductList() {
-  axios.defaults.baseURL = "http://localhost:4000/api";
-  const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("all")
-  const [filter, setFilter] = useState(-1);
-  const [update, setUpdate] = useState(false);
-
-
->>>>>>> 1a07a1126194dfd8671705080b95fa56122e8440
-  //Get all data in the table namned sodas
-  useEffect(() => {
-    axios
-      .get("/sodas")
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [update]);
-const onChangeSearch = (e) => {
-    const searchProduct = e.target.value;
-    setSearchProduct(searchProduct);
-  };
-
-  const findByName = () => {
-    SodaService.findByName(searchProduct)
-      .then((res) => {
-        setProducts(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  //function to delete a product
-  const deleteProduct = async (e) => {
-    e.preventDefault();
-    const choice = window.confirm(
-      "Är du säker på att du vill ta bort produkten?"
-    );
-    if (!choice) return;
-    await axios.delete(`/sodas/${e.target.name}`);
-
-    setProducts((data) => {
-      return data.filter((product) => product.sodasID !== e.target.name);
-    });
-  };*/
-
-  const getData = () => {
-    return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(products, category), filter);
   }
 
   return (
@@ -239,7 +173,7 @@ const onChangeSearch = (e) => {
               <div>{thisProduct.categoriesID}</div>
               <Button variant="warning" className="edit-btn">
                 <Link to={"/backoffice/products/" + thisProduct.sodasID}>
-                  hantera produkt
+                  Hantera produkt
                 </Link>
               </Button>
             </div>
