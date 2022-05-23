@@ -41,7 +41,6 @@ export function BOProductList() {
   };
 
   const getData = () => {
-    console.log(filter)
     return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(products, category), filter);
   }
 
