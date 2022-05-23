@@ -5,7 +5,7 @@ import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 
 const BOProductDetails = ({ product, deleteProduct }) => {
-  const { sodasID, name, brand, description, price, categoriesID } = product;
+  const { id, name, brand, description, price, categoriesID } = product;
   const [prodId, setProdId] = useState("");
   const [updateCollapse, setUpdateCollapse] = useState(false);
 
@@ -21,19 +21,18 @@ const BOProductDetails = ({ product, deleteProduct }) => {
   return (
     <>
       <div className="grid-container" key={product.sodasID}>
-        <div className="img-grid">
-          <img
-            variant="top"
-            style={{
-              width: "75px",
-              height: "225px",
-              objectFit: "scale-down",
-              margin: "auto",
-            }}
-            src={`/images/products/${product.sodasID}.png`}
-            alt="soda"
-          />
-        </div>
+        <img
+          variant="top"
+          style={{
+            width: "75px",
+            height: "225px",
+            objectFit: "scale-down",
+            margin: "auto",
+          }}
+          src={`/images/products/${product.sodasID}.png`}
+          alt="soda"
+        />
+
         <div className="grid1">
           <label>Namn: </label>
         </div>
@@ -59,7 +58,6 @@ const BOProductDetails = ({ product, deleteProduct }) => {
         <Button
           className="detail-btn grid-btn"
           variant="outline-warning"
-          name={sodasID}
           onClick={updateProduct}
         >
           Uppdatera
@@ -68,7 +66,6 @@ const BOProductDetails = ({ product, deleteProduct }) => {
         <Button
           className="detail-btn grid1"
           variant="outline-danger"
-          name={sodasID}
           onClick={deleteProduct}
         >
           <AiFillDelete />
