@@ -1,14 +1,57 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SodaService from "../services/SodaService";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 
 const BOProductCreate = () => {
-  axios.defaults.baseURL = "http://localhost:4000/api";
-
   //set to false to not show successmessage until product is successfully created.
   const [created, setCreated] = useState(false);
   const [categories, setCategories] = useState([]);
+
+  const startSodaState = {
+    sodasID: null,
+    brand: "",
+    name: "",
+    price: 0,
+    description: "",
+    categoriesID: "",
+  };
+  const [sodas, setSodas] = useState(startSodaState);
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setSodas({ ...sodas, [name]: value });
+  };
+
+  const addProd = (e) => {
+    e.preventDefault();
+
+    const data = {
+      brand: sodas.brand,
+      name: sodas.name,
+      price: sodas.price,
+      description: sodas.description,
+      categoriesID: sodas.categoriesID,
+    };
+    SodaService.create(data)
+      .then((res) => {
+        setSodas({
+          sodasID: res.data.id,
+          brand: res.data.brand,
+          name: res.data.name,
+          price: res.data.price,
+          description: res.data.description,
+          categoriesID: res.data.categoriesID,
+        });
+        setCreated(true);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  axios.defaults.baseURL = "http://localhost:4000/api";
 
   useEffect(() => {
     axios
@@ -22,6 +65,8 @@ const BOProductCreate = () => {
       });
   }, []);
 
+  {
+    /*
   const [newProduct, setNewProduct] = useState({
     brand: "",
     name: "",
@@ -57,7 +102,10 @@ const BOProductCreate = () => {
         console.log(err.message);
       });
   }
+   */
+  }
   let navigate = useNavigate();
+
   const addMoreProducts = () => {
     setCreated(false);
     navigate("/backoffice/addproduct", { replace: true });
@@ -99,14 +147,14 @@ const BOProductCreate = () => {
                 placeholder="Produktnamn"
                 autoFocus
                 onChange={handleInput}
-                value={newProduct.name}
+                value={sodas.name}
                 required
               ></input>
               <input
                 type="text"
                 name="description"
                 placeholder="Beskrivning"
-                value={newProduct.description}
+                value={sodas.description}
                 onChange={handleInput}
                 required
               ></input>
@@ -114,7 +162,7 @@ const BOProductCreate = () => {
                 type="select"
                 name="categoriesID"
                 onChange={handleInput}
-                value={newProduct.categoriesID}
+                value={sodas.categoriesID}
                 required
               >
                 <option hidden>Kategori:</option>
@@ -128,7 +176,7 @@ const BOProductCreate = () => {
                 name="brand"
                 placeholder="Varumärke"
                 onChange={handleInput}
-                value={newProduct.brand}
+                value={sodas.brand}
                 required
               ></input>
               <input
@@ -136,7 +184,7 @@ const BOProductCreate = () => {
                 name="price"
                 placeholder="Konsumentpris i SEK"
                 onChange={handleInput}
-                value={newProduct.price}
+                value={sodas.price}
               ></input>
 
               <input id="img" name="img" type="file" accept="image/*" />
