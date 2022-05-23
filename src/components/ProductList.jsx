@@ -49,24 +49,7 @@ export default function ProductList() {
 
 
   return (
-    <>
-      <SearchPage />
-      <Row>
-        <Col xs={6}>
-          <Form.Select className="w-100" onChange={(e) => setCategory(e.target.value)}>
-            <option value="all">All</option>
-            {[...new Set(sodasList.map(x => x.categoriesID))].map(x => <option value={x}>{x}</option>)}
-          </Form.Select>
-        </Col>
-        <Col xs={6}>
-          <Form.Select className="w-100" onChange={(e) => setFilter(e.target.value)}>
-            <option value={-1}>None</option>
-            <option value={SORTOPTION.AToZ}>A-Z</option>
-            <option value={SORTOPTION.Ascending}>Ascending</option>
-            <option value={SORTOPTION.Descending}>Descending</option>
-          </Form.Select>
-        </Col>
-      </Row>
+    <div>
       <div className="ProductList">
         {getData().map((val, key) => {
           return (
@@ -119,6 +102,6 @@ export default function ProductList() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

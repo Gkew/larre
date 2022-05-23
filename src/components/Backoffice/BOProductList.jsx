@@ -8,6 +8,7 @@ import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
   SORTOPTION,
 } from "../ProductlistUtilities/FilterComponents";
+import SearchPage from "../SearchComponents/SearchPage";
 
 const BOProductList = () => {
   const [products, setProducts] = useState([]);
@@ -147,6 +148,8 @@ const onChangeSearch = (e) => {
                 </option>
               </Form.Select>
             </Col>
+          </Row>
+          <Row>
           </Row>
         </div>
       </div>

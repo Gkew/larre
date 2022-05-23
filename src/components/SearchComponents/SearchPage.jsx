@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import SodasList from "./SodasList";
+import { FcSearch } from "react-icons/fc";
 
 const SearchPage = () => {
   const [input, setInput] = useState("");
@@ -18,25 +18,27 @@ const SearchPage = () => {
       });
   }, []);
 
+  const searchSodas = (x) => {
+    if (input === "") {
+      return sodaList;
+    } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
+      return sodaList;
+    }
+  };
+
   return (
     <>
-      <h1>Soda List</h1>
       <input
+        className="mt-3"
         type="search"
         value={input}
+        placeholder="Sök"
         onChange={(e) => setInput(e.target.value)}
       />
-      {sodaList
-        .filter((x) => {
-          if (input === "") {
-            return sodaList;
-          } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
-            return sodaList;
-          }
-        })
-        .map((x) => {
-          return <SodasList key={x.id} {...x} />;
-        })}
+      <FcSearch />
+      {sodaList.filter((x) => {
+        searchSodas(x);
+      })}
     </>
   );
 };
