@@ -41,7 +41,6 @@ root.render(
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <AuthProvider>
-        <Navbar />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/productlist" element={<ProductList />} />
