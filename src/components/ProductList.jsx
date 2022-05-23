@@ -62,7 +62,7 @@ function details(sodasID) {
             </Card.Body>
             <Card.Footer style={{backgroundColor: '#CCF3EE'}}>
               <small className="text-muted"><b>{sweFormat(val.price)} </b></small>
-              <Button key={val.sodasID} onClick={() => details(val.sodasID)} className="float-end ms-3">Detaljer</Button>
+              <Button key={val.sodasID} onClick={() => details(val.sodasID)} className=" mt-2 btn btn-primary float-end ms-3">Detaljer</Button>
               <button type="button" onClick={buy} className="mt-2 btn btn-primary float-end">Buy</button>
             </Card.Footer>
           </Card>
