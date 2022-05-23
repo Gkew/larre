@@ -50,7 +50,6 @@ export default function ProductList() {
 
   return (
     <>
-      <SearchPage />
       <Row>
         <Col xs={6}>
           <Form.Select className="w-100" onChange={(e) => setCategory(e.target.value)}>
