@@ -1,34 +1,40 @@
 import React from "react";
 import "../Backoffice/Backoffice.scss";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 const Backoffice = () => {
   return (
     <>
-      <main className="backoffice-container">
+      <Container className="backoffice-container" fluid>
         <div className="bo-header">
-          <h2>Här är startsidan för Back office!</h2>
+          <h2>Välkommen till Back office!</h2>
         </div>
 
         <section className="bo-nav" aria-label="backoffice-linksection">
-          <Button className="bo-links" variant="primary">
+          <button className="bo-links">
             <Link to={`/backoffice/products`}>
               Klicka här för att se befintliga produkter
             </Link>
-          </Button>
-          <Button className="bo-links" variant="primary">
+          </button>
+          <button className="bo-links">
             <Link to={`/backoffice/addproduct`}>
               Klicka här för att lägga till en produkt
             </Link>
-          </Button>
-          <Button className="bo-links" variant="info">
+          </button>
+
+          <button className="bo-links">
+            <Link to={`/backoffice/categoryhandling`}>
+              Klicka här för att hantera kategorier
+            </Link>
+          </button>
+          <button className="bo-links">
             <Link to={`/backoffice/orders`}>
               Klicka här för att se kundordrar
             </Link>
-          </Button>
+          </button>
         </section>
-      </main>
+      </Container>
     </>
   );
 };

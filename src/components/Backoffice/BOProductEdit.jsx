@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { AiOutlineSave, AiOutlineClose } from "react-icons/ai";
+import { BiImageAdd } from "react-icons/bi";
 
 function BOProductEdit({ id, closeCollapse }) {
   axios.defaults.baseURL = "http://localhost:4000/api";
@@ -17,12 +18,15 @@ function BOProductEdit({ id, closeCollapse }) {
 
   // get all categories from db.
   useEffect(() => {
-    const res = axios.get("/categories");
-    setCategories(res.data);
+    axios
+      .get("/categories")
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
@@ -88,22 +92,23 @@ function BOProductEdit({ id, closeCollapse }) {
             value={productInfo.price}
             onChange={onInputChange}
             placeholder="Pris i SEK"
+            min="5"
           ></input>
           <select
             type=""
             name="category"
-            value={productInfo.category}
+            value={productInfo.categoriesID}
             onChange={onInputChange}
           >
             <option hidden>Kategori:</option>
             <option disabled>Kategori:</option>
-            <option>Kategori 1</option>
-            <option>Kategori 2</option>
-            <option>Kategori 3</option>
-            {/*{categories.map((x) => {
-              return <option key={categories.id}> {x.name}</option>;
-            })}*/}
+            {categories.map((category) => {
+              return <option key={category.id}> {category.name}</option>;
+            })}
           </select>
+
+          <input id="img" name="img" type="file" accept="image/*" />
+
           <div className="btn-div">
             <Button
               className="pdate-btn"

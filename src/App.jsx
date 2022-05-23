@@ -1,11 +1,9 @@
 import "./App.css";
-import Dashboard from "./components/Dashboard";
-import Navbar from './components/Navbar'
+import Dashboard from "./components/ProductlistUtilities/Dashboard"
 import './css/Navbar.css'
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Dashboard />
       {/* <h1>
         Kom ihåg att inte koda på master, kör en npm i ibland, och viktigast av
