@@ -43,8 +43,9 @@ export default function ProductList() {
     add(sodasList.id);
   }
   const getData = () => {
-    return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(sodasList, category), filter);
+    return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(sodasList, category), filter)
   }
+
 
 
   return (
@@ -54,8 +55,7 @@ export default function ProductList() {
         <Col xs={6}>
           <Form.Select className="w-100" onChange={(e) => setCategory(e.target.value)}>
             <option value="all">All</option>
-            {getData().map(x => x.categoriesID).filter((a, b, arr) => arr.indexOf(a) === b)
-              .map(x => <option value={x}>{x}</option>)}
+            {[...new Set(sodasList.map(x => x.categoriesID))].map(x => <option value={x}>{x}</option>)}
           </Form.Select>
         </Col>
         <Col xs={6}>
@@ -68,7 +68,7 @@ export default function ProductList() {
         </Col>
       </Row>
       <div className="ProductList">
-        {sodasList.map((val, key) => {
+        {getData().map((val, key) => {
           return (
             <Col sm={3} className="py-2">
               <Card
