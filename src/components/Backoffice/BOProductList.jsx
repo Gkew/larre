@@ -11,9 +11,7 @@ const BOProductList = () => {
   const [products, setProducts] = useState([]);
   const [thisProduct, setThisProduct] = useState(null);
   const [thisIndex, setThisIndex] = useState(-1);
-  //const [searchProduct, setSearchProduct] = useState("");
   const [filter, setFilter] = useState(-1);
-  //const [update, setUpdate] = useState(false);
   const [category, setCategory] = useState("all");
 
   useEffect(() => {
@@ -31,38 +29,10 @@ const BOProductList = () => {
       });
   };
 
-  const refreshProdList = () => {
-    getAllSodas();
-    setThisProduct(null);
-    setThisIndex(-1);
-  };
-
   const setChoosenProduct = (product, index) => {
     setThisProduct(product);
     setThisIndex(index);
   };
-
-  /*
-
-
-const onChangeSearch = (e) => {
-    const searchProduct = e.target.value;
-    setSearchProduct(searchProduct);
-  };
-
-  const findByName = () => {
-    SodaService.findByName(searchProduct)
-      .then((res) => {
-        setProducts(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
- 
-  };*/
 
   const getData = () => {
     return FilterUtil.getSortFilter(
@@ -178,7 +148,7 @@ const onChangeSearch = (e) => {
               <div>{thisProduct.categoriesID}</div>
               <Button variant="warning" className="edit-btn">
                 <Link to={"/backoffice/products/" + thisProduct.sodasID}>
-                  hantera produkt
+                  Hantera produkt
                 </Link>
               </Button>
             </div>
