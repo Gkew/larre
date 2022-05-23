@@ -48,33 +48,33 @@ root.render(
           <Route
             path="/backoffice/products"
             element={
-              <AuthProvider>
+              <AuthRoutes>
                 <BOProductList />
-              </AuthProvider>
+              </AuthRoutes>
             }
           />
           <Route
             path="/backoffice/products/:sodasID"
             element={
-              <AuthProvider>
+              <AuthRoutes>
                 <BOProductEdit />
-              </AuthProvider>
+              </AuthRoutes>
             }
           />
           <Route
             path="/backoffice/addproduct"
             element={
-              <AuthProvider>
+              <AuthRoutes>
                 <BOProductCreate />
-              </AuthProvider>
+              </AuthRoutes>
             }
           />
           <Route
             path="/backoffice/categoryhandling"
             element={
-              <AuthProvider>
+              <AuthRoutes>
                 <BOCategoryHandling />
-              </AuthProvider>
+              </AuthRoutes>
             }
           />
 

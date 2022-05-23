@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
-import { AiOutlineSave, AiOutlineClose } from "react-icons/ai";
+import { Button, Container } from "react-bootstrap";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import SodaService from "../services/SodaService";
 
@@ -85,67 +84,20 @@ const BOProductEdit = (props) => {
       });
   }, []);
 
-  {
-    /*
-  // get all categories from db.
-  axios.defaults.baseURL = "http://localhost:4000/api";
-  const [categories, setCategories] = useState([]);
-  const [productInfo, setProductInfo] = useState({
-    brand: "",
-    name: "",
-    price: 0,
-    description: "",
-    categoriesID: "",
-  });
-
-  useEffect(() => {
-    axios
-      .get("/categories")
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault(e);
-
-    axios
-      .patch(`/sodas/${id}`, productInfo)
-      .then((res) => {
-        setProductInfo({
-          brand: "",
-          name: "",
-          price: 0,
-          description: "",
-          categoriesID: "",
-        });
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const onInputChange = (e) => {
-    setProductInfo((data) => ({ ...data, [e.target.name]: e.target.value }));
-  };*/
-  }
-
   return (
-    <div>
+    <Container className="backoffice-container" fluid>
       {sodas ? (
-        <div id="update-container">
-          <Button className="top-btn" variant="outline-primary">
-            <Link to={`/backoffice/products`}>
-              {" "}
-              Gå tillbaka till alla produkter
-            </Link>
-          </Button>
-          <h4>Uppdatera produkt</h4>
-          <form className="update-product">
+        <>
+          <div className="bo-header">
+            <Button className="top-btn" variant="outline-primary">
+              <Link to={`/backoffice/products`}>
+                {" "}
+                Gå tillbaka till alla produkter
+              </Link>
+            </Button>
+            <h2>Uppdatera produkt</h2>
+          </div>
+          <form id="update-container">
             <input
               type="text"
               className="form-control"
@@ -166,7 +118,7 @@ const BOProductEdit = (props) => {
               placeholder="märke"
             />
 
-            <input
+            <textarea
               type="text"
               className="form-control"
               id="description"
@@ -212,94 +164,11 @@ const BOProductEdit = (props) => {
               Ta bort
             </Button>
           </div>
-        </div>
+        </>
       ) : (
         <div></div>
       )}
-    </div>
-    /*
-    <main className="update-container">
-      <div className="bo-header">
-        <h2>Uppdatera produkten</h2>
-      </div>
-
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-          closeCollapse();
-        }}
-      >
-        <div className="update-product">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={productInfo.name}
-            onChange={onInputChange}
-            placeholder="Namn"
-          ></input>
-          <input
-            type="text"
-            id="brand"
-            name="brand"
-            value={productInfo.brand}
-            onChange={onInputChange}
-            placeholder="Märke"
-          ></input>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={productInfo.description}
-            onChange={onInputChange}
-            placeholder="Beskrivning"
-          ></input>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={productInfo.price}
-            onChange={onInputChange}
-            placeholder="Pris i SEK"
-            min="5"
-          ></input>
-          <select
-            type=""
-            id="categoriesID"
-            name="categoriesID"
-            value={productInfo.categoriesID}
-            onChange={onInputChange}
-          >
-            <option hidden>Kategori:</option>
-            <option disabled>Kategori:</option>
-            {categories.map((category) => {
-              return <option key={category.id}> {category.name}</option>;
-            })}
-          </select>
-
-          <input id="img" name="img" type="file" accept="image/*" />
-
-          <div className="btn-div">
-            <Button
-              className="pdate-btn"
-              variant="warning"
-              type="submit"
-              aria-label="save"
-            >
-              <AiOutlineSave /> Spara ändringar
-            </Button>
-            <Button
-              className="close-btn"
-              variant="outline-danger"
-              onClick={closeCollapse}
-              aria-label="close"
-            >
-              <AiOutlineClose />
-            </Button>
-          </div>
-        </div>
-      </form>
-    </main>*/
+    </Container>
   );
 };
 

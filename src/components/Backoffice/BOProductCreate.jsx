@@ -65,45 +65,6 @@ const BOProductCreate = () => {
       });
   }, []);
 
-  {
-    /*
-  const [newProduct, setNewProduct] = useState({
-    brand: "",
-    name: "",
-    price: 0,
-    description: "",
-    categoriesID: "",
-  });
-
-  const handleInput = (e) => {
-    setNewProduct((data) => ({
-      ...data,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  function addProd(e) {
-    e.preventDefault();
-
-    axios
-      .post("/sodas", newProduct)
-      .then((res) => {
-        setNewProduct({
-          brand: "",
-          name: "",
-          price: "",
-          description: "",
-          categoriesID: "",
-        });
-        console.log(res.data);
-        setCreated(true);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
-   */
-  }
   let navigate = useNavigate();
 
   const addMoreProducts = () => {
@@ -150,14 +111,14 @@ const BOProductCreate = () => {
                 value={sodas.name}
                 required
               ></input>
-              <input
+              <textarea
                 type="text"
                 name="description"
                 placeholder="Beskrivning"
                 value={sodas.description}
                 onChange={handleInput}
                 required
-              ></input>
+              />
               <select
                 type="select"
                 name="categoriesID"

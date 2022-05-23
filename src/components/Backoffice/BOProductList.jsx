@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-//import axios from "axios";
 import { Col, Container, Button, Form, Row } from "react-bootstrap";
-import BOProductDetails from "./BOProductDetails";
 import SodaService from "../services/SodaService";
 import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
@@ -45,35 +43,8 @@ const BOProductList = () => {
   };
 
   /*
-  const [update, setUpdate] = useState(false);
-  axios.defaults.baseURL = "http://localhost:4000/api";
-=======
-import axios from "axios";
-import { Col, Container, Form, Row } from "react-bootstrap";
-import BOProductDetails from "./BOProductDetails";
-import FilterUtil, { SORTOPTION } from '../ProductlistUtilities/FilterComponents'
-
-export function BOProductList() {
-  axios.defaults.baseURL = "http://localhost:4000/api";
-  const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("all")
-  const [filter, setFilter] = useState(-1);
-  const [update, setUpdate] = useState(false);
 
 
->>>>>>> 1a07a1126194dfd8671705080b95fa56122e8440
-  //Get all data in the table namned sodas
-  useEffect(() => {
-    axios
-      .get("/sodas")
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [update]);
 const onChangeSearch = (e) => {
     const searchProduct = e.target.value;
     setSearchProduct(searchProduct);
@@ -90,22 +61,10 @@ const onChangeSearch = (e) => {
       });
   };
 
-  //function to delete a product
-  const deleteProduct = async (e) => {
-    e.preventDefault();
-    const choice = window.confirm(
-      "Är du säker på att du vill ta bort produkten?"
-    );
-    if (!choice) return;
-    await axios.delete(`/sodas/${e.target.name}`);
-
-    setProducts((data) => {
-      return data.filter((product) => product.sodasID !== e.target.name);
-    });
+ 
   };*/
 
   const getData = () => {
-    console.log(filter);
     return FilterUtil.getSortFilter(
       FilterUtil.getCategoryFilter(products, category),
       filter

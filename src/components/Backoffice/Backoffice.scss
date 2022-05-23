@@ -106,7 +106,8 @@
   }
 
   input,
-  select {
+  select,
+  textarea {
     border-radius: 5px;
     padding: 1%;
     width: 70%;
@@ -170,10 +171,11 @@
   select,
   textarea {
     margin: 1em;
-    width:100%;
+    width:80%;
   }
 
   .update-product{
+    margin: 1em;
     width:70%;
     justify-content: center;
   }
@@ -193,16 +195,31 @@
   }
   a{
     text-decoration: none;
-    
   }
 
   .price-cat {
     width: fit-content;
   }
 
-
 }
+.admin-login{
+  display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 2%;
+    background-color: #CCF3EE;
 
+    label {
+      font-weight: bold;
+    }
+    input{
+      width: 60%;
+    }
+    Button {
+      width: fit-content;
+      margin: 1em 0;
+    }
+}
 
 /*@media screen and (min-width: 768px) {
   .grid-container {
