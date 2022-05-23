@@ -3,6 +3,23 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 
+let picture;
+
+async function uploadPicture() {
+  let formData = new FormData()
+
+  formData.append('file', picture, Date.now() + '.png')
+
+  let res = await fetch('/api/upload', {
+    method: 'POST',
+    body: formData
+  })
+
+  res = await res.json()
+  console.log('result of upload', res);
+
+}
+
 const BOProductCreate = () => {
   axios.defaults.baseURL = "http://localhost:4000/api";
 
@@ -139,7 +156,14 @@ const BOProductCreate = () => {
                 value={newProduct.price}
               ></input>
 
-              <input id="img" name="img" type="file" accept="image/*" />
+
+              <input
+                name="img-post-btn"
+                id="img"
+                type="file"
+                onChange={uploadPicture}
+                value="Välj bild"
+              />
 
               <Button
                 className="addproduct-btn"

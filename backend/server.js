@@ -3,6 +3,7 @@ const express = require("express");
 const API = require("./api");
 const cors = require("cors");
 
+
 const port = 4000;
 const dbPath = "../databas/database-14-maj.sqlite3";
 
@@ -19,5 +20,7 @@ async function start() {
     console.log("Server is listening on http://localhost:" + port)
   );
 }
+
+
 
 start();

@@ -11,6 +11,8 @@
     "bootstrap": "^5.1.3",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "formidable": "^2.0.1",
+    "fs": "^0.0.1-security",
     "node": "^17.7.2",
     "nodemon": "^2.0.16",
     "react": "^18.1.0",

@@ -1,4 +1,5 @@
 let db;
+const express = require("express");
 
 function runQuery(tableName, req, res, parameters, sqlForPreparedStatement, onlyOne = false) {
   let result;
@@ -37,7 +38,7 @@ module.exports = function setupRESTapi(app, databaseConnection) {
         WHERE sodasID = $id
       `, true);
     });
-//Missing the CONTINUE in the api
+    //Missing the CONTINUE in the api
     if (db.views.includes(name)) {
       continue;
     }
@@ -88,3 +89,32 @@ module.exports = function setupRESTapi(app, databaseConnection) {
   });
 
 }
+
+const formidable = require('formidable')
+const fs = require('fs')
+
+const app = express();
+
+app.use(express.json())
+
+// endpoint to handle formData uploads
+app.post('/api/upload', (req, res) => {
+  // uses npm module 'formidable' to read the formData
+  const form = formidable();
+
+  form.parse(req, (fields, file) => {
+
+    // get the file, from file
+    file = file.file
+
+    // open file with 'fs' to enable it to be 
+    // saved as a file
+    let fileData = fs.readFileSync(file.path)
+    fs.writeFileSync(__dirname + './public/images' + file.name, fileData)
+
+    res.json({ fields, file });
+  });
+});
+
+// serve /www folder to let clients read from uploads
+app.use(express.static(__dirname + './public/images'))
