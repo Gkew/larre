@@ -51,6 +51,8 @@ root.render(
           <Route path="/productlist" element={<ProductList />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/productdetails/:sodasID" element={<Productdetails />} />
+          <Route path="/checkout" element={<Checkout />} />
 
           <Route
             path="/backoffice"
@@ -100,9 +102,6 @@ root.render(
               </AuthRoutes>
             }
           />
-
-          <Route path="/productdetails/:id " element={<Productdetails />} />
-          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </AuthProvider>
     </Router>
