@@ -23,7 +23,7 @@ root.render(
         <Route path="/backoffice/orders" element={<BOOrders />} />
         <Route path="/backoffice/products" element={<BOProductList />} />
         <Route path="/backoffice/addproduct" element={<BOProductCreate />} />
-        <Route path="/productdetails/:id " element={<Productdetails />} />
+        <Route path="/productdetails" element={<Productdetails />} />
       </Routes>
     </Router>
   </React.StrictMode>
