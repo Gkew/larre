@@ -160,7 +160,7 @@ const onChangeSearch = (e) => {
           </Row>
           <Row>
           </Row>
-          <Row>
+          {/* <Row>
             <Col>
               <input
                 type="search"
@@ -175,7 +175,7 @@ const onChangeSearch = (e) => {
                 searchSodas(x)
               })}
             </Col>
-          </Row>
+          </Row> */}
         </div>
       </div>
       <div className="all-prod-func">
