@@ -8,7 +8,7 @@ import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
   SORTOPTION,
 } from "../ProductlistUtilities/FilterComponents";
-import SearchPage from "../SearchComponents/SearchPage";
+import {BiSearch} from 'react-icons/bi'
 
 const BOProductList = () => {
   const [products, setProducts] = useState([]);
@@ -18,6 +18,7 @@ const BOProductList = () => {
   const [filter, setFilter] = useState(-1);
   //const [update, setUpdate] = useState(false);
   const [category, setCategory] = useState("all");
+  const [input, setInput] = useState('')
 
   useEffect(() => {
     getAllSodas();
@@ -44,6 +45,14 @@ const BOProductList = () => {
     setThisProduct(product);
     setThisIndex(index);
   };
+
+  const searchSodas = (x) => {
+    if (input === "") {
+      return products
+    } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
+      return products
+    }
+  }
 
   /*
   const [update, setUpdate] = useState(false);
@@ -151,6 +160,22 @@ const onChangeSearch = (e) => {
           </Row>
           <Row>
           </Row>
+          <Row>
+            <Col>
+              <input
+                type="search"
+                className="mt-3"
+                value={input}
+                placeholder="Sök"
+                onChange={(e) => setInput(e.target.value)}
+              />
+              <BiSearch />
+              {products.filter((x) => {
+                console.log({searchSodas})
+                searchSodas(x)
+              })}
+            </Col>
+          </Row>
         </div>
       </div>
       <div className="all-prod-func">
@@ -158,6 +183,9 @@ const onChangeSearch = (e) => {
           <h4>Alla produkter</h4>
 
           <ul className="list-group">
+            {products.filter((x) => {
+              searchSodas(x)
+              })}
             {products &&
               getData().map((product, index) => (
                 <li
