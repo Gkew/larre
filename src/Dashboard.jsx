@@ -2,7 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { sweFormat } from './components/ProductlistUtilities/sekFormatting';
 import './css/Dashboard.css'
+import { SodaCarousel } from './smallerComponents/SodaCarousel';
+
+
 const Dashboard = () => {
   const [soda, setSoda] = useState([])
   let navigate = useNavigate();
@@ -25,39 +29,50 @@ const Dashboard = () => {
   const navigateToAboutUs = () => {
     navigate(`/about-us`)
   }
+  const navigateToNews = () => {
+    navigate(`/news`)
+  }
   return (
     <>
-      <Container fluid className='py-5'>
-        <Row>
-          <Col sm={7} >
-            <Image src='https://picsum.photos/id/288/1200/500' fluid rounded className='' /></Col>
-          <Col sm={5} ><h1>LARRE</h1>
-            <p>Centrerad i Stockholm</p>
+      <Container fluid className='py-5 dashboard-container'>
+        {SodaCarousel}
+        <Row className='text-center mt-5'>
+          {/* <Image src='https://picsum.photos/id/288/1200/500' fluid rounded className='' /> */}
+          <Col><h1>LARRE</h1>
+            <p>Centrerad i Stockholm <br /> Bättre dricka hittar man inte!</p>
             <Button variant='outline-primary' onClick={navigateToAboutUs}>Om Oss</Button>
           </Col>
-        </Row>
-        <Row>
-          <Row className='py-5'>
-            <Col><h1>PRODUKTER</h1>
-              <div>Hos oss hittar ni flera produkter som {soda.map(x => <div sm={1} key={x.id}>{x.name}</div >)}</div><Button variant='outline-primary' onClick={navigateToProducts}>Produkter</Button></Col>
-            <Col><Image src='https://picsum.photos/id/6/1000/400' fluid rounded /></Col>
-          </Row>
-        </Row>
-        <Row className='mt-5'>
+          <Col><h1>PRODUKTER</h1>
+            <div>Hos oss hittar ni flera produkter som {soda.map(x => <div sm={1} key={x.id}>{x.name} - <span style={{ fontWeight: 'bolder' }}>{sweFormat(x.price)}</span></div >)}</div>
+            <Button variant='outline-primary' onClick={navigateToProducts}>Våra Produkter</Button></Col>
           <Col>
             <h1>NYHETER</h1>
+            <p>Här ser ni de absolut senaste produkterna vi har <br /> samt bra deals vi har</p>
+            <Button variant='outline-primary' onClick={navigateToNews}>Läs de senaste Nyheterna</Button>
           </Col>
-          <Row>
-            <Col>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex quas, accusantium dolore commodi nesciunt quia blanditiis minus totam voluptates,
-                quis consectetur ut quos doloribus at deleniti reiciendis nisi neque beatae ullam. Commodi necessitatibus aperiam, eum magnam eaque sint molestiae sed
-                cupiditate beatae illo distinctio dolor, assumenda iure repellat temporibus reiciendis!</p>
-              <Button variant='outline-primary'>Läs Mer</Button>
-            </Col>
-          </Row>
         </Row>
-
-        <Row className="text-center">
+        <h1 className="text-center mt-5">F.A.Q</h1>
+        <Row>
+          <Col>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+          </Col>
+          <Col>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+          </Col>
+          <Col>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+          </Col>
+          <Col>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+          </Col>
+          <Col>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+          </Col>
         </Row>
       </Container>
     </>

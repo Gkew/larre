@@ -1,4 +1,3 @@
-import "./App.css";
 import Dashboard from "./Dashboard"
 import './css/Navbar.css'
 function App() {

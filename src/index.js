@@ -18,6 +18,7 @@ import { AuthProvider } from "./components/Backoffice/Admin/Authenticate";
 import AuthRoutes from "./components/Backoffice/Admin/AuthRoutes";
 import Login from "./components/Backoffice/Admin/BOLogIn";
 import AboutUs from "./AboutUs";
+import Nyheter from "./Nyheter";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -50,6 +51,8 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/productlist" element={<ProductList />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/news" element={<Nyheter />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/productdetails/:sodasID" element={<Productdetails />} />
           <Route path="/checkout" element={<Checkout />} />
