@@ -6,7 +6,7 @@ import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
   SORTOPTION,
 } from "../ProductlistUtilities/FilterComponents";
-import {BiSearch} from 'react-icons/bi'
+import { BiSearch } from "react-icons/bi";
 
 const BOProductList = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +14,7 @@ const BOProductList = () => {
   const [thisIndex, setThisIndex] = useState(-1);
   const [filter, setFilter] = useState(-1);
   const [category, setCategory] = useState("all");
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     getAllSodas();
@@ -36,7 +36,6 @@ const BOProductList = () => {
     setThisIndex(index);
   };
 
-
   const getData = () => {
     return FilterUtil.getSortFilter(
       FilterUtil.getCategoryFilter(products, category),
@@ -46,11 +45,11 @@ const BOProductList = () => {
 
   const searchSodas = (x) => {
     if (input === "") {
-      return products
+      return products;
     } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
-      return products
+      return products;
     }
-  }
+  };
 
   return (
     <Container className="backoffice-container list row" fluid>
@@ -67,10 +66,12 @@ const BOProductList = () => {
               <label>
                 <h4>Filtrera ut kategorier</h4>
               </label>
-              <Form.Select className="w-100"
-                onChange={(e) => setCategory(e.target.value)}>
+              <Form.Select
+                className="w-100"
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 <option value="all">All</option>
-                {[...new Set(products.map(x => x.categoriesID))].map((x) => (
+                {[...new Set(products.map((x) => x.categoriesID))].map((x) => (
                   <option value={x}>{x}</option>
                 ))}
               </Form.Select>
@@ -79,8 +80,10 @@ const BOProductList = () => {
               <label>
                 <h4>Sortera på...</h4>
               </label>
-              <Form.Select className="w-100"
-                onChange={(e) => setFilter(e.target.value)}>
+              <Form.Select
+                className="w-100"
+                onChange={(e) => setFilter(e.target.value)}
+              >
                 <option value={-1}>None</option>
                 <option value={SORTOPTION.AToZ}>Namn: A-Ö</option>
                 <option value={SORTOPTION.Descending}>
@@ -92,8 +95,7 @@ const BOProductList = () => {
               </Form.Select>
             </Col>
           </Row>
-          <Row>
-          </Row>
+          <Row></Row>
           {/* <Row>
             <Col>
               <input
@@ -115,23 +117,28 @@ const BOProductList = () => {
       <div className="all-prod-func">
         <div className="col-md-5 all-products">
           <h4>Alla produkter</h4>
-
+          <input
+            className="mt-3"
+            type="search"
+            value={input}
+            placeholder="Sök"
+            onChange={(e) => setInput(e.target.value)}
+          />
           <ul className="list-group">
-            {products.filter((x) => {
-              searchSodas(x)
-              })}
             {products &&
-              getData().map((product, index) => (
-                <li
-                  className={
-                    "list-group-item" + (index === thisIndex ? "active" : "")
-                  }
-                  onClick={() => setChoosenProduct(product, index)}
-                  key={index}
-                >
-                  <h4>{product.name}</h4> från {product.brand}
-                </li>
-              ))}
+              getData()
+                .filter((x) => searchSodas(x))
+                .map((product, index) => (
+                  <li
+                    className={
+                      "list-group-item" + (index === thisIndex ? "active" : "")
+                    }
+                    onClick={() => setChoosenProduct(product, index)}
+                    key={index}
+                  >
+                    <h4>{product.name}</h4> från {product.brand}
+                  </li>
+                ))}
           </ul>
         </div>
         <div className="BO-one-product col-md-5">
