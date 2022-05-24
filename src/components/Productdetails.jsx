@@ -1,12 +1,10 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { Col, Card, Button } from "react-bootstrap";
-import { add } from '../utils/shoppingCartLogic'
-import FilterUtil, { SORTOPTION } from '../components/ProductlistUtilities/FilterComponents'
-// import { useStates } from "../utils/states";
-
+import { CardContent } from "@mui/material";
+import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 
 
 export default function Productdetails() {
@@ -52,24 +50,43 @@ export default function Productdetails() {
   }
 
   return (
-    <div>
-      <h1>{details.name}</h1>
-      <Col sm={3} className="py-2">
-        <Card className="h-100" style={{ backgroundColor: '#F9CEEE', border: 'none' }}>
-          <img variant="top" style={{ width: '150px', height: '450px', objectFit: 'scale-down', margin: 'auto' }} src={`/images/products/${details.sodasID}.png`} alt="soda" />
-          <Card.Body style={{ backgroundColor: '#F9F3EE' }}>
-            <Card.Title><h1>{details.name}</h1>, <h3>{details.brand}</h3></Card.Title>
+    <div className="productsdetails" style={{ textAlign: "center", padding: "3%" }}  >
+      <Col sm={8} style={{ margin: "auto" }}    >
+
+        <Card style={{ border: "none", backgroundColor: "#F9F3EE" }}>
+          <Card.Body style={{ backgroundColor: "#F9F3EE" }}>
+            <Card.Title>
+              {details.name}
+
+            </Card.Title>
             <Card.Text>
+              {details.brand}
 
             </Card.Text>
+
+
+            <img variant="top" style={{ width: '200px', height: '500px', objectFit: 'scale-down', margin: 'auto' }} src={`/images/products/${sodasID}.png`} />
+            <Card.Text style={{ padding: "5%" }}>
+              {details.description}
+
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            {sweFormat(details.price)}
             <button
+              style={{
+                backgroundColor: "#FEC98F",
+                border: "none",
+                color: "black",
+              }}
               type="button"
               onClick={handleStore}
-              className="mt-2 btn btn-primary float-end"
+              className="mt-2 btn btn-primary float-end ms-3"
             >
-              Buy
+              Köp
             </button>
-          </Card.Body>
+          </Card.Footer>
+
         </Card>
       </Col>
     </div>
