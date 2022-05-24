@@ -5,17 +5,18 @@ import Axios from "axios";
 import { Col, Card, Button } from "react-bootstrap";
 import { add } from '../utils/shoppingCartLogic'
 import FilterUtil, { SORTOPTION } from '../components/ProductlistUtilities/FilterComponents'
-import { useStates } from "../utils/states";
+// import { useStates } from "../utils/states";
 
 
 
 export default function Productdetails() {
 
-  let s = useStates('main');
+  // let s = useStates('main');
 
   const [details, setDetails] = useState([]);
   const [sodasList, setSodasList] = useState([]);
   const { sodasID } = useParams();
+  const [buy, setBuy] = useState(false);
 
 
   let navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function Productdetails() {
   const getData = () => {
     return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(sodasList, category), filter)
   }
+
 
   useEffect(() => {
     console.log(sodasID)
@@ -41,6 +43,15 @@ export default function Productdetails() {
       })
   }, []);
 
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(details));
+  }, [buy]);
+
+  console.log("!!!" + details)
+
+
+
   return (
     <div>
       <h1>{details.name}</h1>
@@ -54,7 +65,7 @@ export default function Productdetails() {
             </Card.Text>
             <button
               type="button"
-
+              onClick={() => setBuy(!buy)}
               className="mt-2 btn btn-primary float-end"
             >
               Buy
