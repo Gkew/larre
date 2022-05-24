@@ -7,7 +7,7 @@ const Nyheter = () => {
   axios.defaults.baseURL = "http://localhost:4000/api/"
   const [showDiscount, setShowDiscount] = useState([])
 
-  let productID = '11'
+  let productID = '5'
   // kan lätt ändra id
 
   let getToday = new Date()

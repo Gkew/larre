@@ -2,6 +2,13 @@
   background-color: rgb(249, 206, 238);
 }
 
+.carousel-container {}
+
+.carousel-container img {
+  /* min-width: 10%; */
+  height: 500px;
+}
+
 
 
 p span {

@@ -70,7 +70,7 @@ const BOProductList = () => {
                 className="w-100"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="all">All</option>
+                <option value="all">Alla</option>
                 {[...new Set(products.map((x) => x.categoriesID))].map((x) => (
                   <option value={x}>{x}</option>
                 ))}
@@ -84,8 +84,8 @@ const BOProductList = () => {
                 className="w-100"
                 onChange={(e) => setFilter(e.target.value)}
               >
-                <option value={-1}>None</option>
-                <option value={SORTOPTION.AToZ}>Namn: A-Ö</option>
+                {/* <option value={-1}>Standard</option> */}
+                <option value={-1}>Namn: A-Ö</option>
                 <option value={SORTOPTION.Descending}>
                   Pris lågt till högt
                 </option>

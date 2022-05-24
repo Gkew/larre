@@ -63,25 +63,31 @@ export default function ProductList() {
     <>
       <Row>
         <Col xs={6}>
+          <label>
+            <h4>Filtrera ut kategorier</h4>
+          </label>
           <Form.Select
             className="w-100"
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="all">All</option>
+            <option value="all">Alla</option>
             {[...new Set(sodasList.map((x) => x.categoriesID))].map((x) => (
               <option value={x}>{x}</option>
             ))}
           </Form.Select>
         </Col>
         <Col xs={6}>
+          <label>
+            <h4>Sortera på...</h4>
+          </label>
           <Form.Select
             className="w-100"
             onChange={(e) => setFilter(e.target.value)}
           >
-            <option value={-1}>None</option>
-            <option value={SORTOPTION.AToZ}>A-Z</option>
-            <option value={SORTOPTION.Ascending}>Ascending</option>
-            <option value={SORTOPTION.Descending}>Descending</option>
+            {/* <option value={-1}>Standard</option> */}
+            <option value={-1}>Namn: A-Ö</option>
+            <option value={SORTOPTION.Ascending}>Pris lågt till högt</option>
+            <option value={SORTOPTION.Descending}>Pris högt till lågt</option>
           </Form.Select>
         </Col>
       </Row>
