@@ -89,6 +89,7 @@ const BOProductList = () => {
               >
                 {/* <option value={-1}>Standard</option> */}
                 <option value={-1}>Namn: A-Ö</option>
+                <option value={SORTOPTION.ÖToA}>Namn: Ö-A</option>
                 <option value={SORTOPTION.Descending}>
                   Pris lågt till högt
                 </option>
