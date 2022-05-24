@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Form, Card, Button, FormControl } from "react-bootstrap";
+import { Row, Col, Form, Card, FormControl } from "react-bootstrap";
 import axios from "axios";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 import "../css/ProductList.css";
@@ -9,7 +9,7 @@ import { add } from "../utils/shoppingCartLogic";
 import FilterUtil, {
   SORTOPTION,
 } from "../components/ProductlistUtilities/FilterComponents";
-import { BsSearch } from "react-icons/bs";
+// import { BsSearch } from "react-icons/bs";
 
 export default function ProductList() {
   let navigate = useNavigate();
@@ -67,12 +67,10 @@ export default function ProductList() {
   return (
     <>
       <Row>
-        <Col xs={6} style={{ width: "300px", margin: "20px auto" }}>
-          <label>
-            <h4>Filtrera ut kategorier</h4>
-          </label>
+        <Col className="FilterCol">
+
           <Form.Select
-            className="w-100"
+            className="ProductFilter"
             onChange={(e) => setCategory(e.target.value)}
           >
             <option value="all">Alla</option>
@@ -80,13 +78,17 @@ export default function ProductList() {
               <option value={x}>{x}</option>
             ))}
           </Form.Select>
-        </Col>
-        <Col xs={6} style={{ width: "300px", margin: "auto" }}>
-          <label>
-            <h4>Sortera på...</h4>
-          </label>
+
+            <FormControl
+              className="ProductSearch"
+              type="search"
+              value={input}
+              placeholder="Sök"
+              onChange={(e) => setInput(e.target.value)}
+            />
+
           <Form.Select
-            className="w-100"
+          className="ProductSort"
             onChange={(e) => setFilter(e.target.value)}
           >
             {/* <option value={-1}>Standard</option> */}
@@ -97,20 +99,8 @@ export default function ProductList() {
           </Form.Select>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <div className="search-wrapper">
-            <FormControl
-              className="mt-3 input-search"
-              type="search"
-              value={input}
-              placeholder="Sök"
-              onChange={(e) => setInput(e.target.value)}
-            />
-            <BsSearch className="search-icon" />
-          </div>
-        </Col>
-      </Row>
+
+
       <div className="ProductList">
         {getData()
           .filter((x) => searchSodas(x))
@@ -123,54 +113,34 @@ export default function ProductList() {
                 onClick={() => details(val.sodasID)}
               >
                 <Card
-                  className="h-100"
-                  style={{ backgroundColor: "#F9CEEE", border: "none" }}
+                  className="Card"
                 >
-                  <img
+                  <Card.Img
+                  className="ProdImg"
                     variant="top"
-                    style={{
-                      width: "150px",
-                      height: "450px",
-                      objectFit: "scale-down",
-                      margin: "auto",
-                    }}
                     src={`/images/products/${val.sodasID}.png`}
                     alt="soda"
                   />
-                  <Card.Body style={{ backgroundColor: "#F9F3EE" }}>
+                  <Card.Body className="CBody" >
                     <Card.Text className="py-2">
                       <h4>{val.brand}</h4>
                     </Card.Text>
-                    <Card.Title className="py-2" style={{ height: "8rem" }}>
+                    <Card.Title className="CTitle">
                       <h1>{val.name}</h1>
                     </Card.Title>
 
-                    <Card.Text
-                      style={{
-                        height: "fit-content",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        maxHeight: "50px",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
+                    <Card.Text clasSName="CText">
                       {val.description}
                     </Card.Text>
                   </Card.Body>
-                  <Card.Footer style={{ backgroundColor: "#CCF3EE" }}>
+                  <Card.Footer className="CFooter">
                     <h4 className="text-muted">
                       <b>{sweFormat(val.price)} </b>
                     </h4>
-
-                    <button
-                      style={{
-                        backgroundColor: "#FEC98F",
-                        border: "none",
-                        color: "black",
-                      }}
+                    <button 
                       type="button"
                       onClick={buy}
-                      className="mt-2 btn btn-primary float-end ms-3"
+                      className="buyBtn"
                     >
                       Köp
                     </button>
