@@ -20,6 +20,17 @@ const BOProductList = () => {
     getAllSodas();
   }, []);
 
+  const searchSodas = (x) => {
+    if (input === "") {
+      return products;
+    } else if (
+      x.name.toLowerCase().includes(input.toLowerCase()) ||
+      x.brand.toLowerCase().includes(input.toLowerCase())
+    ) {
+      return products;
+    }
+  };
+
   const getAllSodas = () => {
     SodaService.getAll()
       .then((res) => {
@@ -41,14 +52,6 @@ const BOProductList = () => {
       FilterUtil.getCategoryFilter(products, category),
       filter
     );
-  };
-
-  const searchSodas = (x) => {
-    if (input === "") {
-      return products;
-    } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
-      return products;
-    }
   };
 
   return (
@@ -96,22 +99,6 @@ const BOProductList = () => {
             </Col>
           </Row>
           <Row></Row>
-          {/* <Row>
-            <Col>
-              <input
-                type="search"
-                className="mt-3"
-                value={input}
-                placeholder="Sök"
-                onChange={(e) => setInput(e.target.value)}
-              />
-              <BiSearch />
-              {products.filter((x) => {
-                console.log({searchSodas})
-                searchSodas(x)
-              })}
-            </Col>
-          </Row> */}
         </div>
       </div>
       <div className="all-prod-func">
