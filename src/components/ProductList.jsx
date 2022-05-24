@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Row, Col, Form, Card, Button, FormControl } from "react-bootstrap";
 import axios from "axios";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 import "../css/ProductList.css";
+import "../css/searchbar.css";
 import { add } from "../utils/shoppingCartLogic";
 import FilterUtil, {
   SORTOPTION,
 } from "../components/ProductlistUtilities/FilterComponents";
+import { BsSearch } from "react-icons/bs";
 
 export default function ProductList() {
   let navigate = useNavigate();
@@ -21,6 +23,17 @@ export default function ProductList() {
   const [category, setCategory] = useState("all");
   const [filter, setFilter] = useState(-1);
   const [input, setInput] = useState("");
+
+  const searchSodas = (x) => {
+    if (input === "") {
+      return sodasList;
+    } else if (
+      x.name.toLowerCase().includes(input.toLowerCase()) ||
+      x.brand.toLowerCase().includes(input.toLowerCase())
+    ) {
+      return sodasList;
+    }
+  };
 
   //LOCALSTORAGE
   useEffect(() => {
@@ -51,14 +64,6 @@ export default function ProductList() {
     );
   };
 
-  const searchSodas = (x) => {
-    if (input === "") {
-      return sodasList;
-    } else if (x.name.toLowerCase().includes(input.toLowerCase())) {
-      return sodasList;
-    }
-  };
-
   return (
     <>
       <Row>
@@ -87,13 +92,16 @@ export default function ProductList() {
       </Row>
       <Row>
         <Col>
-          <input
-            className="mt-3"
-            type="search"
-            value={input}
-            placeholder="Sök"
-            onChange={(e) => setInput(e.target.value)}
-          />
+          <div className="search-wrapper">
+            <FormControl
+              className="mt-3 input-search"
+              type="search"
+              value={input}
+              placeholder="Sök"
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <BsSearch className="search-icon" />
+          </div>
         </Col>
       </Row>
       <div className="ProductList">
