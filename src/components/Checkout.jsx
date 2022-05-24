@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import { empty, remove, save } from '../utils/shoppingCartLogic';
+import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Checkout() {
   const [items, setItems] = useState([]);
@@ -15,20 +16,23 @@ export default function Checkout() {
 
   useEffect(() => console.log(items), [items])
 
-  return (<Container className='checkout'>
-    <Row>
-      <Col>
-        <h1>Varukorg</h1>
-      </Col>
-    </Row>
-    <Row>
-      <Card>
+  return (
+    <Container className='checkout'>
+      <Row>
         <Col>
-          <h1>{items.name}</h1>
+          <h1>Varukorg</h1>
+          {items.map(x => {
+            return (<div key={x.sodasID}>{x.name} - {sweFormat(x.price)}</div>)
+          })}
         </Col>
-      </Card>
-    </Row>
+      </Row>
+      <Row>
+        <Card>
+          <Col>
+          </Col>
+        </Card>
+      </Row>
 
-  </Container>
+    </Container>
   )
 }

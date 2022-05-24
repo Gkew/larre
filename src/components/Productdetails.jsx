@@ -23,15 +23,10 @@ export default function Productdetails() {
   const [category, setCategory] = useState("all")
   const [filter, setFilter] = useState(-1);
 
-
-  const getData = () => {
-    return FilterUtil.getSortFilter(FilterUtil.getCategoryFilter(sodasList, category), filter)
-  }
-
-
   useEffect(() => {
     console.log(sodasID)
   }, [sodasID])
+
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
     Axios.get(`/sodas/${sodasID}`).then((response) => {
@@ -45,12 +40,16 @@ export default function Productdetails() {
 
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(details));
+    localStorage.setItem("cart", JSON.stringify(sodasList));
   }, [buy]);
 
-  console.log("!!!" + details)
 
+  // console.log("!!!" + details)
 
+  const handleStore = () => {
+    sodasList.push((details))
+    setBuy(!buy)
+  }
 
   return (
     <div>
@@ -65,7 +64,7 @@ export default function Productdetails() {
             </Card.Text>
             <button
               type="button"
-              onClick={() => setBuy(!buy)}
+              onClick={handleStore}
               className="mt-2 btn btn-primary float-end"
             >
               Buy
