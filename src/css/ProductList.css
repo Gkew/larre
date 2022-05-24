@@ -1,3 +1,6 @@
+body{
+    margin-top: 200px;
+}
 .ProductList {
     max-width: 100%;
     margin: 0 auto;
@@ -9,6 +12,55 @@
     font-family: 'Raleway';
     color: black ;
 }
-.lol {
-    min-height: 300px;
+
+.Card {
+    height: 900px;
+    background-color: #F9CEEE;
+    border: none;
+}
+.ProdImg {
+        width: 150px;
+        height: 450px;
+        object-fit: scale-down;
+        margin: auto;
+}
+.CText {
+        height: fit-content;
+       overflow: hidden;
+      text-overflow: ellipsis;
+       max-height: 20px;
+        white-space: nowrap;
+}
+.CFooter {
+   background-color: #CCF3EE;
+   display: flex;
+   justify-content: space-between;
+}
+.CBody {
+background-color: #F9F3EE;
+}
+.CTitle {
+ height: 8rem;
+}
+.buyBtn {
+        background-color: #FEC98F;
+        border: none;
+        color: black;
+        width: 70px;
+        border-radius: 10px;
+        font-size: 22px;
+}
+
+.FilterCol {
+margin: 3% auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+} 
+.ProductFilter, .ProductSort, .ProductSearch {
+    width: fit-content;
+    min-width: 380px;
+    height: 50px;
+    margin-bottom: 1%;
+    text-align:center;
 }

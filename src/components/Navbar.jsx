@@ -6,7 +6,8 @@ import { HiEye } from "react-icons/hi"
 import logo from "../logo/SODA_POP.png"
 const NavbarComponent = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" className="py-5" bg="black" variant="dark">
+    <div className='Nav'>
+    <Navbar collapseOnSelect expand="lg"  bg="black" variant="dark">
       <Navbar.Brand href="/" className='ps-5'>
         <img src={logo} height={120} width={300} />
       </Navbar.Brand>
@@ -22,6 +23,7 @@ const NavbarComponent = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    </div>
   )
 }
 
