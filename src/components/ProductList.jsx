@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
 import axios from "axios";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
@@ -62,7 +62,7 @@ export default function ProductList() {
   return (
     <>
       <Row>
-        <Col xs={6}>
+        <Col xs={6} style={{width: '300px', margin: '20px auto'}}>
           <label>
             <h4>Filtrera ut kategorier</h4>
           </label>
@@ -76,7 +76,7 @@ export default function ProductList() {
             ))}
           </Form.Select>
         </Col>
-        <Col xs={6}>
+        <Col xs={6} style={{width: '300px', margin: 'auto'}}>
           <label>
             <h4>Sortera på...</h4>
           </label>
@@ -107,49 +107,48 @@ export default function ProductList() {
           .filter((x) => searchSodas(x))
           .map((val, key) => {
             return (
-              <Col sm={3} className="py-2">
-                <Card
-                  className="h-100"
-                  style={{ backgroundColor: "#F9CEEE", border: "none" }}
-                >
-                  <img
-                    variant="top"
-                    style={{
-                      width: "150px",
-                      height: "450px",
-                      objectFit: "scale-down",
-                      margin: "auto",
-                    }}
-                    src={`/images/products/${val.sodasID}.png`}
-                    alt="soda"
-                  />
-                  <Card.Body style={{ backgroundColor: "#F9F3EE" }}>
-                    <Card.Title>
-                      <h1>{val.name}</h1>, <h3>{val.brand}</h3>
-                    </Card.Title>
-                    <Card.Text></Card.Text>
-                    <Card.Text style={{ height: "fit-content" }}>
-                      <p>{val.description}</p>
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer style={{ backgroundColor: "#CCF3EE" }}>
-                    <small className="text-muted">
-                      <b>{sweFormat(val.price)} </b>
-                    </small>
-                    <Button
-                      key={val.sodasID}
-                      onClick={() => details(val.sodasID)}
-                      className="mt-2 btn btn-primary float-end ms-3"
-                    >
-                      Detaljer
-                    </Button>
-                    <button
-                      type="button"
-                      onClick={buy}
-                      className="mt-2 btn btn-primary float-end"
-                    >
-                      Buy
-                    </button>
+              <Col sm={3} className="py-2" key={val.sodasID} onClick={() => details(val.sodasID)}>
+              <Card
+                className="h-100"
+                style={{ backgroundColor: "#F9CEEE", border: "none" }}
+              >
+                <img
+                  variant="top"
+                  style={{
+                    width: "150px",
+                    height: "450px",
+                    objectFit: "scale-down",
+                    margin: "auto",
+                  }}
+                  src={`/images/products/${val.sodasID}.png`}
+                  alt="soda"
+                />
+                <Card.Body style={{ backgroundColor: "#F9F3EE" }}>
+                <Card.Text className="py-2"><h4>{val.brand}</h4></Card.Text>
+                  <Card.Title className="py-2" style={{height: '8rem'}}>
+                    <h1>{val.name}</h1>
+                  </Card.Title>
+                  
+                  <Card.Text style={{ height: "fit-content",overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxHeight: '50px',
+                  whiteSpace: 'nowrap'}}>
+                    {val.description}
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer style={{ backgroundColor: "#CCF3EE" }}>
+                  <h4 className="text-muted">
+                    <b>{sweFormat(val.price)} </b>
+                  </h4>
+               
+                  <button
+                  style={{backgroundColor: "#FEC98F", border: 'none', color: 'black'}}
+                    type="button"
+                    onClick={buy}
+                    className="mt-2 btn btn-primary float-end ms-3"
+                  >
+                    Köp
+                  </button>
                   </Card.Footer>
                 </Card>
               </Col>
@@ -159,3 +158,4 @@ export default function ProductList() {
     </>
   );
 }
+
