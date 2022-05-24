@@ -1,6 +1,6 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect} from "react";
 import { Container, Row,  } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { Col, Card, Button } from "react-bootstrap";
 import { CardContent } from "@mui/material";
@@ -9,23 +9,38 @@ import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 export default function Productdetails () {
  
   const [details, setDetails] = useState([]);
-  // const [products, setProducts] = useState([]);
-  const { sodasID } = useParams()
- useEffect(() => {
+  const [sodasList, setSodasList] = useState([]);
+  const { sodasID } = useParams();
+  const [buy, setBuy] = useState(false);
+
+
+  let navigate = useNavigate();
+  const [category, setCategory] = useState("all")
+  const [filter, setFilter] = useState(-1);
+
+  useEffect(() => {
     console.log(sodasID)
-  },[sodasID])
+  }, [sodasID])
+
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
     Axios.get(`/sodas/${sodasID}`).then((response) => {
       console.log(response.data)
       setDetails(response.data);
     })
-    .catch((err) => {
-      console.log(err.response.data)
-    }) 
+      .catch((err) => {
+        console.log(err.response.data)
+      })
   }, []);
 
-  
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(sodasList));
+  }, [buy]);
+  const handleStore = () => {
+    sodasList.push((details))
+    setBuy(!buy)
+  }
 
 
   return (
@@ -59,7 +74,7 @@ export default function Productdetails () {
                         color: "black",
                       }}
                       type="button"
-                      // onClick={buy}
+                      onClick={handleStore}
                       className="mt-2 btn btn-primary float-end ms-3"
                     >
                       Köp
