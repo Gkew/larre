@@ -19,18 +19,23 @@ export default function Checkout() {
   return (
     <Container className='checkout'>
       <Row>
-        <Col>
-          <h1>Varukorg</h1>
-          {items.map(x => {
-            return (<div key={x.sodasID}>{x.name} - {sweFormat(x.price)}</div>)
-          })}
-        </Col>
+        <h1>Varukorg</h1>
       </Row>
       <Row>
-        <Card>
-          <Col>
-          </Col>
-        </Card>
+        <Col xs={7}>
+          <Card>
+
+            {items.map(x => {
+              return (<div key={x.sodasID}>{x.name} - {sweFormat(x.price)}</div>)
+            })}
+
+          </Card>
+        </Col>
+        <Col xs={4}>
+          <Card>
+            <h3>Totalsumma</h3>
+          </Card>
+        </Col>
       </Row>
 
     </Container>
