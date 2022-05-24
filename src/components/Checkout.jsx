@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link } from "react-router-dom";
-import { empty, remove, save } from '../utils/shoppingCartLogic';
 import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Checkout() {
@@ -19,18 +18,56 @@ export default function Checkout() {
   return (
     <Container className='checkout'>
       <Row>
-        <Col>
-          <h1>Varukorg</h1>
-          {items.map(x => {
-            return (<div key={x.sodasID}>{x.name} - {sweFormat(x.price)}</div>)
-          })}
-        </Col>
+        <h1>Varukorg</h1>
       </Row>
       <Row>
-        <Card>
-          <Col>
-          </Col>
-        </Card>
+        <Col xs={7}>
+          <Card className="text-center border-0">
+
+            {items.map(x => {
+              return (
+                <>
+                  <Row className="border-bottom border-0">
+                    <Col style={{ backgroundColor: "#F9CEEE" }}>
+                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }}>
+                      </Card.Img>
+                    </Col>
+                    <Col style={{ backgroundColor: "#97C4B8" }}>
+                      <Card.Text>
+                        <div key={x.sodasID}>{x.brand}
+                        </div>
+                        <div key={x.sodasID}>{x.name}
+                        </div>
+                      </Card.Text>
+                    </Col>
+                    <Col style={{ backgroundColor: "#CCF3EE" }}>
+                      <div key={x.sodasID}>{sweFormat(x.price)}
+                      </div>
+                    </Col>
+                  </Row>
+                </>
+              )
+            })}
+
+          </Card>
+        </Col>
+        <Col xs={4}>
+          <Card>
+            <h3>Totalsumma</h3>
+            <button
+              style={{
+                backgroundColor: "#FEC98F",
+                border: "none",
+                color: "black",
+              }}
+              type="button"
+
+              className="mt-2 btn btn-primary float-end ms-3"
+            >
+              Checka ut!
+            </button>
+          </Card>
+        </Col>
       </Row>
 
     </Container>
