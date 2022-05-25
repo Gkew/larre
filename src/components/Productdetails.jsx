@@ -15,6 +15,7 @@ export default function Productdetails() {
   const [sodasList, setSodasList] = useState([]);
   const { sodasID } = useParams();
   const [buy, setBuy] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
 
   let navigate = useNavigate();
@@ -73,6 +74,9 @@ export default function Productdetails() {
           </Card.Body>
           <Card.Footer>
             {sweFormat(details.price)}
+            <div>Antal:
+              <input value={quantity} onChange={e => setQuantity(e.target.value)}></input>
+            </div>
             <button
               style={{
                 backgroundColor: "#FEC98F",
