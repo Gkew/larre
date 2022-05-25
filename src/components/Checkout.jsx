@@ -19,13 +19,9 @@ export default function Checkout() {
   useEffect(() => console.log(items), [items]);
 
 
-  const cartContents = localStorage.getItem("cart");
+  const totalPrice = items.reduce((total, item) => total + item.price, 0)
 
-  // const getTotalSum = () => {
-  //   return cartContents.reduce((sum, { price }) = sum + price)
-  // };
-
-  console.log("!!!" + totalSum)
+  console.log("!!!" + totalPrice)
 
   return (
     <Container className='checkout'>
@@ -67,7 +63,7 @@ export default function Checkout() {
           <Card>
             <h3>Totalsumma</h3>
 
-            <div>as mkt pengar</div>
+            <div>{sweFormat(totalPrice)}</div>
 
             <button
               style={{
