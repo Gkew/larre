@@ -1,271 +1,197 @@
-* {
+.backoffice-container{
   box-sizing: border-box;
-}
-
-// #CCF3EE  <- ljusturkos
-// #F9CEEE  <- rosa
-// #F9F3EE  <- gul/grå?
-// #97C4B8  <- grön
-.list-group{
-  height: 80%;
-  overflow-y: scroll;
-  padding:2%;
-  border-left: 1px solid black;
-}
-.backoffice-container {
-  background-color: #ccf3eedc;
-  padding: 1%;
-
-  min-height: 50vh; 
+  font-family: 'Raleway';
+  background-color: #97c4b89f;
+  padding: 2%;
+  margin:0 1em;
+  min-height: 100vh;
   
- .bo-search-filter {
-   padding: 2%;
- }
-    .bo-successheader,
-     .bo-header {
-      padding:2%;
-      height: fit-content;
-      justify-content: center;
-      background-color: #F9CEEE;
-      color: black;
-
-
-
-    .header-btn {
-      font-size: 2em;
-    }
-
-    button {
-      border-radius: 10px;
-      border: none;
-      background-color: #ccf3ee9a;
-      padding: .7%;
-
-      a {
-        font-weight: bold;
-      }
-    }
-
-    .btn-p {
-      padding: 2%;
-      display: grid;
-      gap: 2em;
-    }
-  }
-
-  h2 {
+  h2,h3,h4{
+    font-weight: bold;
     text-align: center;
-    font-size: 2em;
   }
-
-  p {
-    font-size: 1.2em;
+  label{
+    font-weight: bold;
+    margin-top:1em;
+    text-transform: capitalize;
   }
-
   a {
     text-decoration: none;
     color: black;
-
-    &:hover {
-      font-weight: bold;
-    }
-  }
-
-
-  .goback {
-    background-color: #97C4B8;
-    border-radius: 10px;
-    padding: .7%;
-
-    a:hover {
+    &:hover{
       color: white;
-      font-weight: bold;
     }
   }
-
-.all-prod-func{
-  display: flex;
-  max-height: 70%;
-}
-.all-products {
-  height: 50%;
-}
-
-  .bo-add-product,
-  .create-category {
-    display: grid;
-    gap: 1em;
-    padding: 3%;
-    height: fit-content;
-    background-color: #ccf3eead;
-
-    .addproduct-btn,
-    .addcategory-btn {
-      width: fit-content;
-    }
+  li{
+    list-style: none;
   }
-
-  input,
-  select,
-  textarea {
+  button{
     border-radius: 5px;
-    padding: 1%;
-    width: 70%;
+    border: none;
+    font-weight: bolder;
+  }
+  input, select, textarea {
+    border-radius: 5px;
+    border:none;
   }
 
-  .img-btn {
-    width: 20%;
-  }
 
-  .bo-nav {
-    width: 70%;
+.bo-header {
+      background-color: #f9ceee;
+      padding: 2%;
+}
+.bo-nav {
+  width: 70%;
     display: grid;
     gap: 1em;
     grid-template-columns: auto auto;
     margin: 3em auto;
 
-    .bo-links {
-      background-color: #97C4B8;
-      font-weight: bolder;
-      border: none;
-      border-radius: 10px;
-      padding: 1%;
+    button{
+      background-color: #f9ceee;
+      padding:2%;
     }
-
-    a {
-      text-decoration: none;
-    }
-
-  }
-
-  .BO-one-product {
-    margin: 1em auto;
-    border: 1px solid black;
-    background-color: #fafafa8f;
-    padding: 1%;
-    max-width: 80ch;
-    flex-shrink: 1;
-    height: fit-content;
-
-    label {
-      font-weight: bold;
-      margin-right: .5em;
-    }
-    .edit-btn{
-      margin-top: 1em;
-    }
-  }
 }
 
+.bo-search-filter{
+  margin-top: 2em;
+  display: grid;
+  justify-items: center;
+    @media screen and(min-width: 768px) {
+        width: 40%;
+        margin: 0 auto;
+      }
 
-#update-container {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  padding: 2%;
-  background-color: #CCF3EE;
-  //border: 2px solid black;
-  //box-shadow: 2px 8px 15px 8px rgba(0, 0, 0, 0.71);
-
-  input,
-  select,
-  textarea {
-    margin: 1em;
-    width:80%;
+  label{
+    margin-top: 1em;
   }
+  .searchbar{
+    margin: 1.6em 0;
+    width: 100%;
+   
 
-  .update-product{
-    margin: 1em;
-    width:70%;
-    justify-content: center;
-  }
+    input{
+     width: 100%;
+    }
+  } 
+    
+}
 
-  .btn-div {
-    width: 50%;
+/* Login-page*/
+.admin-login,
+.create-category {
     display: flex;
-    justify-content:flex-start;
-    padding: 1em;
-
-    .btn-danger{
-      margin-left: 5em;
-    }
-  }
-  .top-btn{
-    max-width:fit-content;
-  }
-  a{
-    text-decoration: none;
-  }
-
-  .price-cat {
-    width: fit-content;
-  }
-
-}
-.admin-login{
-  display: flex;
     flex-direction: column;
+    align-items: center;
     height: fit-content;
     padding: 2%;
-    background-color: #CCF3EE;
 
-    label {
-      font-weight: bold;
-    }
     input{
-      width: 60%;
+      width: 80%;
     }
-    Button {
+    Button{
+      margin-top: 2em;
       width: fit-content;
-      margin: 1em 0;
     }
+
+    /*Category-page*/
+  
+    .categ-input{
+      margin-bottom: 1em;
+    }
+  
 }
 
-/*@media screen and (min-width: 768px) {
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    column-gap: 1em;
-    flex-wrap: wrap;
-    flex-shrink: 1;
-    flex-grow: 1;
+/*ProductList-page*/
 
-=======
-    @media screen and (min-width: 768px) {
-      .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto auto auto;
-        column-gap: 1em;
-        flex-wrap: wrap;
-        flex-shrink: 1;
-        flex-grow: 1;
->>>>>>> 1a07a1126194dfd8671705080b95fa56122e8440
+.searchbar{
+ input{
+   padding: 1%;
+ }
+}
 
+.all-prod-func{
 
-        .grid1 {
-          grid-column: 3/4;
-        }
+  @media screen and(min-width: 768px) {
+    display:flex;
+  }
 
-        .grid2 {
-          grid-column: 4/5;
+  .all-products{
+    height: 20%;
+    overflow-y: scroll;
 
-        }
+    @media screen and(min-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      height: 50%;
+      width: 50%;
+      margin-top: 2em;
+      .list-group {
+          height: 80%;
+          margin-top: 2em;
+          padding:2%;
+      }
+    }
+    h2{
+      border-bottom: 1px solid black;
+    }
 
-        .grid3 {
-          grid-column: 5/6;
-        }
+  }
 
-        .img-grid {
-          grid-column: 1/2;
-          grid-row: 1/5;
-        }
-
-
-  .detail-btn {
-    margin-top: 2em;
+  .BO-one-product{
+    margin: 3.2em;
+    padding: 2%;
+    border: 1px solid black;
+    box-shadow: 2px 8px 15px 8px rgba(0, 0, 0, 0.61);
+  background-color: #f9ceeec8;
+    @media screen and(min-width: 768px) {
+      height:fit-content;
+      max-width: 70ch;
+    }
+    Button{
+    margin-top:1em;
+    }
   }
 }
-*/
 
 
 
+/*Create- and edit-product-page*/
+  .bo-add-product {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+      background-color: #ccf3eead;
+    
+      .addproduct-btn,
+      .addcategory-btn {
+        width: fit-content;
+      }
+    
+      input,
+      select,
+      textarea {
+        width: 80%;
+        margin:0.7em 0;
+        padding: 1%;
+
+        @media screen and(min-width: 768px) {
+        width: 50%;
+        }
+      }
+      Button {
+        margin: 2em 0;
+      }
+  }
+     .btn-div {
+       width: 50%;
+       display: flex;
+       justify-content: flex-start;
+       
+  
+       .btn-danger {
+         margin-left: 5em;
+       }
+     }
+
+}

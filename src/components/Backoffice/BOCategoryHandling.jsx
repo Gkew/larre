@@ -55,19 +55,20 @@ const BOCategoryHandling = () => {
     <Container className="backoffice-container" fluid>
       <div className="bo-header">
         <button>
-          <Link to={`/backoffice`}>Tillbaka till BO</Link>
+          <Link to={`/backoffice`}>{`<< Tillbaka till BO`}</Link>
         </button>
 
         <h2>Kategorier</h2>
       </div>
 
-      <div>
+      <div className="category-list">
         <ul>
           {categories.map((cat) => {
             return (
-              <li key={cat.id}>
+              <li key={cat.id} className="each-cat">
                 {" "}
-                {cat.name}: {cat.description}
+                <label className="cat-label">{cat.name}:</label>{" "}
+                {cat.description}
               </li>
             );
           })}
@@ -76,6 +77,7 @@ const BOCategoryHandling = () => {
       <h2>Skapa ny kategori</h2>
       <form className="create-category" onSubmit={createCategory}>
         <input
+          className="categ-input"
           type="text"
           name="name"
           onChange={handleChange}

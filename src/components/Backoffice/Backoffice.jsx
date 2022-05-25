@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 
 const Backoffice = () => {
   return (
-    <>
+    <div className="bo-body">
       <Container className="backoffice-container" fluid>
         <div className="bo-header">
           <h2>Välkommen till Back office!</h2>
@@ -35,7 +35,7 @@ const Backoffice = () => {
           </button>
         </section>
       </Container>
-    </>
+    </div>
   );
 };
 export default Backoffice;
