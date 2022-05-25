@@ -113,7 +113,7 @@ export default function ProductList() {
                 onClick={() => details(val.sodasID)}
               >
                 <Card
-                  className="Card"
+                  className="PCard"
                 >
                   <Card.Img
                   className="ProdImg"
@@ -122,16 +122,14 @@ export default function ProductList() {
                     alt="soda"
                   />
                   <Card.Body className="CBody" >
-                    <Card.Text className="py-2">
+                    <Card.Text className="CText">
                       <h4>{val.brand}</h4>
                     </Card.Text>
                     <Card.Title className="CTitle">
                       <h1>{val.name}</h1>
                     </Card.Title>
 
-                    <Card.Text clasSName="CText">
-                      {val.description}
-                    </Card.Text>
+
                   </Card.Body>
                   <Card.Footer className="CFooter">
                     <h4 className="text-muted">
