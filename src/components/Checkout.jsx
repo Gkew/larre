@@ -1,75 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
-import { Link } from "react-router-dom";
-import { sweFormat } from './ProductlistUtilities/sekFormatting';
+import React from 'react'
+import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap'
 
 export default function Checkout() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('cart'));
-    if (items) {
-      setItems(items);
-    }
-  }, []);
-
-  useEffect(() => console.log(items), [items])
-
   return (
-    <Container className='checkout'>
-      <Row>
-        <h1>Varukorg</h1>
-      </Row>
-      <Row>
-        <Col xs={7}>
-          <Card className="text-center border-0">
+    <Form>
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+        </Form.Group>
 
-            {items.map(x => {
-              return (
-                <>
-                  <Row className="border-bottom border-0">
-                    <Col style={{ backgroundColor: "#F9CEEE" }}>
-                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }}>
-                      </Card.Img>
-                    </Col>
-                    <Col style={{ backgroundColor: "#97C4B8" }}>
-                      <Card.Text>
-                        <div key={x.sodasID}>{x.brand}
-                        </div>
-                        <div key={x.sodasID}>{x.name}
-                        </div>
-                      </Card.Text>
-                    </Col>
-                    <Col style={{ backgroundColor: "#CCF3EE" }}>
-                      <div key={x.sodasID}>{sweFormat(x.price)}
-                      </div>
-                    </Col>
-                  </Row>
-                </>
-              )
-            })}
-
-          </Card>
-        </Col>
-        <Col xs={4}>
-          <Card>
-            <h3>Totalsumma</h3>
-            <button
-              style={{
-                backgroundColor: "#FEC98F",
-                border: "none",
-                color: "black",
-              }}
-              type="button"
-
-              className="mt-2 btn btn-primary float-end ms-3"
-            >
-              Checka ut!
-            </button>
-          </Card>
-        </Col>
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
       </Row>
 
-    </Container>
+      <Form.Group className="mb-3" controlId="formGridAddress1">
+        <Form.Label>Address</Form.Label>
+        <Form.Control placeholder="1234 Main St" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formGridAddress2">
+        <Form.Label>Address 2</Form.Label>
+        <Form.Control placeholder="Apartment, studio, or floor" />
+      </Form.Group>
+
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridCity">
+          <Form.Label>City</Form.Label>
+          <Form.Control />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridState">
+          <Form.Label>State</Form.Label>
+          <Form.Select defaultValue="Choose...">
+            <option>Choose...</option>
+            <option>...</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridZip">
+          <Form.Label>Zip</Form.Label>
+          <Form.Control />
+        </Form.Group>
+      </Row>
+
+      <Form.Group className="mb-3" id="formGridCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   )
 }

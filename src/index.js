@@ -12,8 +12,8 @@ import BOCategoryHandling from "./components/Backoffice/BOCategoryHandling";
 import Navbar from "./components/Navbar";
 import Productdetails from "./components/Productdetails";
 import BOProductEdit from "./components/Backoffice/BOProductEdit";
+import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
-
 import { AuthProvider } from "./components/Backoffice/Admin/Authenticate";
 import AuthRoutes from "./components/Backoffice/Admin/AuthRoutes";
 import Login from "./components/Backoffice/Admin/BOLogIn";
@@ -55,6 +55,7 @@ root.render(
 
           <Route path="/login" element={<Login />} />
           <Route path="/productdetails/:sodasID" element={<Productdetails />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
 
           <Route
