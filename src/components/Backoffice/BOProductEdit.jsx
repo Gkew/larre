@@ -89,15 +89,13 @@ const BOProductEdit = (props) => {
       {sodas ? (
         <>
           <div className="bo-header">
-            <Button className="top-btn" variant="outline-primary">
-              <Link to={`/backoffice/products`}>
-                {" "}
-                Gå tillbaka till alla produkter
-              </Link>
-            </Button>
+            <Link to={`/backoffice/products`}>
+              <button>{`<< Tillbaka till BO`}</button>
+            </Link>
+
             <h2>Uppdatera produkt</h2>
           </div>
-          <form id="update-container">
+          <form className="bo-add-product">
             <input
               type="text"
               className="form-control"
@@ -153,17 +151,17 @@ const BOProductEdit = (props) => {
             </select>
 
             <input id="img" name="img" type="file" accept="image/*" />
-          </form>
-          <div className="btn-div">
-            <Button variant="success" type="submit" onClick={updateSoda}>
-              Uppdatera
-            </Button>
-            <p>{message} </p>
+            <div className="btn-div">
+              <Button variant="success" type="submit" onClick={updateSoda}>
+                Uppdatera
+              </Button>
+              <p>{message} </p>
 
-            <Button variant="danger" onClick={deleteSoda}>
-              Ta bort
-            </Button>
-          </div>
+              <Button variant="danger" onClick={deleteSoda}>
+                Ta bort
+              </Button>
+            </div>
+          </form>
         </>
       ) : (
         <div></div>

@@ -92,7 +92,7 @@ const BOProductCreate = () => {
           <>
             <div className="bo-header">
               <button>
-                <Link to={`/backoffice`}>Tillbaka till BO</Link>
+                <Link to={`/backoffice`}>{`<< Tillbaka till BO`}</Link>
               </button>
 
               <h2>Lägg till en ny produkt</h2>
@@ -146,13 +146,14 @@ const BOProductCreate = () => {
                 placeholder="Konsumentpris i SEK"
                 onChange={handleInput}
                 value={sodas.price}
+                min="5"
               ></input>
 
               <input id="img" name="img" type="file" accept="image/*" />
 
               <Button
                 className="addproduct-btn"
-                variant="outline-dark"
+                variant="warning"
                 type="submit"
                 onClick={addProd}
               >

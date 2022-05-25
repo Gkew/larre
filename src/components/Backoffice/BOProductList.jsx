@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Col, Container, Button, Form, Row } from "react-bootstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import SodaService from "../services/SodaService";
 import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
@@ -57,61 +57,48 @@ const BOProductList = () => {
   return (
     <Container className="backoffice-container list row" fluid>
       <div className="bo-header">
-        <button>
-          <Link to={`/backoffice`}>Tillbaka till BO</Link>
-        </button>
+        <Link to={`/backoffice`}>
+          {" "}
+          <button>{`<< Tillbaka till BO`}</button>
+        </Link>
+
         <h2>Alla varor</h2>
       </div>
       <div className="bo-search-filter">
-        <div className="col-md-5">
-          <Row>
-            <Col xs={6}>
-              <label>
-                <h4>Filtrera ut kategorier</h4>
-              </label>
-              <Form.Select
-                className="w-100"
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="all">Alla</option>
-                {[...new Set(products.map((x) => x.categoriesID))].map((x) => (
-                  <option value={x}>{x}</option>
-                ))}
-              </Form.Select>
-            </Col>
-            <Col xs={6}>
-              <label>
-                <h4>Sortera på...</h4>
-              </label>
-              <Form.Select
-                className="w-100"
-                onChange={(e) => setFilter(e.target.value)}
-              >
-                {/* <option value={-1}>Standard</option> */}
-                <option value={-1}>Namn: A-Ö</option>
-                <option value={SORTOPTION.ÖToA}>Namn: Ö-A</option>
-                <option value={SORTOPTION.Descending}>
-                  Pris lågt till högt
-                </option>
-                <option value={SORTOPTION.Ascending}>
-                  Pris högt till lågt
-                </option>
-              </Form.Select>
-            </Col>
-          </Row>
-          <Row></Row>
+        <label>
+          <h4>Filtrera ut kategorier</h4>
+        </label>
+        <Form.Select onChange={(e) => setCategory(e.target.value)}>
+          <option value="all">Alla</option>
+          {[...new Set(products.map((x) => x.categoriesID))].map((x) => (
+            <option value={x}>{x}</option>
+          ))}
+        </Form.Select>
+
+        <label>
+          <h4>Sortera på...</h4>
+        </label>
+        <Form.Select onChange={(e) => setFilter(e.target.value)}>
+          {/* <option value={-1}>Standard</option> */}
+          <option value={-1}>Namn: A-Ö</option>
+          <option value={SORTOPTION.ÖToA}>Namn: Ö-A</option>
+          <option value={SORTOPTION.Descending}>Pris lågt till högt</option>
+          <option value={SORTOPTION.Ascending}>Pris högt till lågt</option>
+        </Form.Select>
+
+        <div className="searchbar">
+          <input
+            type="text"
+            value={input}
+            placeholder="Sök på produktnamn"
+            onChange={(e) => setInput(e.target.value)}
+          />
         </div>
       </div>
       <div className="all-prod-func">
-        <div className="col-md-5 all-products">
-          <h4>Alla produkter</h4>
-          <input
-            className="mt-3"
-            type="search"
-            value={input}
-            placeholder="Sök"
-            onChange={(e) => setInput(e.target.value)}
-          />
+        <div className="all-products">
+          <h2>Alla produkter</h2>
+
           <ul className="list-group">
             {products &&
               getData()
@@ -124,14 +111,14 @@ const BOProductList = () => {
                     onClick={() => setChoosenProduct(product, index)}
                     key={index}
                   >
-                    <h4>{product.name}</h4> från {product.brand}
+                    <h4>{product.name}</h4> från <label>{product.brand}</label>
                   </li>
                 ))}
           </ul>
         </div>
-        <div className="BO-one-product col-md-5">
+        <div>
           {thisProduct ? (
-            <div className="grid-container">
+            <div className="BO-one-product">
               <h2>Info om vald produkt</h2>
               <div className="img-grid">
                 <img
@@ -149,27 +136,31 @@ const BOProductList = () => {
               <div>
                 <label>Namn: </label>
               </div>
-              <div>{thisProduct.name}</div>
+              <h5>{thisProduct.name}</h5>
               <div>
                 <label>Märke:</label>{" "}
               </div>
-              <div>{thisProduct.brand}</div>
+              <h5>{thisProduct.brand}</h5>
               <div>
                 <label>Beskrivning: </label>
               </div>
-              <div> {thisProduct.description}</div>
+              <h5> {thisProduct.description}</h5>
               <div>
                 <label>Konsumentpris: </label>{" "}
               </div>
-              <div>{sweFormat(thisProduct.price)}</div>
+              <h5>{sweFormat(thisProduct.price)}</h5>
               <div>
                 <label>Kategori: </label>
               </div>
-              <div>{thisProduct.categoriesID}</div>
+              <h5>{thisProduct.categoriesID}</h5>
               <Button variant="warning" className="edit-btn">
                 <Link to={"/backoffice/products/" + thisProduct.sodasID}>
                   Hantera produkt
                 </Link>
+              </Button>
+
+              <Button variant="outline-danger" className="close-handler">
+                Stäng info
               </Button>
             </div>
           ) : (

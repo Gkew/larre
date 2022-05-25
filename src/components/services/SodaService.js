@@ -17,15 +17,21 @@ const remove = (id) => {
   return http.delete(`/sodas/${id}`);
 };
 
-const findByName = (name) => {
-  return http.get(`/sodas?name=${name}`);
+const gettAllCategories = () => {
+  return http.get("/categories");
 };
+
+const createCategory = (data) => {
+  return http.post("/categories", data);
+};
+
 const SodaService = {
   getAll,
   get,
   create,
   update,
   remove,
-  findByName,
+  gettAllCategories,
+  createCategory,
 };
 export default SodaService;

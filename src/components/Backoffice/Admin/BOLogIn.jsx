@@ -21,12 +21,11 @@ function BOLogIn() {
   return (
     <Container className="backoffice-container" fluid>
       <div className="bo-header">
-        <Button variant="light">
-          <Link to={`/`}>
-            Oj, jag kom fel. <br />
-            Ta mig tillbaka till startsidan
-          </Link>
-        </Button>
+        <Link to={`/`}>
+          Oj, jag kom fel. <br />
+          Ta mig tillbaka till startsidan
+        </Link>
+
         <h2>Logga in</h2>
       </div>
 
@@ -35,7 +34,7 @@ function BOLogIn() {
         <input type="text" onChange={(e) => setAdmin(e.target.value)} />
         <label>Lösenord</label>
         <input type="password" onChange={(e) => setPassword(e.target.value)} />
-        <Button type="submit" variant="primary" onClick={adminLogin}>
+        <Button type="submit" variant="warning" onClick={adminLogin}>
           Logga in
         </Button>
       </form>
