@@ -5,6 +5,8 @@ import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Checkout() {
   const [items, setItems] = useState([]);
+  const [totalSum, setTotalSum] = useState([]);
+
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart'));
@@ -13,10 +15,14 @@ export default function Checkout() {
     }
   }, []);
 
-  useEffect(() => console.log(items), [items])
+  useEffect(() => console.log(items), [items]);
+
+
+  const totalPrice = items.reduce((total, item) => total + item.price, 0)
+
 
   return (
-    <Container className='checkout'>
+    <Container className='checkout' style={{ height: "100vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
       <Row>
         <h1>Varukorg</h1>
       </Row>
@@ -33,15 +39,15 @@ export default function Checkout() {
                       </Card.Img>
                     </Col>
                     <Col style={{ backgroundColor: "#97C4B8" }}>
-                      <Card.Text>
-                        <div key={x.sodasID}>{x.brand}
-                        </div>
+                      <Card.Text style={{ textAlign: "center", marginTop: "40px" }}>
+                        <span key={x.sodasID}>{x.brand}
+                        </span>
                         <div key={x.sodasID}>{x.name}
                         </div>
                       </Card.Text>
                     </Col>
                     <Col style={{ backgroundColor: "#CCF3EE" }}>
-                      <div key={x.sodasID}>{sweFormat(x.price)}
+                      <div style={{ textAlign: "center", marginTop: "55px" }} key={x.sodasID}>{sweFormat(x.price)}
                       </div>
                     </Col>
                   </Row>
@@ -53,7 +59,17 @@ export default function Checkout() {
         </Col>
         <Col xs={4}>
           <Card>
-            <h3>Totalsumma</h3>
+            <Row>
+              <h3 style={{ marginLeft: "5px" }}>Totalsumma</h3>
+            </Row>
+            <Row>
+              <Col>
+                <span style={{ marginLeft: "5px" }}>Summa:</span>
+              </Col>
+              <Col>
+                <div>{sweFormat(totalPrice)}</div>
+              </Col>
+            </Row>
             <button
               style={{
                 backgroundColor: "#FEC98F",
