@@ -5,6 +5,9 @@ import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Checkout() {
   const [items, setItems] = useState([]);
+  const [totalSum, setTotalSum] = useState([]);
+
+
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart'));
@@ -13,7 +16,16 @@ export default function Checkout() {
     }
   }, []);
 
-  useEffect(() => console.log(items), [items])
+  useEffect(() => console.log(items), [items]);
+
+
+  const cartContents = localStorage.getItem("cart");
+
+  // const getTotalSum = () => {
+  //   return cartContents.reduce((sum, { price }) = sum + price)
+  // };
+
+  console.log("!!!" + totalSum)
 
   return (
     <Container className='checkout'>
@@ -54,6 +66,9 @@ export default function Checkout() {
         <Col xs={4}>
           <Card>
             <h3>Totalsumma</h3>
+
+            <div>as mkt pengar</div>
+
             <button
               style={{
                 backgroundColor: "#FEC98F",
