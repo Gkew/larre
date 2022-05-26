@@ -143,7 +143,7 @@ const BOProductCreate = () => {
               <input
                 type="number"
                 name="price"
-                placeholder="Konsumentpris i SEK"
+                placeholder="pris"
                 onChange={handleInput}
                 value={sodas.price}
                 min="5"

@@ -10,6 +10,9 @@
     font-weight: bold;
     text-align: center;
   }
+  h5{
+    font-weight: bold;
+  }
   label{
     font-weight: bold;
     margin-top:1em;
@@ -143,14 +146,18 @@
     padding: 2%;
     border: 1px solid black;
     box-shadow: 2px 8px 15px 8px rgba(0, 0, 0, 0.61);
-  background-color: #f9ceeec8;
-    @media screen and(min-width: 768px) {
+    background-color: #f9ceee;
+    label{
+      text-decoration:underline;
+    }
+     @media screen and(min-width: 768px) {
       height:fit-content;
       max-width: 70ch;
-    }
+      }
     Button{
     margin-top:1em;
     }
+
   }
 }
 
@@ -158,10 +165,10 @@
 
 /*Create- and edit-product-page*/
   .bo-add-product {
-  display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-      background-color: #ccf3eead;
+    background-color: #ccf3eead;
     
       .addproduct-btn,
       .addcategory-btn {
@@ -193,5 +200,10 @@
          margin-left: 5em;
        }
      }
-
+     .category-list{
+       margin-top: 2em;
+       padding: 2%;
+       background-color: white;
+       border-radius: 15px;
+     }
 }

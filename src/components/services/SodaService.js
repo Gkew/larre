@@ -25,6 +25,10 @@ const createCategory = (data) => {
   return http.post("/categories", data);
 };
 
+const getOrders = () => {
+  return http.get("/orders");
+};
+
 const SodaService = {
   getAll,
   get,
@@ -33,5 +37,6 @@ const SodaService = {
   remove,
   gettAllCategories,
   createCategory,
+  getOrders,
 };
 export default SodaService;
