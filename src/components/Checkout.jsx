@@ -1,29 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
-import axios from "axios";
 import CheckoutService from '../utils/CheckoutService';
-import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Checkout() {
   const [created, setCreated] = useState(false);
   const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('cart'));
-    if (items) {
-      setItems(items);
-    }
-  }, []);
-
-  useEffect(() => console.log(items), [items]);
-
-
   const totalPrice = items.reduce((total, item) => total + item.price, 0);
-
-  console.log("!!!" + items);
-
-  const startOrderCreate = {
+  const [orders, setOrders] = useState({
     orderID: null,
     firstName: "",
     lastName: "",
@@ -34,9 +18,26 @@ export default function Checkout() {
     city: "",
     orderTime: "",
     orderTotal: 0,
-  };
+    orderDetails: ""
+  });
 
-  const [orders, setOrders] = useState(startOrderCreate);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('cart'));
+    if (items) {
+      setItems(items);
+    }
+  }, []);
+
+  useEffect(() => console.log(items), [items])
+
+
+  // const date = new Date();
+  // const CurrentTime = date.toISOString().slice(0, 10) + " " + date.getHours() + ':' + date.getMinutes();
+
+
+
+
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setOrders({ ...orders, [name]: value });
@@ -53,8 +54,8 @@ export default function Checkout() {
       email: orders.email,
       zipCode: orders.zipCode,
       city: orders.city,
-      orderTime: orders.orderTime,
-      orderTotal: orders.orderTotal,
+      orderTotal: totalPrice,
+      orderDetails: items
     };
 
     CheckoutService.create(data)
@@ -68,8 +69,8 @@ export default function Checkout() {
           email: res.data.email,
           zipCode: res.data.zipCode,
           city: res.data.city,
-          orderTime: res.data.orderTime,
-          orderTotal: res.data.orderTotal,
+          orderTotal: totalPrice,
+          orderDetails: items
         });
         setCreated(true);
         console.log(res.data);
@@ -78,12 +79,6 @@ export default function Checkout() {
         console.log(err);
       });
   };
-
-
-  axios.defaults.baseURL = "http://localhost:4000/api";
-
-  let navigate = useNavigate();
-
   // const addMoreOrders = () => {
   //   setCreated(false);
   //   navigate("/checkout", { replace: true });
