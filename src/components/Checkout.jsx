@@ -3,9 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
 import axios from "axios";
 import CheckoutService from '../utils/CheckoutService';
+import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Checkout() {
   const [created, setCreated] = useState(false);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('cart'));
+    if (items) {
+      setItems(items);
+    }
+  }, []);
+
+  useEffect(() => console.log(items), [items]);
+
+
+  const totalPrice = items.reduce((total, item) => total + item.price, 0);
+
+  console.log("!!!" + items);
 
   const startOrderCreate = {
     orderID: null,
