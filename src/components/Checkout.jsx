@@ -11,8 +11,9 @@ export default function Checkout() {
     orderID: null,
     firstName: "",
     lastName: "",
-    streetName: "",
-    streetNo: "",
+    address: "",
+    coAddress: "",
+    email: "",
     zipCode: "",
     city: "",
     orderTime: "",
@@ -31,8 +32,9 @@ export default function Checkout() {
     const data = {
       firstName: orders.firstName,
       lastName: orders.lastName,
-      streetName: orders.streetName,
-      streetNo: orders.streetNo,
+      address: orders.address,
+      coAddress: orders.coAddress,
+      email: orders.email,
       zipCode: orders.zipCode,
       city: orders.city,
       orderTime: orders.orderTime,
@@ -45,8 +47,9 @@ export default function Checkout() {
           orderID: res.data.orderID,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
-          streetName: res.config.data.streetName,
-          streetNo: res.data.streetNo,
+          address: res.data.address,
+          coAddress: res.data.coAddress,
+          email: res.data.email,
           zipCode: res.data.zipCode,
           city: res.data.city,
           orderTime: res.data.orderTime,
@@ -73,16 +76,16 @@ export default function Checkout() {
   return (
     <Container>
       <Card>
-        <Form>
+        <Form onSubmit={addOrder}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Förnamn</Form.Label>
               <Form.Control
                 type="text"
-                name='name'
+                name='firstName'
                 placeholder="Skriv in ditt förnamn"
                 onChange={handleInput}
-                value={orders.firstName}
+                defaultValue={orders.firstName}
                 required
               />
             </Form.Group>
@@ -91,36 +94,80 @@ export default function Checkout() {
               <Form.Label>Efternamn</Form.Label>
               <Form.Control
                 type="text"
+                name='lastName'
                 placeholder="Skriv in ditt efternamn"
                 onChange={handleInput}
-                value={orders.lastName}
-                required />
+                defaultValue={orders.lastName}
+                required
+              />
             </Form.Group>
           </Row>
 
           <Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
             <Form.Label>Adress</Form.Label>
-            <Form.Control placeholder="Läskgatan 420" />
+            <Form.Control
+              type='text'
+              placeholder="Läskgatan 420"
+              name='address'
+              onChange={handleInput}
+              defaultValue={orders.address}
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formGridAddress2">
             <Form.Label>C/o adress</Form.Label>
-            <Form.Control placeholder="Läskgatan 420" />
+            <Form.Control
+              placeholder="Läskgatan 420"
+              name='coAddress'
+              onChange={handleInput}
+              defaultValue={orders.coAddress}
+              type="text"
+            />
           </Form.Group>
 
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Stad</Form.Label>
-              <Form.Control placeholder='Läskeborg' />
+              <Form.Control
+                placeholder='Läskeborg'
+                name='city'
+                onChange={handleInput}
+                defaultValue={orders.city}
+                type="text"
+                required
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Postnummer</Form.Label>
-              <Form.Control />
+              <Form.Control
+                placeholder='133 37'
+                name='zipCode'
+                onChange={handleInput}
+                defaultValue={orders.zipCode}
+                type="text"
+                required
+              />
             </Form.Group>
           </Row>
 
-          <Button variant="primary" type="submit">
+          <Form.Group className="mb-3" controlId="formGridAddress2">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              placeholder="älskar@läsk.com"
+              name='email'
+              onChange={handleInput}
+              defaultValue={orders.email}
+              type="text"
+              required
+            />
+          </Form.Group>
+
+          <Button
+            variant="primary"
+            type="submit"
+          >
             Skicka min beställning!
           </Button>
         </Form>

@@ -23,6 +23,5 @@ const CheckoutService = {
   create,
   update,
   remove,
-
 };
 export default CheckoutService;
