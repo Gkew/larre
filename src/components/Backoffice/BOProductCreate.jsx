@@ -84,6 +84,11 @@ const BOProductCreate = () => {
                 Lägg till en till produkt
               </Button>{" "}
               <Button className="header-btn">
+                <Link to={`/backoffice/products`}>
+                  Tillbaka till alla produkter
+                </Link>
+              </Button>
+              <Button className="header-btn">
                 <Link to={`/backoffice`}>Tillbaka till BO</Link>
               </Button>
             </p>
