@@ -19,6 +19,7 @@ import AuthRoutes from "./components/Backoffice/Admin/AuthRoutes";
 import Login from "./components/Backoffice/Admin/BOLogIn";
 import AboutUs from "./AboutUs";
 import Nyheter from "./Nyheter";
+import Camera from "./components/Camera/Camera";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -57,6 +58,7 @@ root.render(
           <Route path="/productdetails/:sodasID" element={<Productdetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/camera" element={<Camera />} />
 
           <Route
             path="/backoffice"
