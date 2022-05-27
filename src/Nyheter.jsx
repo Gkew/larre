@@ -10,8 +10,8 @@ const Nyheter = () => {
   let productID = '5'
   // kan lätt ändra id
 
-  let getToday = new Date()
-  let CurrentDate = getToday.toLocaleDateString();
+
+  // const [month, day, year] = [date.toISOString().slice(0, 10), date.getHours(), date.getMinutes()];
 
   useEffect(() => {
     const getData = async () => {
@@ -28,7 +28,7 @@ const Nyheter = () => {
   return (
     <Container fluid>
       <Row className='text-center'>
-        <h1>Här är de senaste nyheterna för {CurrentDate}</h1>
+        <h1>Här är de senaste nyheterna för idag</h1>
       </Row>
       <Row className="mt-5">
         <h2 className="text-center">Senaste Rabatten!</h2>

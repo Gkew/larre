@@ -5,7 +5,6 @@ import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Cart() {
   const [items, setItems] = useState([]);
-  const [totalSum, setTotalSum] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
