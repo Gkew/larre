@@ -6,7 +6,8 @@ import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
   SORTOPTION,
 } from "../ProductlistUtilities/FilterComponents";
-import { BiSearch } from "react-icons/bi";
+
+import { missingImage } from "../../utils/missingImage";
 
 const BOProductList = () => {
   const [products, setProducts] = useState([]);
@@ -116,57 +117,55 @@ const BOProductList = () => {
                 ))}
           </ul>
         </div>
-        <div>
-          {thisProduct ? (
-            <div className="BO-one-product">
-              <h2>Info om vald produkt</h2>
-              <div className="img-grid">
-                <img
-                  variant="top"
-                  style={{
-                    width: "75px",
-                    height: "225px",
-                    objectFit: "scale-down",
-                    margin: "auto",
-                  }}
-                  src={`/images/products/${thisProduct.sodasID}.png`}
-                  alt="soda"
-                />
-              </div>
-              <div>
-                <label>Namn: </label>
-              </div>
-              <h5>{thisProduct.name}</h5>
-              <div>
-                <label>Märke:</label>{" "}
-              </div>
-              <h5>{thisProduct.brand}</h5>
-              <div>
-                <label>Beskrivning: </label>
-              </div>
-              <h5> {thisProduct.description}</h5>
-              <div>
-                <label>Konsumentpris: </label>{" "}
-              </div>
-              <h5>{sweFormat(thisProduct.price)}</h5>
-              <div>
-                <label>Kategori: </label>
-              </div>
-              <h5>{thisProduct.categoriesID}</h5>
-              <Button variant="warning" className="edit-btn">
-                <Link to={"/backoffice/products/" + thisProduct.sodasID}>
-                  Hantera produkt
-                </Link>
-              </Button>
 
-              <Button variant="outline-danger" className="close-handler">
-                Stäng info
-              </Button>
+        {thisProduct ? (
+          <div className="BO-one-product">
+            <h2>Info om vald produkt</h2>
+            <div className="img-grid">
+              <img
+                variant="top"
+                style={{
+                  width: "75px",
+                  height: "225px",
+                  objectFit: "scale-down",
+                  margin: "auto",
+                }}
+                onError={(event) => missingImage(event, thisProduct.name)}
+                src={`/images/products/${thisProduct.sodasID}.png`}
+                alt="soda"
+              />
             </div>
-          ) : (
-            <div>Välj en produkt ur listan att se info om</div>
-          )}
-        </div>
+            <div>
+              <label>Namn: </label>
+            </div>
+            <h5>{thisProduct.name}</h5>
+            <div>
+              <label>Märke:</label>{" "}
+            </div>
+            <h5>{thisProduct.brand}</h5>
+            <div>
+              <label>Beskrivning: </label>
+            </div>
+            <h5> {thisProduct.description}</h5>
+            <div>
+              <label>Konsumentpris: </label>{" "}
+            </div>
+            <h5>{sweFormat(thisProduct.price)}</h5>
+            <div>
+              <label>Kategori: </label>
+            </div>
+            <h5>{thisProduct.categoriesID}</h5>
+            <Button variant="warning" className="edit-btn">
+              <Link to={"/backoffice/products/" + thisProduct.sodasID}>
+                Hantera produkt
+              </Link>
+            </Button>
+          </div>
+        ) : (
+          <div className="all-products">
+            <h3>Välj en produkt ur listan att se info om</h3>
+          </div>
+        )}
       </div>
     </Container>
   );

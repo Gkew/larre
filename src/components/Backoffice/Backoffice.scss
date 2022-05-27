@@ -117,6 +117,7 @@
 
   @media screen and(min-width: 768px) {
     display:flex;
+    justify-content: center;
   }
 
   .all-products{
@@ -146,14 +147,11 @@
     padding: 2%;
     border: 1px solid black;
     box-shadow: 2px 8px 15px 8px rgba(0, 0, 0, 0.61);
-    background-color: #f9ceee;
-    label{
-      text-decoration:underline;
-    }
-     @media screen and(min-width: 768px) {
+    background-color: #f9ceeec8;
+    @media screen and(min-width: 768px) {
       height:fit-content;
-      max-width: 70ch;
-      }
+      width:40%;
+    }
     Button{
     margin-top:1em;
     }
