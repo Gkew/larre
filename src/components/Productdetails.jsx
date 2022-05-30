@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
-import { Col, Card, Button } from "react-bootstrap";
-import { CardContent } from "@mui/material";
+import { Col, Card } from "react-bootstrap";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 
 
 export default function Productdetails() {
-
-  // let s = useStates('main');
 
   const [details, setDetails] = useState([]);
   const [sodasList, setSodasList] = useState([]);
@@ -18,18 +14,9 @@ export default function Productdetails() {
   const [quantity, setQuantity] = useState(1);
 
 
-  let navigate = useNavigate();
-  const [category, setCategory] = useState("all")
-  const [filter, setFilter] = useState(-1);
-
-  useEffect(() => {
-    console.log(sodasID)
-  }, [sodasID])
-
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
     Axios.get(`/sodas/${sodasID}`).then((response) => {
-      console.log(response.data)
       setDetails(response.data);
     })
       .catch((err) => {
@@ -43,7 +30,7 @@ export default function Productdetails() {
   }, [buy]);
 
 
-  // console.log("!!!" + details)
+  console.log("!!!" + details)
 
   const handleStore = () => {
     sodasList.push((details))
