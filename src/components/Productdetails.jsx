@@ -6,13 +6,14 @@ import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 
 
 export default function Productdetails() {
-
+  const cartFromLS = JSON.parse(localStorage.getItem('cart') || "[]");
   const [details, setDetails] = useState([]);
-  const [sodasList, setSodasList] = useState([]);
+  const [sodasList, setSodasList] = useState(cartFromLS);
   const { sodasID } = useParams();
   const [buy, setBuy] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
+  const [cart, setCart] = ([]);
 
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
@@ -24,15 +25,28 @@ export default function Productdetails() {
       })
   }, []);
 
-
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(sodasList));
   }, [buy]);
 
+  // const addToCart = (product) => {
+  //   let newCart = [...cart];
+  //   let itemInCart = newCart.find(
+  //     (item) => sodasID === details.sodasID
+  //   );
+  //   if (itemInCart) {
+  //     itemInCart.quantity++;
+  //   } else {
+  //     itemInCart = {
+  //       ...product,
+  //       quantity: 1,
+  //     };
+  //     newCart.push(itemInCart);
+  //   }
+  //   setCart(newCart);
+  // };
 
-  console.log("!!!" + details)
-
-  const handleStore = () => {
+  const addToCart = () => {
     sodasList.push((details))
     setBuy(!buy)
   }
@@ -71,7 +85,7 @@ export default function Productdetails() {
                 color: "black",
               }}
               type="button"
-              onClick={handleStore}
+              onClick={() => addToCart(details)}
               className="mt-2 btn btn-primary float-end ms-3"
             >
               Köp
