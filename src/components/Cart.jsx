@@ -3,7 +3,9 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from "react-router-dom";
 import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
+
 export default function Cart() {
+  const cartFromLS = JSON.parse(localStorage.getItem('cart'));
   const [items, setItems] = useState([]);
   let navigate = useNavigate();
 
@@ -15,17 +17,16 @@ export default function Cart() {
   }, []);
 
   const remove = () => {
-    window.localStorage.removeItem("cart");
+    localStorage.removeItem("cart");
   };
-
-  useEffect(() => console.log(items), [items]);
-
 
   const totalPrice = items.reduce((total, item) => total + item.price, 0)
 
   const navigateToCheckout = () => {
     navigate(`/checkout`)
   }
+
+  console.log("!!!" + items.sodasID)
 
   return (
     <Container className='checkout' style={{ minHeight: "50vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
@@ -62,7 +63,7 @@ export default function Cart() {
                           color: "black",
                         }}
                         type="button"
-                        onClick={remove()}
+                        onClick={() => remove()}
                         className="mt-2 btn btn-primary float-end ms-3"
                       >
                         Ta bort
