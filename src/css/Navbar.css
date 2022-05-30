@@ -1,4 +1,4 @@
-.link1:hover,
+/* .link1:hover,
 .link2:hover,
 .link3:hover,
 .link4:hover {
@@ -6,13 +6,16 @@
 }
 .link0:hover {
   font-size: 50px;
-}
+} */
 [class*=link] {
   font-family: 'Raleway';
+  font-size: 20px;
+  font-weight: 1000;
 }
-.Nav {
+/* .Nav {
+
   position: fixed;
   width: 100%;
   z-index: 1;
   top: 0;
-}
+} */

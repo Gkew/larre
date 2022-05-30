@@ -1,5 +1,6 @@
 body{
-    margin-top: 200px;
+    margin-top: 6%;
+    background-color: #F9F3EE;
 }
 .ProductList {
     width: 100%;
@@ -13,10 +14,12 @@ body{
 }
 
 .PCard {
+    border-radius: 15px;
     min-height: 800px;
     background-color: #F9CEEE;
     border: none;
     /* min-width: 380px; */
+
     
 }
 .ProdImg {
@@ -28,14 +31,15 @@ body{
 .CText {
         height: fit-content;
        max-height: 40px;
+
 } 
 .CFooter {
-   background-color: #CCF3EE;
+    background-color: #97C4B8;
    display: flex;
    justify-content: space-between;
 }
 .CBody {
-background-color: #F9F3EE;
+    background-color: #CCF3EE;
 max-height: 200px;
 /* min-height: fit-content; */
 }
