@@ -66,7 +66,7 @@ export default function Productdetails() {
             </Card.Text>
 
 
-            <img variant="top" style={{ width: '200px', height: '500px', objectFit: 'scale-down', margin: 'auto' }} src={`/images/products/${sodasID}.png`} />
+            <img variant="top" style={{ width: '200px', height: '500px', objectFit: 'scale-down', margin: 'auto' }} alt="image" src={`/images/products/${sodasID}.png`} />
             <Card.Text style={{ padding: "5%" }}>
               {details.description}
 
