@@ -14,6 +14,10 @@ export default function Cart() {
     }
   }, []);
 
+  const remove = () => {
+    window.localStorage.removeItem("cart");
+  };
+
   useEffect(() => console.log(items), [items]);
 
 
@@ -51,12 +55,23 @@ export default function Cart() {
                     <Col style={{ backgroundColor: "#CCF3EE" }}>
                       <div style={{ textAlign: "center", marginTop: "55px" }} key={x.sodasID}>{sweFormat(x.price)}
                       </div>
+                      <button
+                        style={{
+                          backgroundColor: "#FEC98F",
+                          border: "none",
+                          color: "black",
+                        }}
+                        type="button"
+                        onClick={remove()}
+                        className="mt-2 btn btn-primary float-end ms-3"
+                      >
+                        Ta bort
+                      </button>
                     </Col>
                   </Row>
                 </>
               )
             })}
-
           </Card>
         </Col>
         <Col xs={4}>
