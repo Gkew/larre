@@ -18,7 +18,7 @@ export default function Checkout() {
     city: "",
     orderTime: "",
     orderTotal: 0,
-    orderDetails: ""
+    orderDetails: []
   });
 
   useEffect(() => {
