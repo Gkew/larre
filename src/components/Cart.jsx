@@ -37,7 +37,7 @@ export default function Cart() {
                 <>
                   <Row className="border-bottom border-0">
                     <Col style={{ backgroundColor: "#F9CEEE" }}>
-                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }}>
+                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }} alt="image">
                       </Card.Img>
                     </Col>
                     <Col style={{ backgroundColor: "#97C4B8" }}>

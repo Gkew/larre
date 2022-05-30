@@ -26,62 +26,49 @@ const Dashboard = () => {
     navigate(`/productlist`);
   }
 
-  const navigateToAboutUs = () => {
-    navigate(`/about-us`)
-  }
-  const navigateToNews = () => {
-    navigate(`/news`)
-  }
   return (
-    <>
-      <Container fluid className='py-5 dashboard-container'>
-        {SodaCarousel}
-        <Row className='text-center mt-5' fluid="sm">
-          {/* <Image src='https://picsum.photos/id/288/1200/500' fluid rounded className='' /> */}
-          <Col xs={12} lg={4}>
-            <h1 className='mt-5'>LARRE</h1>
-            <p>Centrerad i Stockholm <br /> Bättre dricka hittar man inte!</p>
-            <Button variant='outline-primary' onClick={navigateToAboutUs}>Om Oss</Button>
-          </Col>
-          <Col xs={12} lg={4}>
-            <h1 className='mt-5'>PRODUKTER</h1>
-            <div>Hos oss hittar ni flera produkter som {soda.map(x => <div sm={1} key={x.id}>{x.name} - <span style={{ fontWeight: 'bolder' }}>{sweFormat(x.price)}</span></div >)}</div>
-            <Button className='mt-4' variant='outline-primary' onClick={navigateToProducts}>Våra Produkter</Button></Col>
-          <Col xs={12} lg={4}>
-            <h1 className='mt-5'>NYHETER</h1>
-            <p>Här ser ni de absolut senaste produkterna vi har <br /> samt bra deals vi har</p>
-            <Button variant='outline-primary' onClick={navigateToNews}>Läs de senaste Nyheterna</Button>
-          </Col>
-        </Row>
-        <h1 className="text-center mt-5">F.A.Q</h1>
-        <Row className='text-center'>
-          <Col xs={12} lg={4}>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
-          </Col>
-          <Col xs={12} lg={4}>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
-          </Col>
-          <Col xs={12} lg={4}>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
-          </Col>
-          <Col xs={12} lg={4}>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
-          </Col>
-          <Col xs={12} lg={4}>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
-          </Col>
-          <Col xs={12} lg={4}>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container fluid className='py-5 dashboard-container'>
+      {SodaCarousel}
+      <Row className='text-center mt-5' fluid="sm">
+        {/* <Image src='https://picsum.photos/id/288/1200/500' fluid rounded className='' /> */}
+        <Col xs={12} lg={6}>
+          <h1 className='mt-5'>LARRE</h1>
+          <p>Centrerad i Stockholm <br /> Bättre dricka hittar man inte!</p>
+          <Button className='mt-4' variant='outline-primary' onClick={navigateToProducts}>Våra Produkter</Button>
+        </Col>
+        <Col xs={12} lg={6}>
+          <h1 className='mt-5'>PRODUKTER</h1>
+          <div>Hos oss hittar ni flera produkter som {soda.map(x => <div sm={1} key={x.id}>{x.name} - <span style={{ fontWeight: 'bolder' }}>{sweFormat(x.price)}</span></div >)}</div>
+          <Button className='mt-4' variant='outline-primary' onClick={navigateToProducts}>Våra Produkter</Button></Col>
+      </Row>
+      <h1 className="text-center mt-5">F.A.Q</h1>
+      <Row className='text-center'>
+        <Col xs={12} lg={4}>
+          <h2>Lorem ipsum dolor sit.</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+        </Col>
+        <Col xs={12} lg={4}>
+          <h2>Lorem ipsum dolor sit.</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+        </Col>
+        <Col xs={12} lg={4}>
+          <h2>Lorem ipsum dolor sit.</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+        </Col>
+        <Col xs={12} lg={4}>
+          <h2>Lorem ipsum dolor sit.</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+        </Col>
+        <Col xs={12} lg={4}>
+          <h2>Lorem ipsum dolor sit.</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+        </Col>
+        <Col xs={12} lg={4}>
+          <h2>Lorem ipsum dolor sit.</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, porro.</p>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
