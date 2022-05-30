@@ -28,7 +28,7 @@ export default function Cart() {
   }
 
   return (
-    <Container className='checkout' style={{ height: "100vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
+    <Container className='checkout' style={{ minHeight: "50vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
       <Row>
         <h1>Varukorg</h1>
       </Row>
