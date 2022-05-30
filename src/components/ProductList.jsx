@@ -35,10 +35,10 @@ export default function ProductList() {
     }
   };
 
-  //LOCALSTORAGE
-  useEffect(() => {
-    localStorage.setItem("sodasList", JSON.stringify(sodasList));
-  }, [sodasList]);
+  // //LOCALSTORAGE
+  // useEffect(() => {
+  //   localStorage.setItem("sodasList", JSON.stringify(sodasList));
+  // }, [sodasList]);
 
   useEffect(() => {
     axios
@@ -79,16 +79,16 @@ export default function ProductList() {
             ))}
           </Form.Select>
 
-            <FormControl
-              className="ProductSearch"
-              type="search"
-              value={input}
-              placeholder="Sök"
-              onChange={(e) => setInput(e.target.value)}
-            />
+          <FormControl
+            className="ProductSearch"
+            type="search"
+            value={input}
+            placeholder="Sök"
+            onChange={(e) => setInput(e.target.value)}
+          />
 
           <Form.Select
-          className="ProductSort"
+            className="ProductSort"
             onChange={(e) => setFilter(e.target.value)}
           >
             {/* <option value={-1}>Standard</option> */}
@@ -116,7 +116,7 @@ export default function ProductList() {
                   className="PCard"
                 >
                   <Card.Img
-                  className="ProdImg"
+                    className="ProdImg"
                     variant="top"
                     src={`/images/products/${val.sodasID}.png`}
                     alt="soda"
@@ -135,13 +135,7 @@ export default function ProductList() {
                     <h4 className="text-muted">
                       <b>{sweFormat(val.price)} </b>
                     </h4>
-                    <button 
-                      type="button"
-                      onClick={buy}
-                      className="buyBtn"
-                    >
-                      Köp
-                    </button>
+
                   </Card.Footer>
                 </Card>
               </Col>
