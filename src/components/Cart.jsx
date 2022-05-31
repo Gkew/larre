@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, ButtonGroup, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from "react-router-dom";
 import { sweFormat } from './ProductlistUtilities/sekFormatting';
-
 
 export default function Cart() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart'));
   const [items, setItems] = useState([]);
   let navigate = useNavigate();
+  const [quant, setQuant] = useState(items.quantity);
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart'));
@@ -22,18 +22,26 @@ export default function Cart() {
     setItems(newItems)
   };
 
-  const totalPrice = items.reduce((total, item) => total + item.price, 0)
+  const totalPrice = items.reduce((total, item) =>
+    total + item.quantity * item.price, 0);
 
   const navigateToCheckout = () => {
     navigate(`/checkout`)
-  }
+  };
 
-  // console.log("!!!" + items.sodasID)
+  console.log(totalPrice)
 
   return (
-    <Container className='checkout' style={{ minHeight: "50vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
-      <Row>
+    <Container className='checkout' style={{ minHeight: "50vh" }}>
+      <Row style={{ marginTop: "8vh" }}>
         <h1>Varukorg</h1>
+      </Row>
+      <Row>
+        <Col>
+          <Link to='/productlist'>
+            <button type='button'>Tillbaka till produkter</button>
+          </Link>
+        </Col>
       </Row>
       <Row>
         <Col xs={7}>
@@ -44,11 +52,11 @@ export default function Cart() {
                 <>
                   <Row className="border-bottom border-0">
                     <Col style={{ backgroundColor: "#F9CEEE" }}>
-                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }} alt="image">
+                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ width: 49, height: 140, objectFit: 'scale-down' }} alt="image">
                       </Card.Img>
                     </Col>
                     <Col style={{ backgroundColor: "#97C4B8" }}>
-                      <Card.Text style={{ textAlign: "center", marginTop: "40px" }}>
+                      <Card.Text style={{ textAlign: "center", marginTop: "30px" }}>
                         <span key={x.sodasID}>{x.brand}
                         </span>
                         <div key={x.sodasID}>{x.name}
@@ -56,11 +64,12 @@ export default function Cart() {
                       </Card.Text>
                     </Col>
                     <Col style={{ backgroundColor: "#CCF3EE" }}>
-                      <div style={{ textAlign: "center", marginTop: "55px" }} key={x.sodasID}>{sweFormat(x.price)}
+                      <div style={{ textAlign: "center", marginTop: "20px" }} key={x.quantity}>Antal: {x.quantity}</div>
+                      <div style={{ textAlign: "center", marginTop: "10px" }} key={x.sodasID}>{sweFormat(x.price * x.quantity)}
                       </div>
                       <button
                         style={{
-                          backgroundColor: "#FEC98F",
+                          backgroundColor: "#F47C7C",
                           border: "none",
                           color: "black",
                         }}
@@ -77,17 +86,14 @@ export default function Cart() {
             })}
           </Card>
         </Col>
-        <Col xs={4}>
+        <Col xs={5}>
           <Card>
             <Row>
               <h3 style={{ marginLeft: "5px" }}>Totalsumma</h3>
             </Row>
             <Row>
               <Col>
-                <span style={{ marginLeft: "5px" }}>Summa:</span>
-              </Col>
-              <Col>
-                <div>{sweFormat(totalPrice)}</div>
+                <span style={{ marginLeft: "5px" }}>Summa: {sweFormat(totalPrice)}</span>
               </Col>
             </Row>
             <button
