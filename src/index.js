@@ -20,7 +20,6 @@ import Login from "./components/Backoffice/Admin/BOLogIn";
 import AboutUs from "./AboutUs";
 import Nyheter from "./Nyheter";
 import Camera from "./components/Camera/Camera";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

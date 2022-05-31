@@ -1,4 +1,5 @@
 import http from "../../http-common";
+import Gps from "../Camera/Gps";
 
 const getAll = () => {
   return http.get("/sodas");
@@ -25,6 +26,12 @@ const createCategory = (data) => {
   return http.post("/categories", data);
 };
 
+const createPicture = (data, sodasID) => {
+  return http.post("/pictures");
+};
+const getOnePicture = (id) => {
+  return http.get(`/pictures/${id}`);
+};
 const SodaService = {
   getAll,
   get,
@@ -33,5 +40,7 @@ const SodaService = {
   remove,
   gettAllCategories,
   createCategory,
+  createPicture,
+  getOnePicture,
 };
 export default SodaService;

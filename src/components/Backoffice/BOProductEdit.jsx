@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import SodaService from "../services/SodaService";
+import Camera from "../Camera/Camera";
 
 const BOProductEdit = (props) => {
   const { sodasID } = useParams();
@@ -24,7 +25,6 @@ const BOProductEdit = (props) => {
     SodaService.get(sodasID)
       .then((res) => {
         setSodas(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +76,6 @@ const BOProductEdit = (props) => {
     axios
       .get("/categories")
       .then((res) => {
-        console.log(res.data);
         setCategories(res.data);
       })
       .catch((err) => {
@@ -162,6 +161,7 @@ const BOProductEdit = (props) => {
               </Button>
             </div>
           </form>
+          <Camera />
         </>
       ) : (
         <div></div>

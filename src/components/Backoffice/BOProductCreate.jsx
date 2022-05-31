@@ -41,10 +41,9 @@ const BOProductCreate = () => {
           name: res.data.name,
           price: res.data.price,
           description: res.data.description,
-          categoriesID: res.data.categoriesID,
         });
         setCreated(true);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -57,7 +56,7 @@ const BOProductCreate = () => {
     axios
       .get("/categories")
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setCategories(res.data);
       })
       .catch((err) => {
@@ -154,8 +153,7 @@ const BOProductCreate = () => {
                 min="5"
               ></input>
 
-              <input id="img" name="img" type="file" accept="image/*" />
-
+              <input id="img" name="picture" type="file" accept="image/*" />
               <Button
                 className="addproduct-btn"
                 variant="warning"

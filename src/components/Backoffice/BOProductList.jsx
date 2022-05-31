@@ -36,7 +36,7 @@ const BOProductList = () => {
     SodaService.getAll()
       .then((res) => {
         setProducts(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
