@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SodaService from "../services/SodaService";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 const BOProductCreate = () => {
   //set to false to not show successmessage until product is successfully created.
@@ -43,7 +43,7 @@ const BOProductCreate = () => {
           description: res.data.description,
         });
         setCreated(true);
-        //console.log(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -71,36 +71,49 @@ const BOProductCreate = () => {
     navigate("/backoffice/addproduct", { replace: true });
   };
 
+  console.log("navigator.onLine", navigator.onLine);
+
   return (
-    <Container className="backoffice-container" fluid>
-      <>
-        {created ? (
-          <div className="bo-successheader">
-            <h2>Produkten har blivit tillagd.</h2>
-
-            <p className="btn-p">
-              <Button className="header-btn" onClick={addMoreProducts}>
-                Lägg till en till produkt
-              </Button>{" "}
-              <Button className="header-btn">
-                <Link to={`/backoffice/products`}>
-                  Tillbaka till alla produkter
-                </Link>
-              </Button>
-              <Button className="header-btn">
-                <Link to={`/backoffice`}>Tillbaka till BO</Link>
-              </Button>
-            </p>
+    <>
+      {!navigator.onLine ? (
+        <Container className="backoffice-container">
+          {/* Offline */}
+          <div className="testcontainer">
+            <Row>
+              <Col>
+                <h1>Du kan inte lägga till en produkt om du är offline!</h1>
+              </Col>
+            </Row>
           </div>
-        ) : (
-          <>
-            <div className="bo-header">
-              <button>
-                <Link to={`/backoffice`}>{`<< Tillbaka till BO`}</Link>
-              </button>
+        </Container>
+      ) : (
+        <Container className="backoffice-container" fluid>
+          <div className="bo-header">
+            <button>
+              <Link to={`/backoffice`}>{`<< Tillbaka till BO`}</Link>
+            </button>
 
-              <h2>Lägg till en ny produkt</h2>
+            <h2>Lägg till en ny produkt</h2>
+          </div>
+          {created ? (
+            <div className="bo-successheader">
+              <h2>Produkten har blivit tillagd.</h2>
+
+              <p className="btn-p">
+                <Button className="header-btn" onClick={addMoreProducts}>
+                  Lägg till en till produkt
+                </Button>{" "}
+                <Button className="header-btn">
+                  <Link to={`/backoffice/products`}>
+                    Tillbaka till alla produkter
+                  </Link>
+                </Button>
+                <Button className="header-btn">
+                  <Link to={`/backoffice`}>Tillbaka till BO</Link>
+                </Button>
+              </p>
             </div>
+          ) : (
             <form onSubmit={addProd} className="bo-add-product">
               <p>
                 Alla fält behöver fyllas i förutom bild - den kan du ladda upp
@@ -170,10 +183,11 @@ const BOProductCreate = () => {
                 Spara produkt
               </Button>
             </form>
-          </>
-        )}
-      </>
-    </Container>
+          )}
+          ;
+        </Container>
+      )}
+    </>
   );
 };
 

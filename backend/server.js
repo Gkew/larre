@@ -7,15 +7,13 @@ const path = require("path");
 
 const port = 4000;
 const dbPath = "../databas/database-14-maj.sqlite3";
-const fileUpload = require("express-fileupload");
-app.use(fileUpload());
 
 async function start() {
   const dataBase = await bestSqlite3.connect(dbPath);
 
   app.use(express.json());
   app.use(cors());
-  app.use(express.static("build"));
+  //app.use(express.static("build"));
 
   API(app, dataBase);
   app.listen(port, () =>

@@ -43,8 +43,8 @@ function Camera() {
 
     ctx.drawImage(video, 0, 0, width, height);
 
-    var canvas = document.getElementById("canvas");
-    var dataURL = canvas.toDataURL("image/png");
+    const canvas = document.getElementById("canvas");
+    const dataURL = canvas.toDataURL("image/png");
     try {
       localStorage.setItem("photo", dataURL);
       console.log(dataURL);
