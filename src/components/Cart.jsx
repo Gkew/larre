@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ButtonGroup, Card, Col, Container, Row } from 'react-bootstrap'
+import { Card, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from "react-router-dom";
 import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
 export default function Cart() {
-  const cartFromLS = JSON.parse(localStorage.getItem('cart'));
   const [items, setItems] = useState([]);
   let navigate = useNavigate();
-  const [quant, setQuant] = useState(items.quantity);
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart'));
@@ -42,7 +40,7 @@ export default function Cart() {
         </Col>
       </Row>
       <Row>
-        <Col xs={7}>
+        <Col>
           <Card className="text-center border-0">
 
             {items.map(x => {
@@ -84,7 +82,7 @@ export default function Cart() {
             })}
           </Card>
         </Col>
-        <Col xs={5}>
+        <Row >
           <Card>
             <Row>
               <h3 style={{ marginLeft: "5px" }}>Totalsumma</h3>
@@ -107,7 +105,7 @@ export default function Cart() {
               Checka ut!
             </button>
           </Card>
-        </Col>
+        </Row>
       </Row>
 
     </Container>
