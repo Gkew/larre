@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
 import CheckoutService from '../utils/CheckoutService';
+import axios from 'axios';
 
 export default function Checkout() {
+  const cartFromLS = JSON.parse(localStorage.getItem('cart'));
   const [created, setCreated] = useState(false);
   const [items, setItems] = useState([]);
   const totalPrice = items.reduce((total, item) => total + item.price, 0);
@@ -18,8 +20,8 @@ export default function Checkout() {
     city: "",
     orderTime: "",
     orderTotal: 0,
-    orderDetails: []
   });
+
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart'));
@@ -30,20 +32,12 @@ export default function Checkout() {
 
   useEffect(() => console.log(items), [items])
 
-
-  // const date = new Date();
-  // const CurrentTime = date.toISOString().slice(0, 10) + " " + date.getHours() + ':' + date.getMinutes();
-
-
-
-
-
   const handleInput = (e) => {
     const { name, value } = e.target;
     setOrders({ ...orders, [name]: value });
   }
 
-  const addOrder = (e) => {
+  const addOrder = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -55,11 +49,12 @@ export default function Checkout() {
       zipCode: orders.zipCode,
       city: orders.city,
       orderTotal: totalPrice,
-      orderDetails: orders.orderDetails.items
     };
 
+
+
     CheckoutService.create(data)
-      .then((res) => {
+      .then(async (res) => {
         setOrders({
           orderID: res.data.orderID,
           firstName: res.data.firstName,
@@ -70,19 +65,26 @@ export default function Checkout() {
           zipCode: res.data.zipCode,
           city: res.data.city,
           orderTotal: totalPrice,
-          orderDetails: res.data.items
         });
         setCreated(true);
-        console.log(res.data);
+        let orderid = res.data.lastInsertRowId;
+
+        for (let element of cartFromLS) {
+          let sodasID = element.sodasID;
+          let quantity = element.quantity;
+
+          await axios.post("http://localhost:4000/api/orderdetails", {
+            sodasIDKey: sodasID,
+            quantityID: quantity,
+            orderid,
+          })
+        };
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  // const addMoreOrders = () => {
-  //   setCreated(false);
-  //   navigate("/checkout", { replace: true });
-  // };
+
 
   return (
     <Container style={{ minHeight: "50vh", backgroundColor: "#F9CEEE" }}>
@@ -180,6 +182,7 @@ export default function Checkout() {
               border: "none",
               color: "black",
             }}
+            variant="primary"
             type="submit"
             className="mt-2 btn mx-auto ms-3"
           >
