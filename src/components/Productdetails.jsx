@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
-import { Col, Card, Button } from "react-bootstrap";
-import { CardContent } from "@mui/material";
+import { Col, Card } from "react-bootstrap";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
 
 
 export default function Productdetails() {
-
-  // let s = useStates('main');
-
+  const cartFromLS = JSON.parse(localStorage.getItem('cart') || "[]");
   const [details, setDetails] = useState([]);
-  const [sodasList, setSodasList] = useState([]);
+  const [sodasList, setSodasList] = useState(cartFromLS);
   const { sodasID } = useParams();
   const [buy, setBuy] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-
-  let navigate = useNavigate();
-  const [category, setCategory] = useState("all")
-  const [filter, setFilter] = useState(-1);
-
-  useEffect(() => {
-    console.log(sodasID)
-  }, [sodasID])
+  const [cart, setCart] = ([]);
 
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
     Axios.get(`/sodas/${sodasID}`).then((response) => {
-      console.log(response.data)
       setDetails(response.data);
     })
       .catch((err) => {
@@ -37,15 +25,28 @@ export default function Productdetails() {
       })
   }, []);
 
-
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(sodasList));
   }, [buy]);
 
+  // const addToCart = (product) => {
+  //   let newCart = [...cart];
+  //   let itemInCart = newCart.find(
+  //     (item) => sodasID === details.sodasID
+  //   );
+  //   if (itemInCart) {
+  //     itemInCart.quantity++;
+  //   } else {
+  //     itemInCart = {
+  //       ...product,
+  //       quantity: 1,
+  //     };
+  //     newCart.push(itemInCart);
+  //   }
+  //   setCart(newCart);
+  // };
 
-  // console.log("!!!" + details)
-
-  const handleStore = () => {
+  const addToCart = () => {
     sodasList.push((details))
     setBuy(!buy)
   }
@@ -66,7 +67,7 @@ export default function Productdetails() {
             </Card.Text>
 
 
-            <img variant="top" style={{ width: '200px', height: '500px', objectFit: 'scale-down', margin: 'auto' }} src={`/images/products/${sodasID}.png`} />
+            <img variant="top" style={{ width: '200px', height: '500px', objectFit: 'scale-down', margin: 'auto' }} alt="image" src={`/images/products/${sodasID}.png`} />
             <Card.Text style={{ padding: "5%" }}>
               {details.description}
 
@@ -84,7 +85,7 @@ export default function Productdetails() {
                 color: "black",
               }}
               type="button"
-              onClick={handleStore}
+              onClick={() => addToCart(details)}
               className="mt-2 btn btn-primary float-end ms-3"
             >
               Köp

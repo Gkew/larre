@@ -3,9 +3,10 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from "react-router-dom";
 import { sweFormat } from './ProductlistUtilities/sekFormatting';
 
+
 export default function Cart() {
+  const cartFromLS = JSON.parse(localStorage.getItem('cart'));
   const [items, setItems] = useState([]);
-  const [totalSum, setTotalSum] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -15,8 +16,9 @@ export default function Cart() {
     }
   }, []);
 
-  useEffect(() => console.log(items), [items]);
-
+  const remove = () => {
+    localStorage.removeItem("cart");
+  };
 
   const totalPrice = items.reduce((total, item) => total + item.price, 0)
 
@@ -24,8 +26,10 @@ export default function Cart() {
     navigate(`/checkout`)
   }
 
+  console.log("!!!" + items.sodasID)
+
   return (
-    <Container className='checkout' style={{ height: "100vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
+    <Container className='checkout' style={{ minHeight: "50vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
       <Row>
         <h1>Varukorg</h1>
       </Row>
@@ -38,7 +42,7 @@ export default function Cart() {
                 <>
                   <Row className="border-bottom border-0">
                     <Col style={{ backgroundColor: "#F9CEEE" }}>
-                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }}>
+                      <Card.Img src={`/images/products/${x.sodasID}.png`} style={{ height: 140, objectFit: 'scale-down' }} alt="image">
                       </Card.Img>
                     </Col>
                     <Col style={{ backgroundColor: "#97C4B8" }}>
@@ -52,12 +56,23 @@ export default function Cart() {
                     <Col style={{ backgroundColor: "#CCF3EE" }}>
                       <div style={{ textAlign: "center", marginTop: "55px" }} key={x.sodasID}>{sweFormat(x.price)}
                       </div>
+                      <button
+                        style={{
+                          backgroundColor: "#FEC98F",
+                          border: "none",
+                          color: "black",
+                        }}
+                        type="button"
+                        onClick={() => remove()}
+                        className="mt-2 btn btn-primary float-end ms-3"
+                      >
+                        Ta bort
+                      </button>
                     </Col>
                   </Row>
                 </>
               )
             })}
-
           </Card>
         </Col>
         <Col xs={4}>

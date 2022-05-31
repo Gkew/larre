@@ -149,7 +149,7 @@ const BOProductEdit = (props) => {
               })}
             </select>
 
-            <input id="img" name="img" type="file" accept="image/*" />
+            <input id="img" name="img" type="file" accept="image/*" alt="image" />
             <div className="btn-div">
               <Button variant="success" type="submit" onClick={updateSoda}>
                 Uppdatera

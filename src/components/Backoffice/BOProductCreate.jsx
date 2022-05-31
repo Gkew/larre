@@ -153,7 +153,14 @@ const BOProductCreate = () => {
                 min="5"
               ></input>
 
-              <input id="img" name="picture" type="file" accept="image/*" />
+              <input
+                id="img"
+                name="img"
+                type="file"
+                accept="image/*"
+                alt="img"
+              />
+
               <Button
                 className="addproduct-btn"
                 variant="warning"
