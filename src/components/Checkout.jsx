@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
 import CheckoutService from '../utils/CheckoutService';
 import axios from 'axios';
@@ -9,6 +9,7 @@ export default function Checkout() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart'));
   const [created, setCreated] = useState(false);
   const [items, setItems] = useState([]);
+  let navigate = useNavigate();
   const totalPrice = items.reduce((total, item) => total + item.price, 0);
   const [orders, setOrders] = useState({
     orderID: null,
@@ -23,6 +24,9 @@ export default function Checkout() {
     orderTotal: 0,
   });
 
+  const navToThankYouPage = () => {
+    navigate(`/thankyou`)
+  };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart'));
@@ -79,13 +83,16 @@ export default function Checkout() {
             quantityID: quantity,
             orderid,
           })
+          localStorage.removeItem('cart');
+          navigate(`/thankyou`)
         };
+
       })
       .catch((err) => {
         console.log(err);
       });
-  };
 
+  };
 
   return (
     <Container style={{ minHeight: "50vh", backgroundColor: "#F9CEEE" }}>
