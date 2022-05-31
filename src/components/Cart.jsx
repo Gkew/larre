@@ -30,8 +30,6 @@ export default function Cart() {
     navigate(`/checkout`)
   };
 
-  console.log(totalPrice)
-
   return (
     <Container className='checkout' style={{ minHeight: "50vh" }}>
       <Row style={{ marginTop: "8vh" }}>
