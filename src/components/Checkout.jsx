@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
 import CheckoutService from '../utils/CheckoutService';
 import axios from 'axios';
+import "../css/remove.scss"
 
 export default function Checkout() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart'));
@@ -88,8 +89,8 @@ export default function Checkout() {
 
   return (
     <Container style={{ minHeight: "50vh", backgroundColor: "#F9CEEE" }}>
-      <Card>
-        <Form onSubmit={addOrder} style={{ marginTop: "10vh", backgroundColor: "#F9CEEE" }}>
+      <Card className='border border-0'>
+        <Form onSubmit={addOrder} style={{ marginTop: '8px', backgroundColor: "#F9CEEE" }}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Förnamn</Form.Label>
