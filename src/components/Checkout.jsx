@@ -55,7 +55,7 @@ export default function Checkout() {
       zipCode: orders.zipCode,
       city: orders.city,
       orderTotal: totalPrice,
-      orderDetails: items
+      orderDetails: orders.orderDetails.items
     };
 
     CheckoutService.create(data)
@@ -70,7 +70,7 @@ export default function Checkout() {
           zipCode: res.data.zipCode,
           city: res.data.city,
           orderTotal: totalPrice,
-          orderDetails: items
+          orderDetails: res.data.items
         });
         setCreated(true);
         console.log(res.data);
