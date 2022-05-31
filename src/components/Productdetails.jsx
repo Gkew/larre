@@ -54,61 +54,61 @@ export default function Productdetails() {
   // }
 
   return (
-    <div className="productsdetails" style={{ height: "90vh",  textAlign: "center", paddingTop: "3%", margin: "0 auto" }}  >
-    
-      
+    <div className="productsdetails" style={{ height: "90vh", textAlign: "center", paddingTop: "1%", margin: "0 auto" }}  >
 
 
-   
 
-      
-      
+
+
+
+
+
       <Card >
 
 
 
-   
 
-          <Card.Body style={{backgroundColor: "white", padding: "0px", marginBottom: "0%"}} >
-            <Card.Title style={{backgroundColor: "#F9CEEE"}}>
-           <h1> {details.name} </h1>
-            
-             <h3> {details.brand}</h3>
 
-            </Card.Title>
-           
-     <Card.Img src={`/images/products/${sodasID}.png`} style={{objectFit: "scale-down",  maxWidth: "150px", maxHeight: "450px", margin: "auto"}} />
-            
+        <Card.Body style={{ backgroundColor: "white", padding: "0px", marginBottom: "0%" }} >
+          <Card.Title style={{ backgroundColor: "#F9CEEE" }}>
+            <h1> {details.name} </h1>
 
-            
-            <Card.Text style={{ backgroundColor: "white",  marginTop: "2%", marginBottom: "0%", minHeight: "40%" }}>
-            <h5>{details.description}</h5> 
+            <h3> {details.brand}</h3>
 
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer style={{backgroundColor: "#97C4B8", margin: "0"}}>
-           <h2> {sweFormat(details.price)}</h2>
+          </Card.Title>
+
+          <Card.Img src={`/images/products/${sodasID}.png`} style={{ objectFit: "scale-down", maxWidth: "150px", maxHeight: "450px", margin: "auto" }} />
+
+
+
+          <Card.Text style={{ backgroundColor: "white", marginTop: "2%", marginBottom: "0%", minHeight: "40%" }}>
+            <h5>{details.description}</h5>
+
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer style={{ backgroundColor: "#97C4B8", margin: "0" }}>
+          <h2> {sweFormat(details.price)}</h2>
           <br></br>
-          <p style={{fontWeight: "bold"}}>Antal:</p>
-          
-              <input value={quantity} onChange={e => setQuantity(e.target.value)}></input>
-            
-            <button
-              style={{
-                backgroundColor: "#FEC98F",
-                border: "none",
-                color: "black",
-              }}
-              type="button"
-              onClick={() => addToCart(details)}
-              className="mt-2 btn btn-primary float-end ms-3"
-            >
-              Köp
-            </button>
-          </Card.Footer>
+          <p style={{ fontWeight: "bold" }}>Antal:</p>
 
-        </Card>
-      
+          <input value={quantity} onChange={e => setQuantity(e.target.value)}></input>
+
+          <button
+            style={{
+              backgroundColor: "#FEC98F",
+              border: "none",
+              color: "black",
+            }}
+            type="button"
+            onClick={() => addToCart(details)}
+            className="mt-2 btn btn-primary float-end ms-3"
+          >
+            Köp
+          </button>
+        </Card.Footer>
+
+      </Card>
+
     </div>
   );
 }

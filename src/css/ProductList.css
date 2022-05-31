@@ -1,8 +1,10 @@
-body{
-    margin-top: 6%;
+@import url(./remove.scss);
+
+body {
     background-color: #F9F3EE;
     font-family: 'Raleway';
 }
+
 .ProductList {
     width: 100%;
     margin: 0 auto;
@@ -11,7 +13,7 @@ body{
     flex-flow: row wrap;
     justify-content: center;
     font-family: 'Raleway';
-    color: black ;
+    color: black;
 }
 
 .PCard {
@@ -21,28 +23,32 @@ body{
     border: none;
     /* min-width: 380px; */
 
-    
-}
-.ProdImg {
-        width: 150px;
-        height: 450px;
-        object-fit: scale-down;
-        margin: auto;
-}
-.CText {
-        height: fit-content;
-       max-height: 40px;
 
-} 
+}
+
+.ProdImg {
+    width: 150px;
+    height: 450px;
+    object-fit: scale-down;
+    margin: auto;
+}
+
+.CText {
+    height: fit-content;
+    max-height: 40px;
+
+}
+
 .CFooter {
     background-color: #97C4B8;
-   display: flex;
-   justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
+
 .CBody {
     background-color: #CCF3EE;
-max-height: 200px;
-/* min-height: fit-content; */
+    max-height: 200px;
+    /* min-height: fit-content; */
 }
 
 /* .CTitle {
@@ -50,43 +56,48 @@ max-height: 200px;
 } */
 
 .buyBtn {
-        background-color: #FEC98F;
-        border: none;
-        color: black;
-        width: 70px;
-        border-radius: 10px;
-        font-size: 22px;
+    background-color: #FEC98F;
+    border: none;
+    color: black;
+    width: 70px;
+    border-radius: 10px;
+    font-size: 22px;
 }
 
 .FilterCol {
-margin: 3% auto;
-display: flex;
-flex-direction: column;
-align-items: center;
+    margin: 3% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.ProductFilter, .ProductSort, .ProductSearch {
+.ProductFilter,
+.ProductSort,
+.ProductSearch {
     width: fit-content;
     min-width: 380px;
     height: 50px;
     margin-bottom: 1%;
-    text-align:center;
+    text-align: center;
 }
 
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1200px) {
     .PCard {
         min-width: 200px;
     }
+
     .ProductList {
         gap: 2%;
     }
 }
-@media only screen and (max-width: 600px){
+
+@media only screen and (max-width: 600px) {
     .PCard {
         min-width: 380px;
     }
 }
-@media only screen and (max-width: 425px){
+
+@media only screen and (max-width: 425px) {
     .PCard {
         min-width: 380px;
     }
