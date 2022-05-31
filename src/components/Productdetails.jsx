@@ -3,17 +3,18 @@ import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { Col, Card } from "react-bootstrap";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
+import { add } from "../"
 
 
 export default function Productdetails() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart') || "[]");
   const [details, setDetails] = useState([]);
-  const [sodasList, setSodasList] = useState(cartFromLS);
+  const [sodasList, setSodasList] = useState();
   const { sodasID } = useParams();
   const [buy, setBuy] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  const [cart, setCart] = ([]);
+  const [cart, setCart] = useState(cartFromLS);
 
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
@@ -26,30 +27,30 @@ export default function Productdetails() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(sodasList));
-  }, [buy]);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
-  // const addToCart = (product) => {
-  //   let newCart = [...cart];
-  //   let itemInCart = newCart.find(
-  //     (item) => sodasID === details.sodasID
-  //   );
-  //   if (itemInCart) {
-  //     itemInCart.quantity++;
-  //   } else {
-  //     itemInCart = {
-  //       ...product,
-  //       quantity: 1,
-  //     };
-  //     newCart.push(itemInCart);
-  //   }
-  //   setCart(newCart);
-  // };
+  const addToCart = (product) => {
+    let newCart = [...cart];
+    let itemInCart = newCart.find(
+      (item) => item.sodasID === details.sodasID
+    );
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = {
+        ...product,
+        quantity: 1,
+      };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
+  };
 
-  const addToCart = () => {
-    sodasList.push((details))
-    setBuy(!buy)
-  }
+  // const addToCart = () => {
+  //   sodasList.push((details))
+  //   setBuy(!buy)
+  // }
 
   return (
     <div className="productsdetails" style={{ textAlign: "center", padding: "3%" }}  >

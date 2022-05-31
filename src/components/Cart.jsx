@@ -16,8 +16,10 @@ export default function Cart() {
     }
   }, []);
 
-  const remove = () => {
-    localStorage.removeItem("cart");
+  const remove = (id) => {
+    let newItems = items.filter(item => item.sodasID !== id);
+    localStorage.cart = JSON.stringify(newItems)
+    setItems(newItems)
   };
 
   const totalPrice = items.reduce((total, item) => total + item.price, 0)
@@ -26,7 +28,7 @@ export default function Cart() {
     navigate(`/checkout`)
   }
 
-  console.log("!!!" + items.sodasID)
+  // console.log("!!!" + items.sodasID)
 
   return (
     <Container className='checkout' style={{ minHeight: "50vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
@@ -63,7 +65,7 @@ export default function Cart() {
                           color: "black",
                         }}
                         type="button"
-                        onClick={() => remove()}
+                        onClick={() => remove(x.sodasID)}
                         className="mt-2 btn btn-primary float-end ms-3"
                       >
                         Ta bort
