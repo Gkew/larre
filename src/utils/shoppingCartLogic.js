@@ -23,6 +23,8 @@ export function add(productToAdd, quantityToAdd = 1) {
 
   let row = stateObject[stateProperty]
     .find(row => row.product.id === productToAdd.id);
+  console.log("row", row);
+  console.log("whole cart?", stateObject[stateProperty]);
   if (row) {
     row.quantity += quantityToAdd
   }
