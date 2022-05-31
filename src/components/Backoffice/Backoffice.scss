@@ -3,7 +3,7 @@
   font-family: 'Raleway';
   background-color: #97c4b89f;
   padding: 2%;
-  margin: 1em;
+  margin: 0 auto;
   min-height: 100vh;
   
   h2,h3,h4{
@@ -88,6 +88,9 @@
 
     input{
       width: 80%;
+      @media screen and(min-width: 768px) {
+        width:50%;
+      }
     }
     Button{
       margin-top: 2em;
@@ -159,11 +162,10 @@
 
 /*Create- and edit-product-page*/
   .bo-add-product {
-  display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-      background-color: #ccf3eead;
-    
+ 
       .addproduct-btn,
       .addcategory-btn {
         width: fit-content;
@@ -183,13 +185,16 @@
       Button {
         margin: 2em 0;
       }
+      p{
+        margin-top: 1em;
+        font-weight: bold;
+      }
   }
      .btn-div {
        width: 50%;
        display: flex;
        justify-content: flex-start;
        
-  
        .btn-danger {
          margin-left: 5em;
        }
@@ -197,8 +202,10 @@
 
 }
 
-.testcontainer {
-  background-color: rgb(242, 245, 242);
-  margin-top: 20%;
-  height: 200px;
+.offline-container {
+  padding: 5%;
+  background-color: #F9CEEE;  
+  font-weight: bold;
+  margin: 20% auto;
+  
 }
