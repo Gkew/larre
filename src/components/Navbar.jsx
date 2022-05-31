@@ -6,13 +6,13 @@ import { HiEye } from "react-icons/hi";
 import logo from "../logo/SODA_POP.png";
 const NavbarComponent = () => {
   return (
-    <div className="Nav">
+    <div className="Nav" style={{ position: "relative" }}>
       <Navbar
         collapseOnSelect
         expand="md"
         fixed="top"
         variant="light"
-        style={{ backgroundColor: "#CCF3EE"}}
+        style={{ backgroundColor: "#CCF3EE" }}
 
       >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -25,21 +25,21 @@ const NavbarComponent = () => {
 
 
           <Nav.Link
-          className="link4"
-          href="/backoffice"
-          style={{ color: "#97C4B8" }}
-        >
-          <HiEye />
-        </Nav.Link>
+            className="link4"
+            href="/backoffice"
+            style={{ color: "#97C4B8" }}
+          >
+            <HiEye />
+          </Nav.Link>
 
-            <Nav.Link
-              className="link1"
-              href="/productlist"
-              style={{ color: "#F9CEEE" }}
-            >
-              PRODUKTER
-            </Nav.Link>
-            <Nav.Link
+          <Nav.Link
+            className="link1"
+            href="/productlist"
+            style={{ color: "#F9CEEE" }}
+          >
+            PRODUKTER
+          </Nav.Link>
+          <Nav.Link
             className="link4"
             href="/camera"
             style={{ color: "#97C4B8" }}
@@ -47,13 +47,13 @@ const NavbarComponent = () => {
             CAMERA
           </Nav.Link>
           <Nav.Link
-          className="link5"
-          href="/cart"
-          style={{ color: "#F9CEEE" }}
-        >
-          {" "}
-          <AiOutlineShoppingCart />{" "}
-        </Nav.Link>
+            className="link5"
+            href="/cart"
+            style={{ color: "#F9CEEE" }}
+          >
+            {" "}
+            <AiOutlineShoppingCart />{" "}
+          </Nav.Link>
 
         </Navbar.Collapse>
       </Navbar>

@@ -85,9 +85,9 @@ export default function Checkout() {
   // };
 
   return (
-    <Container>
+    <Container style={{ minHeight: "50vh", backgroundColor: "#F9CEEE" }}>
       <Card>
-        <Form onSubmit={addOrder}>
+        <Form onSubmit={addOrder} style={{ marginTop: "10vh", backgroundColor: "#F9CEEE" }}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Förnamn</Form.Label>
@@ -174,13 +174,17 @@ export default function Checkout() {
               required
             />
           </Form.Group>
-
-          <Button
-            variant="primary"
+          <button
+            style={{
+              backgroundColor: "#FEC98F",
+              border: "none",
+              color: "black",
+            }}
             type="submit"
+            className="mt-2 btn mx-auto ms-3"
           >
             Skicka min beställning!
-          </Button>
+          </button>
         </Form>
       </Card>
     </Container>
