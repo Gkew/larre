@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, ButtonGroup, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from "react-router-dom";
 import { sweFormat } from './ProductlistUtilities/sekFormatting';
-
 
 export default function Cart() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart'));
@@ -34,6 +33,13 @@ export default function Cart() {
     <Container className='checkout' style={{ minHeight: "50vh", width: "100vh", backgroundColor: "#F9CEEE" }}>
       <Row>
         <h1>Varukorg</h1>
+      </Row>
+      <Row>
+        <Col>
+          <Link to='/productlist'>
+            <button type='button'>Tillbaka till produkter</button>
+          </Link>
+        </Col>
       </Row>
       <Row>
         <Col xs={7}>
