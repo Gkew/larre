@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import SodaService from "../services/SodaService";
 import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
@@ -36,7 +36,7 @@ const BOProductList = () => {
     SodaService.getAll()
       .then((res) => {
         setProducts(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
