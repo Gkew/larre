@@ -3,17 +3,19 @@ import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { Col, Card } from "react-bootstrap";
 import { sweFormat } from "./ProductlistUtilities/sekFormatting";
+import { add } from "../"
+import { height } from "@mui/system";
 
 
 export default function Productdetails() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart') || "[]");
   const [details, setDetails] = useState([]);
-  const [sodasList, setSodasList] = useState(cartFromLS);
+  const [sodasList, setSodasList] = useState();
   const { sodasID } = useParams();
   const [buy, setBuy] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  const [cart, setCart] = ([]);
+  const [cart, setCart] = useState(cartFromLS);
 
   Axios.defaults.baseURL = "http://localhost:4000/api";
   useEffect(() => {
@@ -26,58 +28,71 @@ export default function Productdetails() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(sodasList));
-  }, [buy]);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
-  // const addToCart = (product) => {
-  //   let newCart = [...cart];
-  //   let itemInCart = newCart.find(
-  //     (item) => sodasID === details.sodasID
-  //   );
-  //   if (itemInCart) {
-  //     itemInCart.quantity++;
-  //   } else {
-  //     itemInCart = {
-  //       ...product,
-  //       quantity: 1,
-  //     };
-  //     newCart.push(itemInCart);
-  //   }
-  //   setCart(newCart);
-  // };
+  const addToCart = (product) => {
+    let newCart = [...cart];
+    let itemInCart = newCart.find(
+      (item) => item.sodasID === details.sodasID
+    );
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = {
+        ...product,
+        quantity: 1,
+      };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
+  };
 
-  const addToCart = () => {
-    sodasList.push((details))
-    setBuy(!buy)
-  }
+  // const addToCart = () => {
+  //   sodasList.push((details))
+  //   setBuy(!buy)
+  // }
 
   return (
-    <div className="productsdetails" style={{ textAlign: "center", padding: "3%" }}  >
-      <Col sm={8} style={{ margin: "auto" }}    >
+    <div className="productsdetails" style={{ height: "90vh",  textAlign: "center", paddingTop: "3%", margin: "0 auto" }}  >
+    
+      
 
-        <Card style={{ border: "none", backgroundColor: "#F9F3EE" }}>
-          <Card.Body style={{ backgroundColor: "#F9F3EE" }}>
-            <Card.Title>
-              {details.name}
+
+   
+
+      
+      
+      <Card >
+
+
+
+   
+
+          <Card.Body style={{backgroundColor: "white", padding: "0px", marginBottom: "0%"}} >
+            <Card.Title style={{backgroundColor: "#F9CEEE"}}>
+           <h1> {details.name} </h1>
+            
+             <h3> {details.brand}</h3>
 
             </Card.Title>
-            <Card.Text>
-              {details.brand}
+           
+     <Card.Img src={`/images/products/${sodasID}.png`} style={{objectFit: "scale-down",  maxWidth: "150px", maxHeight: "450px", margin: "auto"}} />
+            
 
-            </Card.Text>
-
-
-            <img variant="top" style={{ width: '200px', height: '500px', objectFit: 'scale-down', margin: 'auto' }} alt="image" src={`/images/products/${sodasID}.png`} />
-            <Card.Text style={{ padding: "5%" }}>
-              {details.description}
+            
+            <Card.Text style={{ backgroundColor: "white",  marginTop: "2%", marginBottom: "0%", minHeight: "40%" }}>
+            <h5>{details.description}</h5> 
 
             </Card.Text>
           </Card.Body>
-          <Card.Footer>
-            {sweFormat(details.price)}
-            <div>Antal:
+          <Card.Footer style={{backgroundColor: "#97C4B8", margin: "0"}}>
+           <h2> {sweFormat(details.price)}</h2>
+          <br></br>
+          <p style={{fontWeight: "bold"}}>Antal:</p>
+          
               <input value={quantity} onChange={e => setQuantity(e.target.value)}></input>
-            </div>
+            
             <button
               style={{
                 backgroundColor: "#FEC98F",
@@ -93,7 +108,7 @@ export default function Productdetails() {
           </Card.Footer>
 
         </Card>
-      </Col>
+      
     </div>
   );
 }
