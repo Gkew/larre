@@ -82,91 +82,105 @@ const BOProductEdit = (props) => {
         console.log(err);
       });
   }, []);
+  console.log("navigator.onLine", navigator.onLine);
 
   return (
-    <Container className="backoffice-container" fluid>
-      {sodas ? (
-        <>
-          <div className="bo-header">
-            <Link to={`/backoffice/products`}>
-              <button>{`<< Tillbaka till BO`}</button>
-            </Link>
-
-            <h2>Uppdatera produkt</h2>
+    <>
+      {!navigator.onLine ? (
+        <Container className="backoffice-container">
+          {/* Offline */}
+          <div className="offline-container">
+            <h1>Du kan inte uppdatera en produkt om du är offline!</h1>
+            <p>Försök igen när du är online igen.</p>
           </div>
-          <form className="bo-add-product">
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={sodas.name}
-              onChange={onInputChange}
-              placeholder="produktnamn"
-            />
-
-            <input
-              type="text"
-              className="form-control"
-              id="brand"
-              name="brand"
-              value={sodas.brand}
-              onChange={onInputChange}
-              placeholder="märke"
-            />
-
-            <textarea
-              type="text"
-              className="form-control"
-              id="description"
-              name="description"
-              value={sodas.description}
-              onChange={onInputChange}
-              placeholder="beskrivning"
-            />
-
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              name="price"
-              value={sodas.price}
-              onChange={onInputChange}
-            />
-
-            <select
-              type="select"
-              className="form-control"
-              id="categoriesID"
-              name="categoriesID"
-              value={sodas.categoriesID}
-              onChange={onInputChange}
-            >
-              <option hidden>Kategori:</option>
-              <option disabled>Kategori:</option>
-              {categories.map((cat) => {
-                return <option key={cat.id}> {cat.name}</option>;
-              })}
-            </select>
-
-            <input id="img" name="img" type="file" accept="image/*" />
-            <div className="btn-div">
-              <Button variant="success" type="submit" onClick={updateSoda}>
-                Uppdatera
-              </Button>
-              <p>{message} </p>
-
-              <Button variant="danger" onClick={deleteSoda}>
-                Ta bort
-              </Button>
-            </div>
-          </form>
-          <Camera />
-        </>
+        </Container>
       ) : (
-        <div></div>
+        <Container className="backoffice-container" fluid>
+          {sodas ? (
+            <>
+              <div className="bo-header">
+                <Link to={`/backoffice/products`}>
+                  <button>{`<< Tillbaka till BO`}</button>
+                </Link>
+
+                <h2>Uppdatera produkt</h2>
+              </div>
+              <form className="bo-add-product">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={sodas.name}
+                  onChange={onInputChange}
+                  placeholder="produktnamn"
+                />
+
+                <input
+                  type="text"
+                  className="form-control"
+                  id="brand"
+                  name="brand"
+                  value={sodas.brand}
+                  onChange={onInputChange}
+                  placeholder="märke"
+                />
+
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="description"
+                  name="description"
+                  value={sodas.description}
+                  onChange={onInputChange}
+                  placeholder="beskrivning"
+                />
+
+                <input
+                  type="number"
+                  className="form-control"
+                  id="price"
+                  name="price"
+                  value={sodas.price}
+                  onChange={onInputChange}
+                />
+
+                <select
+                  type="select"
+                  className="form-control"
+                  id="categoriesID"
+                  name="categoriesID"
+                  value={sodas.categoriesID}
+                  onChange={onInputChange}
+                >
+                  <option hidden>Kategori:</option>
+                  <option disabled>Kategori:</option>
+                  {categories.map((cat) => {
+                    return <option key={cat.id}> {cat.name}</option>;
+                  })}
+                </select>
+
+                <input id="img" name="img" type="file" accept="image/*" />
+                <div className="btn-div">
+                  <Button variant="success" type="submit" onClick={updateSoda}>
+                    Uppdatera
+                  </Button>
+                  <p>{message} </p>
+
+                  <Button variant="danger" onClick={deleteSoda}>
+                    Ta bort
+                  </Button>
+                </div>
+              </form>
+              <Camera />
+            </>
+          ) : (
+            <div></div>
+          )}
+        </Container>
       )}
-    </Container>
+      ;
+    </>
   );
 };
 

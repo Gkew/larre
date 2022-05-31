@@ -78,12 +78,9 @@ const BOProductCreate = () => {
       {!navigator.onLine ? (
         <Container className="backoffice-container">
           {/* Offline */}
-          <div className="testcontainer">
-            <Row>
-              <Col>
-                <h1>Du kan inte lägga till en produkt om du är offline!</h1>
-              </Col>
-            </Row>
+          <div className="offline-container">
+            <h1>Du kan inte lägga till en produkt om du är offline!</h1>
+            <p>Försök igen när du är online igen.</p>
           </div>
         </Container>
       ) : (
