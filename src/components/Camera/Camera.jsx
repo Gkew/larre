@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Gps from './Gps'
 // import {Link} from 'react-router-dom'
+import Cam from '../Cam'
 
 function Camera() {
     let picture;
@@ -123,6 +124,8 @@ function Camera() {
 
 
       <Gps />
+
+<Cam />
     </div>
   );
 }
