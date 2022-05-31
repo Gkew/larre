@@ -6,7 +6,7 @@ import { HiEye } from "react-icons/hi";
 import logo from "../logo/SODA_POP.png";
 const NavbarComponent = () => {
   return (
-    <div className="Nav" style={{ position: "relative" }}>
+    <div className="Nav">
       <Navbar
         collapseOnSelect
         expand="md"
