@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import thanksImg from "../logo/TACK.png";
+import thanksImg from "../images/TACK.png";
 import { Col, Container, Row } from 'react-bootstrap'
 import "../css/Thanks.css"
 
