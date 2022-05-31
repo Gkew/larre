@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import "../css/Navbar.css";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiEye } from "react-icons/hi";
-import logo from "../images/SODA_POP.png";
+import logo from "../images/SODA-POP2.png";
 const NavbarComponent = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 767;
