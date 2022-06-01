@@ -32,6 +32,10 @@ const createPicture = (data, sodasID) => {
 const getOnePicture = (id) => {
   return http.get(`/pictures/${id}`);
 };
+
+const getAllOrders = () => {
+  return http.get("/orders");
+};
 const SodaService = {
   getAll,
   get,
@@ -42,5 +46,6 @@ const SodaService = {
   createCategory,
   createPicture,
   getOnePicture,
+  getAllOrders,
 };
 export default SodaService;
