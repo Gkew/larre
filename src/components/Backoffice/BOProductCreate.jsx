@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SodaService from "../services/SodaService";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 const BOProductCreate = () => {
   //set to false to not show successmessage until product is successfully created.
