@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: 'Raleway';
   background-color: #97c4b89f;
-  padding: 2%;
+  padding:0;
   margin: 0 auto;
   min-height: 100vh;
 
@@ -51,6 +51,7 @@
   .bo-header {
     background-color: #f9ceee;
     padding: 2%;
+
   }
 
   .bo-nav {
@@ -226,10 +227,15 @@
 
 }
 
+/* OFFLINE MODE*/
 .offline-container {
   padding: 5%;
   background-color: #F9CEEE;
   font-weight: bold;
   margin: 20% auto;
-
+  text-align: center;
+}
+.order-offline-container{
+  background-color: #FEC98F;
+text-align: center;
 }

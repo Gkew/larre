@@ -82,16 +82,19 @@ const BOProductEdit = (props) => {
         console.log(err);
       });
   }, []);
-  console.log("navigator.onLine", navigator.onLine);
+  //console.log("navigator.onLine", navigator.onLine);
 
   return (
     <>
       {!navigator.onLine ? (
-        <Container className="backoffice-container">
-          {/* Offline */}
+        <Container className="backoffice-container" fluid>
+          {/*Om Offline */}
           <div className="offline-container">
             <h1>Du kan inte uppdatera en produkt om du är offline!</h1>
             <p>Försök igen när du är online igen.</p>
+            <Link to={`/backoffice/products`}>
+              <button>{`<< Tillbaka till alla produkter`}</button>
+            </Link>
           </div>
         </Container>
       ) : (

@@ -74,32 +74,38 @@ const BOCategoryHandling = () => {
           })}
         </ul>{" "}
       </div>
-      <h2>Skapa ny kategori</h2>
-      <form className="create-category" onSubmit={createCategory}>
-        <input
-          className="categ-input"
-          type="text"
-          name="name"
-          onChange={handleChange}
-          value={newCategory.name}
-          placeholder="Kategorinamn"
-        ></input>
-        <input
-          type="text"
-          name="description"
-          onChange={handleChange}
-          value={newCategory.description}
-          placeholder="Beskrivning"
-        ></input>
-        <Button
-          type="submit"
-          onClick={createCategory}
-          variant="light"
-          className="addcategory-btn"
-        >
-          Skapa kategori
-        </Button>
-      </form>
+      {!navigator.onLine ? (
+        <> {/* Om Offline visas ingenting*/}/</>
+      ) : (
+        <>
+          <h2>Skapa ny kategori</h2>
+          <form className="create-category" onSubmit={createCategory}>
+            <input
+              className="categ-input"
+              type="text"
+              name="name"
+              onChange={handleChange}
+              value={newCategory.name}
+              placeholder="Kategorinamn"
+            ></input>
+            <input
+              type="text"
+              name="description"
+              onChange={handleChange}
+              value={newCategory.description}
+              placeholder="Beskrivning"
+            ></input>
+            <Button
+              type="submit"
+              onClick={createCategory}
+              variant="light"
+              className="addcategory-btn"
+            >
+              Skapa kategori
+            </Button>
+          </form>
+        </>
+      )}
     </Container>
   );
 };

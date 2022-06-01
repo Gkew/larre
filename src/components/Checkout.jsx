@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
-import CheckoutService from '../utils/CheckoutService';
-import axios from 'axios';
-import "../css/remove.scss"
+import { Button, Card, Col, Container, Row, Form } from "react-bootstrap";
+import CheckoutService from "../utils/CheckoutService";
+import axios from "axios";
+import "../css/remove.scss";
 
 export default function Checkout() {
-  const cartFromLS = JSON.parse(localStorage.getItem('cart'));
+  const cartFromLS = JSON.parse(localStorage.getItem("cart"));
   const [created, setCreated] = useState(false);
   const [items, setItems] = useState([]);
   let navigate = useNavigate();
@@ -25,22 +25,22 @@ export default function Checkout() {
   });
 
   const navToThankYouPage = () => {
-    navigate(`/thankyou`)
+    navigate(`/thankyou`);
   };
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('cart'));
+    const items = JSON.parse(localStorage.getItem("cart"));
     if (items) {
       setItems(items);
     }
   }, []);
 
-  useEffect(() => console.log(items), [items])
+  useEffect(() => console.log(items), [items]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setOrders({ ...orders, [name]: value });
-  }
+  };
 
   const addOrder = async (e) => {
     e.preventDefault();
@@ -55,8 +55,6 @@ export default function Checkout() {
       city: orders.city,
       orderTotal: totalPrice,
     };
-
-
 
     CheckoutService.create(data)
       .then(async (res) => {
@@ -82,28 +80,29 @@ export default function Checkout() {
             sodasIDKey: sodasID,
             quantityID: quantity,
             orderid,
-          })
-          localStorage.removeItem('cart');
-          navigate(`/thankyou`)
-        };
-
+          });
+          localStorage.removeItem("cart");
+          navigate(`/thankyou`);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
 
   return (
     <Container style={{ minHeight: "50vh", backgroundColor: "#F9CEEE" }}>
-      <Card className='border border-0'>
-        <Form onSubmit={addOrder} style={{ marginTop: '8px', backgroundColor: "#F9CEEE" }}>
+      <Card className="border border-0">
+        <Form
+          onSubmit={addOrder}
+          style={{ marginTop: "8px", backgroundColor: "#F9CEEE" }}
+        >
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Förnamn</Form.Label>
               <Form.Control
                 type="text"
-                name='firstName'
+                name="firstName"
                 placeholder="Skriv in ditt förnamn"
                 onChange={handleInput}
                 defaultValue={orders.firstName}
@@ -115,7 +114,7 @@ export default function Checkout() {
               <Form.Label>Efternamn</Form.Label>
               <Form.Control
                 type="text"
-                name='lastName'
+                name="lastName"
                 placeholder="Skriv in ditt efternamn"
                 onChange={handleInput}
                 defaultValue={orders.lastName}
@@ -127,9 +126,9 @@ export default function Checkout() {
           <Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
             <Form.Label>Adress</Form.Label>
             <Form.Control
-              type='text'
+              type="text"
               placeholder="Läskgatan 420"
-              name='address'
+              name="address"
               onChange={handleInput}
               defaultValue={orders.address}
               required
@@ -140,7 +139,7 @@ export default function Checkout() {
             <Form.Label>C/o adress</Form.Label>
             <Form.Control
               placeholder="Läskgatan 420"
-              name='coAddress'
+              name="coAddress"
               onChange={handleInput}
               defaultValue={orders.coAddress}
               type="text"
@@ -151,8 +150,8 @@ export default function Checkout() {
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Stad</Form.Label>
               <Form.Control
-                placeholder='Läskeborg'
-                name='city'
+                placeholder="Läskeborg"
+                name="city"
                 onChange={handleInput}
                 defaultValue={orders.city}
                 type="text"
@@ -163,8 +162,8 @@ export default function Checkout() {
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Postnummer</Form.Label>
               <Form.Control
-                placeholder='133 37'
-                name='zipCode'
+                placeholder="133 37"
+                name="zipCode"
                 onChange={handleInput}
                 defaultValue={orders.zipCode}
                 type="text"
@@ -177,27 +176,37 @@ export default function Checkout() {
             <Form.Label>Email</Form.Label>
             <Form.Control
               placeholder="älskar@läsk.com"
-              name='email'
+              name="email"
               onChange={handleInput}
               defaultValue={orders.email}
               type="text"
               required
             />
           </Form.Group>
-          <button
-            style={{
-              backgroundColor: "#FEC98F",
-              border: "none",
-              color: "black",
-            }}
-            variant="primary"
-            type="submit"
-            className="mt-2 btn mx-auto ms-3"
-          >
-            Skicka min beställning!
-          </button>
+          {!navigator.onLine ? (
+            <Container>
+              {/* Om Offline */}
+              <div className="order-offline-container">
+                <h3>Du kan inte lägga en order om du är offline!</h3>
+                <p>Försök igen när du är online.</p>
+              </div>
+            </Container>
+          ) : (
+            <button
+              style={{
+                backgroundColor: "#FEC98F",
+                border: "none",
+                color: "black",
+              }}
+              variant="primary"
+              type="submit"
+              className="mt-2 btn mx-auto ms-3"
+            >
+              Skicka min beställning!
+            </button>
+          )}
         </Form>
       </Card>
     </Container>
-  )
+  );
 }
