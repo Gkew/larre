@@ -7,11 +7,31 @@
 .link0:hover {
   font-size: 50px;
 } */
+
+.Nav {
+  height: 150px;
+  transition: 250ms ease-in-out;
+}
+
 [class*=link] {
   font-family: 'Raleway';
   font-size: 20px;
   font-weight: 1000;
 }
+
+.computerNav {
+  margin-bottom: 14vh;
+}
+
+.phoneNav {
+  margin-bottom: 8vh;
+}
+
+.navbar-scrolled {
+  height: 130px;
+  transition: 250ms ease-in-out;
+}
+
 /* .Nav {
 
   position: fixed;

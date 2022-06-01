@@ -18,6 +18,7 @@ import { AuthProvider } from "./components/Backoffice/Admin/Authenticate";
 import AuthRoutes from "./components/Backoffice/Admin/AuthRoutes";
 import Login from "./components/Backoffice/Admin/BOLogIn";
 import Camera from "./components/Camera/Camera";
+import ThankYou from "./components/ThankYou";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -54,6 +55,7 @@ root.render(
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/camera" element={<Camera />} />
+          <Route path="/thankyou" element={<ThankYou />} />
 
           <Route
             path="/backoffice"

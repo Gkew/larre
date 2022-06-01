@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import SodaService from "../services/SodaService";
 import { sweFormat } from "../ProductlistUtilities/sekFormatting";
 import FilterUtil, {
@@ -56,14 +56,14 @@ const BOProductList = () => {
   };
 
   return (
-    <Container className="backoffice-container list row" fluid>
+    <Container className="backoffice-container" fluid>
       <div className="bo-header">
         <Link to={`/backoffice`}>
           {" "}
           <button>{`<< Tillbaka till BO`}</button>
         </Link>
 
-        <h2>Alla varor</h2>
+        <h2>Våra produkter</h2>
       </div>
       <div className="bo-search-filter">
         <label>

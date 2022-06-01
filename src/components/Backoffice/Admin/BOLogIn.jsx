@@ -26,7 +26,7 @@ function BOLogIn() {
           Ta mig tillbaka till startsidan
         </Link>
 
-        <h2>Logga in</h2>
+        <h2>Logga in till Backoffice</h2>
       </div>
 
       <form className="admin-login">

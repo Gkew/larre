@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SodaService from "../services/SodaService";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 const BOProductCreate = () => {
   //set to false to not show successmessage until product is successfully created.
@@ -78,12 +78,9 @@ const BOProductCreate = () => {
       {!navigator.onLine ? (
         <Container className="backoffice-container">
           {/* Offline */}
-          <div className="testcontainer">
-            <Row>
-              <Col>
-                <h1>Du kan inte lägga till en produkt om du är offline!</h1>
-              </Col>
-            </Row>
+          <div className="offline-container">
+            <h1>Du kan inte lägga till en produkt om du är offline!</h1>
+            <p>Försök igen när du är online igen.</p>
           </div>
         </Container>
       ) : (

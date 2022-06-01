@@ -13,6 +13,7 @@
     "best-sqlite3": "^1.0.19",
     "bootstrap": "^3.4.1",
     "cors": "^2.8.5",
+    "deps": "^1.0.0",
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
     "formidable": "^2.0.1",
