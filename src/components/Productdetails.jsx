@@ -10,10 +10,8 @@ import { height } from "@mui/system";
 export default function Productdetails() {
   const cartFromLS = JSON.parse(localStorage.getItem('cart') || "[]");
   const [details, setDetails] = useState([]);
-  const [sodasList, setSodasList] = useState();
   const { sodasID } = useParams();
-  const [buy, setBuy] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [customQuantity, setCustomQuantity] = useState(1);
 
   const [cart, setCart] = useState(cartFromLS);
 
@@ -31,6 +29,8 @@ export default function Productdetails() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+
+  ///Custom kvantitet fungerar inte
   const addToCart = (product) => {
     let newCart = [...cart];
     let itemInCart = newCart.find(
@@ -48,39 +48,15 @@ export default function Productdetails() {
     setCart(newCart);
   };
 
-  // const addToCart = () => {
-  //   sodasList.push((details))
-  //   setBuy(!buy)
-  // }
-
   return (
     <div className="productsdetails" style={{ height: "90vh", textAlign: "center", paddingTop: "1%", margin: "0 auto" }}  >
-
-
-
-
-
-
-
-
       <Card >
-
-
-
-
-
         <Card.Body style={{ backgroundColor: "white", padding: "0px", marginBottom: "0%" }} >
           <Card.Title style={{ backgroundColor: "#F9CEEE" }}>
             <h1> {details.name} </h1>
-
             <h3> {details.brand}</h3>
-
           </Card.Title>
-
           <Card.Img src={`/images/products/${sodasID}.png`} style={{ objectFit: "scale-down", maxWidth: "150px", maxHeight: "450px", margin: "auto" }} />
-
-
-
           <Card.Text style={{ backgroundColor: "white", marginTop: "2%", marginBottom: "0%", minHeight: "40%" }}>
             <h5>{details.description}</h5>
 
@@ -90,9 +66,7 @@ export default function Productdetails() {
           <h2> {sweFormat(details.price)}</h2>
           <br></br>
           <p style={{ fontWeight: "bold" }}>Antal:</p>
-
-          <input value={quantity} onChange={e => setQuantity(e.target.value)}></input>
-
+          {/* <input value={customQuantity} onChange={e => setCustomQuantity(e.target.value)}></input> */}
           <button
             style={{
               backgroundColor: "#FEC98F",
