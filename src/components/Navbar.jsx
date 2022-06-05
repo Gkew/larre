@@ -6,7 +6,8 @@ import { HiEye } from "react-icons/hi";
 import logo from "../images/SODA-POP2.png";
 const NavbarComponent = () => {
   const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 767;
+  // const ipadbreakpoint = 1200;
+  const breakpoint = 992;
   const [scroll, setScroll] = useState(1);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const NavbarComponent = () => {
   }, []);
   useEffect(() => {
     const onScroll = () => {
-      const scrollCheck = window.scrollY > 20;
+      const scrollCheck = window.scrollY > 30;
       setScroll(scrollCheck);
     };
     document.addEventListener("scroll", onScroll);
@@ -31,7 +32,7 @@ const NavbarComponent = () => {
     <div className={`${width > breakpoint ? "computerNav" : "phoneNav"}`}>
       <Navbar
         collapseOnSelect
-        expand="md"
+        expand="lg"
         fixed="top"
         variant="light"
         style={{ backgroundColor: "#CCF3EE" }}

@@ -9,7 +9,7 @@
 } */
 
 .Nav {
-  height: 150px;
+  height: 120px;
   transition: 250ms ease-in-out;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .navbar-scrolled {
-  height: 130px;
+  height: 100px;
   transition: 250ms ease-in-out;
 }
 

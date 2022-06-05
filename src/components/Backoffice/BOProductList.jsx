@@ -36,6 +36,7 @@ const BOProductList = () => {
     SodaService.getAll()
       .then((res) => {
         setProducts(res.data);
+        console.log(res.data)
         //console.log(res.data);
       })
       .catch((error) => {
@@ -50,9 +51,7 @@ const BOProductList = () => {
 
   const getData = () => {
     return FilterUtil.getSortFilter(
-      FilterUtil.getCategoryFilter(products, category),
-      filter
-    );
+      FilterUtil.getCategoryFilter(products, category), filter);
   };
 
   return (

@@ -35,6 +35,10 @@ export default function ProductList() {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // //LOCALSTORAGE
   // useEffect(() => {
   //   localStorage.setItem("sodasList", JSON.stringify(sodasList));
