@@ -25,7 +25,7 @@ const Gps = () => {
   };
 
   return (
-    <div className="Gps" style={{ margin: "0 auto" }}>
+    <div className="Gps" style={{ margin: "0 auto", width: "30%" }}>
       <button
         className="btn btn-primary container"
         style={{ width: "fit-content" }}
