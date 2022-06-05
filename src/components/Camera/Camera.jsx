@@ -113,7 +113,8 @@ function Camera() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Card className="container">
+      <h4>Ta eller lägg till en bild på produkten: </h4>
+      <Card className="container" style={{ padding: "2%" }}>
         <video
           ref={videoRef}
           id="live"
@@ -132,13 +133,13 @@ function Camera() {
           </button>
         </Card.Footer>
       </Card>
-      <Card className="container">
+      <Card className="container" style={{ padding: "2%" }}>
         {{ takePicture } ? (
           <canvas
             id="canvas"
             ref={photoRef}
             style={{
-              height: "400px",
+              height: "250px",
               margin: "0 auto",
             }}
           ></canvas>
@@ -147,17 +148,21 @@ function Camera() {
           <Button
             variant="danger"
             onClick={clearImage}
-            style={{ width: "fit-content", marginBottom: "2%" }}
+            style={{ width: "fit-content", marginRight: "1em" }}
           >
             Radera
           </Button>
-          <Button variant="outline-primary">
+          <Button variant="success">
             <a
               href="/uploads"
               id="downloader"
               onClick={download}
               download="image.jpg"
-              style={{ width: "fit-content" }}
+              style={{
+                width: "fit-content",
+                textDecoration: "none",
+                color: "white",
+              }}
             >
               Spara bild
             </a>
@@ -182,8 +187,9 @@ function Camera() {
           </Card.Body>
         )}
 
-        <Card.Footer>
-          <label>Ladda upp</label>
+        <Card.Body>
+          <label>Välj en bild att ladda upp</label>
+          <br />
           <input
             style={{ padding: "5%" }}
             type="file"
@@ -194,7 +200,7 @@ function Camera() {
           />
 
           <Gps />
-        </Card.Footer>
+        </Card.Body>
       </Card>
     </div>
   );

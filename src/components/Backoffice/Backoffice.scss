@@ -49,8 +49,10 @@
 
 
   .bo-header {
-    background-color: #f9ceee;
+    background-color: #F9F3EE;
     padding: 2%;
+    margin-top:8em;
+    border: none;
 
   }
 
@@ -115,15 +117,10 @@
       width: fit-content;
     }
 
-    /*Category-page*/
-
     .categ-input {
       margin-bottom: 1em;
     }
-
   }
-
-  /*ProductList-page*/
 
   .searchbar {
     input {
@@ -139,18 +136,18 @@
     }
 
     .all-products {
-      height: 20%;
+      height: 20vh;
       overflow-y: scroll;
 
       @media screen and(min-width: 768px) {
         display: flex;
         flex-direction: column;
-        height: 50%;
+        height: 50vh;
         width: 50%;
         margin-top: 2em;
-
+        
         .list-group {
-          height: 80%;
+          height: 20%;
           margin-top: 2em;
           padding: 2%;
         }
@@ -187,7 +184,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin-bottom: 2.5em;
     .addproduct-btn,
     .addcategory-btn {
       width: fit-content;
@@ -237,5 +234,5 @@
 }
 .order-offline-container{
   background-color: #FEC98F;
-text-align: center;
+  text-align: center;
 }
